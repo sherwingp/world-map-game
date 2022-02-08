@@ -1,8 +1,7 @@
-export default function Clue(text) {
+const Clue = ({text}) => {
     return (
-    <li className= "clue"> 
-        {text}
-    </li>
+    <li className= "clue">{text}</li>
     )
 }
     
+export default Clue
