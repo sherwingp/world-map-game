@@ -11,11 +11,3 @@ export default function ClueList(props) {
     </ul>
   )
 }
-
-    // return (
-    //   <li>
-    //     clue
-    //   </li>
-    // );
-    // })
- 
