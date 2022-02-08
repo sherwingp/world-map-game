@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Form from '../components/form'
 import Footer from '../components/footer'
@@ -19,7 +18,10 @@ export default function Home() {
         </h1>
         <Form />
       </main>
+      <div className ="footer">
       <Footer />
+      </div>
     </div>
   )
 }
+
