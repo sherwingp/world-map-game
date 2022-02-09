@@ -14,7 +14,7 @@ const Form = () => {
     
              <input data-testid="input-name" type="text" name="name" onChange={(e) => setName(e.target.value)}/>
            </label>
-           <button className="btn" type="submit" value="Submit">Enter</button>
+           <button onClick={event =>  window.location.href='/game'}className="btn" type="submit" value="Submit">Enter</button>
          </form>
   )
 
