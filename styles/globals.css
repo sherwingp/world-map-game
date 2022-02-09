@@ -15,9 +15,20 @@ a {
   box-sizing: border-box;
 }
 
+
 #map {
   position: relative;
   top: 0;
   bottom: 0;
   width: 100%;
+  }
+
+/* Create a space between welcome header and form */
+h1 {
+  padding-bottom: 50px;
+}
+
+.footer {
+  text-align: center;
+  padding-bottom: 25px;
 }
