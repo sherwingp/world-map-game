@@ -1,7 +1,7 @@
 const Footer = () => {
     return ( 
         <div className="footer">
-           <p>Copyright 2022 Created by Sherwin Panganiban, Michael Kassim, Zoë Idehen, Kehinde Alaka & Tomas Garcia </p>
+           <p data-testid="footer-content">Copyright 2022 Created by Sherwin Panganiban, Michael Kassim, Zoë Idehen, Kehinde Alaka & Tomas Garcia </p>
         </div>
      );
 }
