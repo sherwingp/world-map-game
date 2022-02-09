@@ -32,6 +32,8 @@ export default function Game() {
       projection: "naturalEarth",
     });
 
+    map.addControl(new mapboxgl.NavigationControl());
+
     initializeMap(mapboxgl, map);
     setMap(map);
   }, []);
