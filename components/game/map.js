@@ -1,7 +1,7 @@
-export default function Map() {
+const GameMap = () => {
   return (
-  <div className="mapheader">
-    <img src="https://geology.com/world/world-map.gif"></img>
-  </div>
+    <div id="my-map" style={{ height: 500, width: '100%' }} />
   )
 }
+  
+export default GameMap

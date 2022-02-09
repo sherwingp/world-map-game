@@ -9,7 +9,7 @@ describe('Game', () => {
   it('should have a map', () => {
     cy.visit('http://localhost:3000/game')
     
-    cy.get('img')
+    cy.get('[id=my-map]')
   })
 
   it('should have a list of clues', () => {
