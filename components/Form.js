@@ -12,7 +12,7 @@ const Form = () => {
          <label data-testid="label">
              Enter Player Name:
     
-             <input type="text" name="name" onChange={(e) => setName(e.target.value)}/>
+             <input data-testid="input-name" type="text" name="name" onChange={(e) => setName(e.target.value)}/>
            </label>
            <button className="btn" type="submit" value="Submit">Enter</button>
          </form>

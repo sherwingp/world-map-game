@@ -8,4 +8,7 @@ it('renders a form', () => {
     const nameLabel = screen.getByTestId('label')
     expect(nameLabel).toBeInTheDocument();
     expect(nameLabel).toHaveTextContent('Enter Player Name:')
+
+    const inputElement = screen.getByTestId('input-name')
+    expect(inputElement).toHaveAttribute('type', 'text') ;
 })
