@@ -7,7 +7,7 @@ export default function ClueList(props) {
       text={clue}
       />
     )
-  )
+  ) 
 
   return (
     <ul>
