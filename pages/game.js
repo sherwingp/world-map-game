@@ -2,8 +2,12 @@ import GameHeader from "../components/game/gameHeader.js";
 import ClueList from "../components/game/clueList.js";
 import GameMap from "../components/game/map.js";
 import Head from "next/head";
+import Form from '../components/form'
+import PlayersList from "../components/game/playersList.js";
+import Player from '../components/game/Player';
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
+
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 const props = [
@@ -11,10 +15,17 @@ const props = [
   "Where is Disneyland's home",
   "It has the nickname 'Magic City'",
 ];
+// const name = ["Kenny"]
 
 mapboxgl.accessToken = process.env.MAP_BOX;
 
 export default function Game() {
+  const [defaultName, updateName] = useState([]);
+  
+  const addName = (name) => {
+    updateName([...defaultName, name])
+  };
+
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
 
@@ -54,6 +65,12 @@ export default function Game() {
       <GameHeader />
       <GameMap />
       <ClueList clues={props} />
+      
+      {/* <PlayersList players={props}/> */}
+      
+      <p>Players:</p>
+      <Form addName={addName}/>
+
     </div>
   );
 }
