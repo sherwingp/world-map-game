@@ -1,8 +1,8 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Header from '../components/header'
-import Form from '../components/form'
-import Footer from '../components/footer'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Header from "../components/header";
+import Form from "../components/form";
+import Footer from "../components/footer";
 
 export default function Home() {
   return (
@@ -15,14 +15,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        <Header />
+          <Header />
         </h1>
         <Form />
       </main>
-      <div className ="footer">
-      <Footer />
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );
 }
-

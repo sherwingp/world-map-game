@@ -18,6 +18,7 @@ mapboxgl.accessToken = process.env.MAP_BOX;
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const [message, setMessage] = useState("Select your secret location");
 
   mapboxgl.accessToken =
     "pk.eyJ1Ijoid2FubmFkYyIsImEiOiJjazBja2M1ZzYwM2lnM2dvM3o1bmF1dmV6In0.50nuNnApjrJYkMfR2AUpXA";
@@ -35,7 +36,7 @@ export default function Game() {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map);
+    initializeMap(mapboxgl, map, setMessage);
     setMap(map);
   }, []);
 
@@ -54,7 +55,7 @@ export default function Game() {
         />
       </Head>
       <GameHeader />
-      <MessageBox message="Select your secret location" />
+      <MessageBox message={message} />
       <GameMap />
       <ClueList clues={props} />
     </div>
