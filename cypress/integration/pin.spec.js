@@ -5,5 +5,4 @@ describe("Pins", () => {
     cy.get("[id=my-map]").click('center');
     cy.get(`[aria-label="Map marker"]`);
   });
-
 });

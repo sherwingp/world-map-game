@@ -4,6 +4,7 @@ import GameMap from "../components/game/map.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
+import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 const props = [
@@ -52,8 +53,8 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-
       <GameHeader />
+      <MessageBox message="Select your secret location" />
       <GameMap />
       <ClueList clues={props} />
     </div>
