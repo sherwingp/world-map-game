@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import Header from '../components/header'
 import Form from '../components/form'
 import Footer from '../components/footer'
 
@@ -14,7 +15,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to MAP-PIN
+        <Header />
         </h1>
         <Form />
       </main>
