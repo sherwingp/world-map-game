@@ -9,7 +9,7 @@ const Form = () => {
 
   return ( 
         <form onSubmit={handleSubmit}>
-         <label>
+         <label data-testid="label">
              Enter Player Name:
     
              <input type="text" name="name" onChange={(e) => setName(e.target.value)}/>
