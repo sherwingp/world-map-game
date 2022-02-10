@@ -1,11 +1,11 @@
-import GameHeader from "../components/game/GameHeader.js";
-import ClueList from "../components/game/ClueList.js";
-import GameMap from "../components/game/Map.js";
-import ClueForm from "../components/game/ClueForm.js";
+import GameHeader from "../components/game/gameheader.js";
+import ClueList from "../components/game/cluelist.js";
+import GameMap from "../components/game/map.js";
+import ClueForm from "../components/game/clueform.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
-import MessageBox from "../components/MessageBox.js";
+import MessageBox from "../components/messagebox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 import { nanoid } from "nanoid";

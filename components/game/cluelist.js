@@ -1,4 +1,4 @@
-import Clue from "./Clue.js";
+import Clue from "./clue.js";
 import { nanoid } from "nanoid";
 
 export default function ClueList(props) {
