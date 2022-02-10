@@ -1,10 +1,8 @@
-// import { useState } from "react"
-// import Form from '../components/Form'
-// const [player, setPlayer] = useState({name})
+import NameContext from "../../contexts/name";
+import { useContext } from "react";
 
-import { name } from "../components/Form";
-
-const Player = ({ name }) => {
+const Player = () => {
+const { name } = useContext(NameContext);
   return <li className="player">{name}</li>;
 };
 

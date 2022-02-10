@@ -7,6 +7,7 @@ import { initializeMap } from "../map/initializeMap";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import NameContext from "../contexts/name.js";
 import { useContext } from "react";
+import PlayersList from "../components/game/PlayersList.js";
 
 const props = [
   "This country has many states",
@@ -52,7 +53,7 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-      <h2>{name}</h2>
+      <PlayersList />
       <GameHeader />
       <GameMap />
       <ClueList clues={props} />
