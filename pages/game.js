@@ -5,16 +5,17 @@ import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
+import MessageBox from "../components/MessageBox.js";
+const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 import { nanoid } from "nanoid";
-
-const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 mapboxgl.accessToken = process.env.MAP_BOX;
 
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
 
   const addClue = (clue) => {
@@ -37,7 +38,9 @@ export default function Game() {
       projection: "naturalEarth",
     });
 
-    initializeMap(mapboxgl, map);
+    map.addControl(new mapboxgl.NavigationControl());
+
+    initializeMap(mapboxgl, map, setMessage);
     setMap(map);
   }, []);
 
@@ -56,6 +59,7 @@ export default function Game() {
         />
       </Head>
       <GameHeader />
+      <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
       <ClueList clues={clues} />
