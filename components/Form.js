@@ -2,9 +2,23 @@
 import { useState } from "react"
 const Form = () => {
     const [name, setName] = useState('');
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(name)
+        // console.log(name)
+        const data = {name}
+        console.log(data)
+        const res = await fetch('/api/name', {
+          body: JSON.stringify({
+            name: (e.target.name.value)
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST',
+        })
+        
+        const result = await res.json()
+        alert(`Is this your Player name: ${result.data}`)
     }
 
   return ( 
