@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import Form from "../Form";
+import Form from "../../Form";
 
 it("renders a form", () => {
   render(<Form />);
