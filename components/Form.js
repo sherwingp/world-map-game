@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useContext } from "react";
 import NameContext from "../contexts/name";
 
@@ -20,9 +21,8 @@ const Form = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <button className="btn" type="submit" value="Submit">
-        Enter
-      </button>
+      <Link href="/game" passHref><button data-testid="link-to-game" className="btn" type="submit" value="Submit">Enter</button>
+           </Link>
     </form>
   );
 };

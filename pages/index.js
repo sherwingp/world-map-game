@@ -6,7 +6,6 @@ import Footer from "../components/footer";
 import _app from "./_app";
 import { useContext } from "react";
 import NameContext from "../contexts/name";
-import Link from "next/link";
 
 export default function Home() {
   const [name, setName] = useContext(NameContext);
@@ -20,12 +19,6 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h3>
-          <Link href="/game">
-            <a>Game page</a>
-          </Link>
-        </h3>
-
         <h1 className={styles.title}>
           <Header />
         </h1>

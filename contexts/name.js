@@ -6,7 +6,7 @@ const NameContext = createContext({
 });
 
 export const NameProvider = ({ children }) => {
-  const [name, setName] = useState("hello");
+  const [name, setName] = useState("");
   const value = useMemo(() => ({ name, setName }), [name]);
   return <NameContext.Provider value={value}>{children}</NameContext.Provider>;
 };
