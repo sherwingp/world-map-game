@@ -5,6 +5,8 @@ import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+import NameContext from "../contexts/name.js";
+import { useContext } from "react";
 
 const props = [
   "This country has many states",
@@ -17,7 +19,8 @@ mapboxgl.accessToken = process.env.MAP_BOX;
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
-
+  const { name } = useContext(NameContext);
+  console.log({ name });
   mapboxgl.accessToken =
     "pk.eyJ1Ijoid2FubmFkYyIsImEiOiJjazBja2M1ZzYwM2lnM2dvM3o1bmF1dmV6In0.50nuNnApjrJYkMfR2AUpXA";
 
@@ -50,7 +53,7 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-
+      <h2>{name}</h2>
       <GameHeader />
       <GameMap />
       <ClueList clues={props} />

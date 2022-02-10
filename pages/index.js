@@ -1,10 +1,15 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-import Header from '../components/header'
-import Form from '../components/form'
-import Footer from '../components/footer'
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Header from "../components/header";
+import Form from "../components/form";
+import Footer from "../components/footer";
+import _app from "./_app";
+import { useContext } from "react";
+import NameContext from "../contexts/name";
 
 export default function Home() {
+  const [name, setName] = useContext(NameContext);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -15,14 +20,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-        <Header />
+          <Header />
         </h1>
-        <Form />
+        <Form setName={setName} />
       </main>
-      <div className ="footer">
-      <Footer />
+      <div className="footer">
+        <Footer />
       </div>
     </div>
   );
 }
-
