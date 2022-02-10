@@ -20,3 +20,5 @@ context("Window", () => {
     cy.title().should("include", "Kitchen Sink");
   });
 });
+
+cy.get("h2").contains("Zoe")

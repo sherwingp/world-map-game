@@ -8,7 +8,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import NameContext from "../contexts/name.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
-
+import PlayersHeader from "../components/game/playersHeader.js";
 const props = [
   "This country has many states",
   "Where is Disneyland's home",
@@ -53,6 +53,7 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
+      <PlayersHeader/>
       <PlayersList />
       <GameHeader />
       <GameMap />
