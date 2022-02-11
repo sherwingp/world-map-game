@@ -1,0 +1,22 @@
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        run: |
+          npm ci
+          npm run export
+      - name: Build
+        uses: akhileshns/heroku-deploy@v3.12.12 
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "mappin-game" 
+          heroku_email: "sherwingpanganiban@gmail.com"
