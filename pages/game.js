@@ -1,12 +1,17 @@
-import GameHeader from "../components/game/gameheader.js";
-import ClueList from "../components/game/cluelist.js";
-import GameMap from "../components/game/map.js";
-import ClueForm from "../components/game/clueform.js";
+import GameHeader from "../components/game/GameHeader.js";
+import ClueList from "../components/game/ClueList.js";
+import GameMap from "../components/game/Map.js";
+import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
-import MessageBox from "../components/messagebox.js";
+import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+import NameContext from "../contexts/name.js";
+import Navbar from "../components/Navbar.js";
+import { useContext } from "react";
+import PlayersList from "../components/game/PlayersList.js";
+import PlayersHeader from "../components/game/PlayersHeader.js";
 
 import { nanoid } from "nanoid";
 
@@ -15,6 +20,7 @@ mapboxgl.accessToken = process.env.MAP_BOX;
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
+  const { name } = useContext(NameContext);
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
 
@@ -58,6 +64,9 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
+      <Navbar />
+      <PlayersHeader />
+      <PlayersList />
       <GameHeader />
       <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
