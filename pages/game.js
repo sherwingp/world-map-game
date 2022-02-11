@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
+import Chat from "../components/game/Chat.js";
 
 import { nanoid } from "nanoid";
 
@@ -23,6 +24,7 @@ export default function Game() {
   const { name } = useContext(NameContext);
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
+  const [input, setInput] = useState('');
 
   const addClue = (clue) => {
     const newClue = { id: "clue-" + nanoid(), text: clue };
@@ -50,11 +52,6 @@ export default function Game() {
     setMap(map);
   }, []);
 
-  useEffect(() => {
-    if (pageIsMounted) {
-      Map.on("load", function () {});
-    }
-  }, [pageIsMounted, setMap, Map]);
 
   return (
     <div style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
@@ -72,6 +69,7 @@ export default function Game() {
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
       <ClueList clues={clues} />
+      <Chat />
     </div>
   );
 }
