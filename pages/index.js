@@ -1,8 +1,8 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Header from "../components/header";
-import Form from "../components/form";
-import Footer from "../components/footer";
+import Header from "../components/Header";nex
+import Form from "../components/Form";
+import Footer from "../components/Footer";
 import _app from "./_app";
 import { useContext } from "react";
 import NameContext from "../contexts/name";

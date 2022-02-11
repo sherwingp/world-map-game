@@ -1,20 +1,19 @@
-import GameHeader from "../components/game/gameHeader.js";
-import ClueList from "../components/game/clueList.js";
-import GameMap from "../components/game/map.js";
+import GameHeader from "../components/game/GameHeader.js";
+import ClueList from "../components/game/ClueList.js";
+import GameMap from "../components/game/Map.js";
+import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
+import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import NameContext from "../contexts/name.js";
-import Navbar from "../components/game/navbar.js";
+import Navbar from "../components/game/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
-import PlayersHeader from "../components/game/playersHeader.js";
-const props = [
-  "This country has many states",
-  "Where is Disneyland's home",
-  "It has the nickname 'Magic City'",
-];
+import PlayersHeader from "../components/game/PlayersHeader.js";
+
+import { nanoid } from "nanoid";
 
 mapboxgl.accessToken = process.env.MAP_BOX;
 
@@ -22,6 +21,15 @@ export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const { name } = useContext(NameContext);
+  const [message, setMessage] = useState("Select your secret location");
+  const [clues, setClues] = useState([]);
+
+  const addClue = (clue) => {
+    const newClue = { id: "clue-" + nanoid(), text: clue };
+
+    setClues([...clues, newClue]);
+  };
+
   mapboxgl.accessToken =
     "pk.eyJ1Ijoid2FubmFkYyIsImEiOiJjazBja2M1ZzYwM2lnM2dvM3o1bmF1dmV6In0.50nuNnApjrJYkMfR2AUpXA";
 
@@ -36,7 +44,9 @@ export default function Game() {
       projection: "naturalEarth",
     });
 
-    initializeMap(mapboxgl, map);
+    map.addControl(new mapboxgl.NavigationControl());
+
+    initializeMap(mapboxgl, map, setMessage);
     setMap(map);
   }, []);
 
@@ -58,8 +68,10 @@ export default function Game() {
       <PlayersHeader />
       <PlayersList />
       <GameHeader />
+      <MessageBox message={message} />
+      <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
-      <ClueList clues={props} />
+      <ClueList clues={clues} />
     </div>
   );
 }

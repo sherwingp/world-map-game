@@ -20,10 +20,4 @@ describe("Game", () => {
   it("should have a map", () => {
     cy.get("[id=my-map]");
   });
-
-  it("should have a list of clues", () => {
-    cy.get("li").contains("This country has many states");
-    cy.get("li").contains("Where is Disneyland's home");
-    cy.get("li").contains("It has the nickname 'Magic City'");
-  });
 });

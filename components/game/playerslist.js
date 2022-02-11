@@ -1,4 +1,4 @@
-import Player from "./player";
+import Player from "./Player";
 import PlayersContext from "../../contexts/players";
 import { useContext } from "react";
 
