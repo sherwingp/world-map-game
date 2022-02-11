@@ -2,16 +2,16 @@ import Link from "next/link";
 import { useContext } from "react";
 import NameContext from "../contexts/name";
 import PlayersContext from "../contexts/players";
+import { nanoid } from "nanoid";
 
 const Form = () => {
   const { name, setName } = useContext(NameContext);
   const { players, setPlayers } = useContext(PlayersContext);
 
   const handleSubmit = (e) => {
-    console.log("hey");
     e.preventDefault();
-    console.log(name);
-    setPlayers([...players, name]);
+    const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
+    setPlayers([...players, newPlayer]);
   };
 
   return (

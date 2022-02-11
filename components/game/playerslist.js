@@ -1,23 +1,20 @@
 import Player from "./player";
 import PlayersContext from "../../contexts/players";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 
 const PlayersList = () => {
   const { players } = useContext(PlayersContext);
-  const mappedPlayers = players.map((player) => <Player key={player.id} name={player} />)
-  const [sortedPlayers, setSortedPlayers] = useState(mappedPlayers)
 
-  useEffect(() => {
-    const sortedPlayers = mappedPlayers.sort((a, b) => {
-        a.score - b.score;
-    }) 
-    console.log(sortedPlayers)
-    console.log("hello")
-    setSortedPlayers(sortedPlayers)
-  }, [sortedPlayers])
+  const mappedPlayers = players.map((player) => (
+    <Player
+      id={player.id}
+      key={player.id}
+      name={player.name}
+      score={player.score}
+    />
+  ));
 
-  return sortedPlayers
-
+  return mappedPlayers;
 };
 
 export default PlayersList;
