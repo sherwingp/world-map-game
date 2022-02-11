@@ -21,8 +21,16 @@ const Form = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <Link href="/game" passHref><button data-testid="link-to-game" className="btn" type="submit" value="Submit">Enter</button>
-           </Link>
+      <Link href="/game" passHref>
+        <button
+          data-testid="link-to-game"
+          className="btn"
+          type="submit"
+          value="Submit"
+        >
+          Enter
+        </button>
+      </Link>
     </form>
   );
 };

@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import NameContext from "../contexts/name.js";
+import Navbar from "../components/game/navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/playersHeader.js";
@@ -53,7 +54,8 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-      <PlayersHeader/>
+      <Navbar />
+      <PlayersHeader />
       <PlayersList />
       <GameHeader />
       <GameMap />

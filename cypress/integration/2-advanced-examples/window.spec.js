@@ -21,4 +21,4 @@ context("Window", () => {
   });
 });
 
-cy.get("h2").contains("Zoe")
+cy.get("h2").contains("Zoe");
