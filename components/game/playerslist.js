@@ -1,15 +1,12 @@
 import Player from "./player";
-import NameContext from "../../contexts/name";
+import PlayersContext from "../../contexts/players";
 import { useContext } from "react";
 
 const PlayersList = () => {
-  const { name } = useContext(NameContext);
-  const players = [];
-  players.push({ name });
+  const { players } = useContext(PlayersContext);
+
   console.log(players);
 
-  return players.map((player) => {
-    return <Player key={player.id} text={player} />;
-  });
+  return players.map((player) => <Player key={player.id} name={player} />);
 };
 export default PlayersList;

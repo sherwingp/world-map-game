@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { useContext } from "react";
 import NameContext from "../contexts/name";
+import PlayersContext from "../contexts/players";
 
 const Form = () => {
   const { name, setName } = useContext(NameContext);
+  const { players, setPlayers } = useContext(PlayersContext);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
+    console.log("hey");
     e.preventDefault();
     console.log(name);
+    setPlayers([...players, name]);
   };
 
   return (
@@ -21,16 +25,15 @@ const Form = () => {
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <Link href="/game" passHref>
-        <button
-          data-testid="link-to-game"
-          className="btn"
-          type="submit"
-          value="Submit"
-        >
-          Enter
-        </button>
-      </Link>
+
+      <button
+        data-testid="link-to-game"
+        className="btn"
+        type="submit"
+        value="Submit"
+      >
+        Submit
+      </button>
     </form>
   );
 };
