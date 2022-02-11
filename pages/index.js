@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Header from "../components/Header";nex
+import Header from "../components/Header";
 import Form from "../components/Form";
 import Footer from "../components/Footer";
 import _app from "./_app";

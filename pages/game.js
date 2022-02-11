@@ -8,7 +8,7 @@ import { initializeMap } from "../map/initializeMap";
 import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 import NameContext from "../contexts/name.js";
-import Navbar from "../components/game/Navbar.js";
+import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
