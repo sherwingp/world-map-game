@@ -1,8 +1,14 @@
 import NameContext from "../../contexts/name";
-import { useContext } from "react";
+import { useState, useContext } from "react";
 
 const Player = ({ name }) => {
-  return <li className="player">{name}</li>;
+  const [score, setScore] = useState(0);
+  return (
+    <li className="player">
+      {name}: {score} points{" "}
+      <button onClick={() => setScore(score++)}>Increment</button>
+    </li>
+  );
 };
 
 export default Player;
