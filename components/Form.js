@@ -19,6 +19,7 @@ const Form = () => {
       <label data-testid="label">
         Enter Player Name:
         <input
+          className="input-index"
           data-testid="input-name"
           type="text"
           name="name"
@@ -28,7 +29,7 @@ const Form = () => {
 
       <button
         data-testid="link-to-game"
-        className="btn"
+        className="btn-index"
         type="submit"
         value="Submit"
       >

@@ -29,10 +29,11 @@ a {
 }
 
 /* Create a space between welcome header and form */
-h1 {
-  padding-bottom: 200px;
-  font-family:Ubuntu;
-  font-size: 100%;
+.header-index {
+ margin-top: 0;
+  padding-bottom: 400px; 
+  font-family:Ubuntu; 
+  font-size: x-large;
 }
 
 .footer {
@@ -41,7 +42,7 @@ h1 {
 }
 
 
-.btn {
+.btn-index {
   background-color: #32a2e2;
   border: 0;
   border-radius: 56px;
@@ -62,7 +63,7 @@ h1 {
   touch-action: manipulation;
 }
 
-.btn:before {
+.btn-index:before {
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -76,19 +77,19 @@ h1 {
   width: 92%;
 }
 
-.btn:hover {
+.btn-index:hover {
   box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
   transform: scale(1.05);
 }
 
-/* @media (min-width: 768px) {
-  .btn {
+ @media (min-width: 768px) {
+  .btn-index {
     padding: 16px 48px;
   }
-} */
+} 
 
 
-input {
+.input-index {
   display: block;
   width: 100%;
   border: 0;
@@ -98,19 +99,19 @@ input {
   box-shadow: none;
   color: #111;
 }
-input:invalid {
+.input-index:invalid {
   outline: 0;
   color: #337aa8;
    border-color: #337aa8;
 }
-input:focus,
-input:valid {
+.input-index:focus,
+.input-index:valid {
   border-color: #337aa8;
 }
-input:focus~label,
-input:valid~label {
+.input-index:focus~label,
+.input-index:valid~label {
   font-size: 14px;
   top: -24px;
   color: #337aa8;
 }
-
+ 
