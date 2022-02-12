@@ -12,10 +12,9 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
+import LocationContext from "../contexts/location.js";
 
 import { nanoid } from "nanoid";
-
-mapboxgl.accessToken = process.env.MAP_BOX;
 
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -23,6 +22,7 @@ export default function Game() {
   const { name } = useContext(NameContext);
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
+  const { location, setLocation } = useContext(LocationContext);
 
   const addClue = (clue) => {
     const newClue = { id: "clue-" + nanoid(), text: clue };
@@ -30,8 +30,7 @@ export default function Game() {
     setClues([...clues, newClue]);
   };
 
-  mapboxgl.accessToken =
-    "pk.eyJ1Ijoid2FubmFkYyIsImEiOiJjazBja2M1ZzYwM2lnM2dvM3o1bmF1dmV6In0.50nuNnApjrJYkMfR2AUpXA";
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
 
   useEffect(() => {
     setPageIsMounted(true);
@@ -46,7 +45,7 @@ export default function Game() {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map, setMessage);
+    initializeMap(mapboxgl, map, setMessage, location, setLocation);
     setMap(map);
   }, []);
 
