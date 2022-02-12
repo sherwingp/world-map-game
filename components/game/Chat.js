@@ -20,6 +20,14 @@ const Chat = () => {
 
     socket.on('connect', () => {
       console.log('connected')
+
+      const newConnection = { id: "message-" + nanoid(), author: 'System', text: `${name} joined the game.` }
+
+      setMessages((state) => {
+        return [...state, newConnection];
+      });
+  
+      socket.emit('chat message', newConnection)
     })
 
     socket.on('chat message', msg => {
@@ -32,8 +40,6 @@ const Chat = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const newMessage = { id: "message-" + nanoid(), author: name, text: input }
-    
-    // setMessages([...messages, newMessage])
 
     setMessages((state) => {
       return [...state, newMessage];
