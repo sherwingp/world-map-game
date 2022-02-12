@@ -1,4 +1,5 @@
 import Clue from "./Clue.js";
+import { nanoid } from "nanoid";
 
 export default function ClueList(props) {
   const clues = props.clues;
