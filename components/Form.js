@@ -16,18 +16,13 @@ const Form = () => {
   const socketInitializer = async () => {
     await fetch('/api/socket');
     socket = io()
-
-    socket.on('new player', player => {
-      setPlayers((state) => [...state, player]);
-    })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
-    setPlayers([...players, newPlayer]);
+    setPlayers([newPlayer]);
     socket.emit('new player', newPlayer)
-    socket.emit('get players')
   };
 
   return (

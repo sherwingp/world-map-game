@@ -23,8 +23,12 @@ const SocketHandler = (req, res) => {
         socket.broadcast.emit('new player', player)
       })
 
-      socket.on('get players', players => {
-        socket.broadcast.emit('get players', players)
+      socket.on('get players', () => {
+        socket.broadcast.emit('get players')
+      })
+
+      socket.on('send players', player => {
+        socket.broadcast.emit('send players', player)
       })
     })
   }
