@@ -6,9 +6,9 @@ body {
   Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-.body-index {
-  background-image: url("../public/images/map-gf94dafaef_1280.jpg");
-  color: whitesmoke;
+body {
+  background-image: linear-gradient(to right, rgb(18, 8, 48) , rgb(29, 232, 212));
+  color: white;
 
 }
 
@@ -29,11 +29,11 @@ a {
 }
 
 /* Create a space between welcome header and form */
-.header-index {
+h1 {
  margin-top: 0;
-  padding-bottom: 400px; 
+  padding-bottom: 40px; 
   font-family:Ubuntu; 
-  font-size: x-large;
+  
 }
 
 .footer {
@@ -42,7 +42,7 @@ a {
 }
 
 
-.btn-index {
+.btn {
   background-color: #32a2e2;
   border: 0;
   border-radius: 56px;
@@ -53,7 +53,7 @@ a {
   font-size: 18px;
   font-weight: 600;
   outline: 0;
-  padding: 16px 48px;
+  padding: 6px 43px;
   position: relative;
   text-align: center;
   text-decoration: none;
@@ -63,7 +63,7 @@ a {
   touch-action: manipulation;
 }
 
-.btn-index:before {
+.btn:before {
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -77,39 +77,40 @@ a {
   width: 92%;
 }
 
-.btn-index:hover {
+.btn:hover {
   box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
   transform: scale(1.05);
 }
 
- @media (min-width: 768px) {
+ /* @media (min-width: 768px) {
   .btn-index {
-    padding: 16px 48px;
+    padding: 10px 30px;
   }
-} 
+}  */
 
 
-.input-index {
+input {
   display: block;
   width: 100%;
+  border-radius: 56px;
   border: 0;
   outline: 0;
-  padding: 0.5rem 0;
+  padding: 0.9rem 0;
   border-bottom: 2px solid #d3d3d3;
   box-shadow: none;
   color: #111;
 }
-.input-index:invalid {
+input:invalid {
   outline: 0;
   color: #337aa8;
    border-color: #337aa8;
 }
-.input-index:focus,
-.input-index:valid {
+input:focus,
+input:valid {
   border-color: #337aa8;
 }
-.input-index:focus~label,
-.input-index:valid~label {
+input:focus~label,
+input:valid~label {
   font-size: 14px;
   top: -24px;
   color: #337aa8;

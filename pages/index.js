@@ -12,7 +12,6 @@ export default function Home() {
   const [name, setName] = useContext(NameContext);
 
   return (
-    <body className="body-index">
     <div className={styles.container}>
       <Link href="/game">Game page</Link>
       <Head>
@@ -22,7 +21,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className="header-index">
+        <h1>
           <Header />
         </h1>
         <Form setName={setName} />
@@ -31,6 +30,6 @@ export default function Home() {
         <Footer />
       </div>
     </div>
-    </body>
+
   );
 }
