@@ -1,17 +1,33 @@
 import Link from "next/link";
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import NameContext from "../contexts/name";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
+import io from 'Socket.IO-client'
+
+let socket;
 
 const Form = () => {
   const { name, setName } = useContext(NameContext);
   const { players, setPlayers } = useContext(PlayersContext);
 
+  useEffect(() => socketInitializer(), [])
+
+  const socketInitializer = async () => {
+    await fetch('/api/socket');
+    socket = io()
+
+    socket.on('new player', player => {
+      setPlayers((state) => [...state, player]);
+    })
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
     setPlayers([...players, newPlayer]);
+    socket.emit('new player', newPlayer)
+    socket.emit('get players')
   };
 
   return (

@@ -14,8 +14,17 @@ const SocketHandler = (req, res) => {
       socket.on('disconnect', () => {
         console.log('a user disconnected');
       })
+
       socket.on('chat message', msg => {
         socket.broadcast.emit('chat message', msg)
+      })
+
+      socket.on('new player', player => {
+        socket.broadcast.emit('new player', player)
+      })
+
+      socket.on('get players', players => {
+        socket.broadcast.emit('get players', players)
       })
     })
   }
