@@ -15,8 +15,6 @@ import PlayersHeader from "../components/game/PlayersHeader.js";
 
 import { nanoid } from "nanoid";
 
-mapboxgl.accessToken = process.env.MAP_BOX;
-
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
@@ -29,6 +27,8 @@ export default function Game() {
 
     setClues([...clues, newClue]);
   };
+  
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
   
   useEffect(() => {
     setPageIsMounted(true);
