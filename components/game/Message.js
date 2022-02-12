@@ -1,5 +1,5 @@
-const Message = ({ text }) => {
-  return <li className="message">{text}</li>;
+const Message = ({ author, text }) => {
+  return <li className="message">{author}: {text}</li>;
 };
 
 export default Message;

@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
 import io from 'Socket.IO-client'
 import MessageList from './MessageList.js';
+import NameContext from '../../contexts/name.js';
+import { useContext } from "react";
+import { nanoid } from "nanoid";
 
 let socket;
 
 const Chat = () => {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState([])
+  const { name } = useContext(NameContext);
 
   useEffect(() => socketInitializer(), [])
 
@@ -18,17 +22,24 @@ const Chat = () => {
       console.log('connected')
     })
 
-    socket.on('update-messages', msg => {
-      setMessages([...messages].concat(msg))
+    socket.on('chat message', msg => {
+      setMessages((state) => {
+        return [...state, msg];
+      });
     })
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const newMessage = { id: "message-" + nanoid(), author: name, text: input }
     
-    setMessages([...messages, input])
-    console.log(messages.push(input));
-    socket.emit('submit-message', messages)
+    // setMessages([...messages, newMessage])
+
+    setMessages((state) => {
+      return [...state, newMessage];
+    });
+
+    socket.emit('chat message', newMessage)
 
     setInput('')
   }
@@ -45,7 +56,7 @@ const Chat = () => {
         />
         <input type="submit" name="submit-clue" value="Chat" />
     </form>
-    <MessageList messages={messages} />
+    <MessageList author={name} messages={messages} />
   </div>
   );
 };
