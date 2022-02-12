@@ -1,10 +1,15 @@
 html,
 body {
-  background-image: url("../public/images/map-gf94dafaef_1280.jpg");
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+.body-index {
+  background-image: url("../public/images/map-gf94dafaef_1280.jpg");
+  color: whitesmoke;
+
 }
 
 a {
@@ -25,10 +30,87 @@ a {
 
 /* Create a space between welcome header and form */
 h1 {
-  padding-bottom: 50px;
+  padding-bottom: 200px;
+  font-family:Ubuntu;
+  font-size: 100%;
 }
 
 .footer {
   text-align: center;
   padding-bottom: 25px;
 }
+
+
+.btn {
+  background-color: #32a2e2;
+  border: 0;
+  border-radius: 56px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 0;
+  padding: 16px 48px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn:before {
+  background-color: initial;
+  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+  border-radius: 125px;
+  content: "";
+  height: 50%;
+  left: 4%;
+  opacity: .5;
+  position: absolute;
+  top: 0;
+  transition: all .3s;
+  width: 92%;
+}
+
+.btn:hover {
+  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  transform: scale(1.05);
+}
+
+/* @media (min-width: 768px) {
+  .btn {
+    padding: 16px 48px;
+  }
+} */
+
+
+input {
+  display: block;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid #d3d3d3;
+  box-shadow: none;
+  color: #111;
+}
+input:invalid {
+  outline: 0;
+  color: #337aa8;
+   border-color: #337aa8;
+}
+input:focus,
+input:valid {
+  border-color: #337aa8;
+}
+input:focus~label,
+input:valid~label {
+  font-size: 14px;
+  top: -24px;
+  color: #337aa8;
+}
+
