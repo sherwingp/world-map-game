@@ -33,7 +33,7 @@ const SocketHandler = (req, res) => {
           players.push({ ...newPlayer, socketId: id });
         }
 
-        io.emit("new player", players, newPlayer);
+        io.emit("refresh players", players);
         io.emit("player joined", newPlayer.name);
       });
 

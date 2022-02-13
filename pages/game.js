@@ -36,10 +36,6 @@ export default function Game() {
   const socketInitializer = async () => {
     await fetch("/api/socket");
 
-    socket.on("new player", (refreshedPlayers) => {
-      setPlayers(refreshedPlayers);
-    });
-
     socket.on("refresh players", (refreshedPlayers) => {
       setPlayers(refreshedPlayers);
     });
