@@ -18,7 +18,7 @@ const SocketHandler = (req, res) => {
       socket.on("disconnect", () => {
         console.log(`a user disconnected (id: ${socket.id})`)
         players = players.filter(player => player.socketId !== socket.id)
-        console.log(players);
+        io.emit("player left")
       });
 
       socket.on("leave server", () => {
@@ -29,19 +29,17 @@ const SocketHandler = (req, res) => {
         socket.broadcast.emit("chat message", msg);
       });
 
-      socket.on("new player", (player) => {
-        players.push({...player, socketId: id});
+      socket.on("new player", (newPlayer) => {
+        if (players.find((player) => player.id === newPlayer.id) === undefined) {
+          players.push({...newPlayer, socketId: id});
+        }
         console.log(players);
-        socket.broadcast.emit("new player", player);
+        io.emit("new player", players);
       });
 
-      socket.on("get players", () => {
-        socket.broadcast.emit("get players");
-      });
-
-      socket.on("send players", (player) => {
-        socket.broadcast.emit("send players", player);
-      });
+      socket.on("refresh players", () => {
+        io.emit("refresh players", players)
+      })
     });
   }
   res.end();

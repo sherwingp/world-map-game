@@ -30,7 +30,6 @@ export default function Game() {
 
   useEffect(() => {
     socket.emit("new player", player);
-    socket.emit("get players");
   }, []);
 
   useEffect(() => socketInitializer(), []);
@@ -38,24 +37,20 @@ export default function Game() {
   const socketInitializer = async () => {
     await fetch("/api/socket");
 
-    socket.on("new player", (newPlayer) => {
-      if (players.find((player) => player.id === newPlayer.id) === undefined) {
-        setPlayers([...players, newPlayer]);
-      }
+    socket.on("new player", (refreshedPlayers) => {
+      setPlayers(refreshedPlayers)
     });
 
-    socket.on("get players", () => {
-      socket.emit("send players", players[0]);
-    });
+    socket.on("refresh players", (refreshedPlayers) => {
+      setPlayers(refreshedPlayers)
+    })
+
+    socket.on("player left", () => {
+      socket.emit("refresh players")
+    })
 
     socket.on("disconnect", () => {
       socket.emit("leave server");
-    });
-
-    socket.on("send players", (newPlayer) => {
-      if (players.find((player) => player.id === newPlayer.id) === undefined) {
-        setPlayers([...players, newPlayer]);
-      }
     });
   };
 

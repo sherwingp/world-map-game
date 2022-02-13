@@ -4,8 +4,6 @@ import PlayerContext from "../../contexts/player.js";
 import { useContext } from "react";
 import { nanoid } from "nanoid";
 
-let socket;
-
 const Chat = ({ socket }) => {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
