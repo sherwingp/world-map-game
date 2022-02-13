@@ -1,31 +1,22 @@
-import Router from 'next/router'
-import { useState, useEffect, useContext } from "react";
+import Router from "next/router";
+import { useState, useContext } from "react";
 import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
-import io from 'Socket.IO-client'
 
 let socket;
 
 const Form = () => {
-  const [name, setName] = useState('')
+  const [name, setName] = useState("");
   const { player, setPlayer } = useContext(PlayerContext);
   const { players, setPlayers } = useContext(PlayersContext);
-
-  useEffect(() => socketInitializer(), [])
-
-  const socketInitializer = async () => {
-    await fetch('/api/socket');
-    socket = io()
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
-    setPlayer(newPlayer)
+    setPlayer(newPlayer);
     setPlayers([newPlayer]);
-    socket.emit('new player', newPlayer)
-    Router.push('/game')
+    Router.push("/game");
   };
 
   return (

@@ -7,7 +7,6 @@ import _app from "./_app";
 import Link from "next/link";
 
 export default function Home() {
-
   return (
     <div className={styles.container}>
       <Link href="/game">Game page</Link>

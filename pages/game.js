@@ -14,7 +14,7 @@ import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
 import Chat from "../components/game/Chat.js";
-import io from 'Socket.IO-client'
+import io from "Socket.IO-client";
 import { nanoid } from "nanoid";
 
 mapboxgl.accessToken = process.env.MAP_BOX;
@@ -26,36 +26,38 @@ export default function Game() {
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
   const { players, setPlayers } = useContext(PlayersContext);
+  const { player } = useContext(PlayerContext);
 
-  useEffect(() => socket.emit('get players'), [])
+  useEffect(() => {
+    socket.emit("new player", player);
+    socket.emit("get players");
+  }, []);
 
-  useEffect(() => socketInitializer(), [])
+  useEffect(() => socketInitializer(), []);
 
   const socketInitializer = async () => {
-    await fetch('/api/socket');
+    await fetch("/api/socket");
 
-    socket.on('new player', (newPlayer) => {
-
+    socket.on("new player", (newPlayer) => {
       if (players.find((player) => player.id === newPlayer.id) === undefined) {
-        setPlayers([...players, newPlayer])
+        setPlayers([...players, newPlayer]);
       }
-    })
+    });
 
-    socket.on('get players', () => {
-      socket.emit('send players', players[0])
-    })
+    socket.on("get players", () => {
+      socket.emit("send players", players[0]);
+    });
 
-    socket.on('disconnect', () => {
-      socket.emit('get players')
-    })
+    socket.on("disconnect", () => {
+      socket.emit("leave server");
+    });
 
-    socket.on('send players', (newPlayer) => {
+    socket.on("send players", (newPlayer) => {
       if (players.find((player) => player.id === newPlayer.id) === undefined) {
-
-        setPlayers([...players, newPlayer])
-      } 
-    })
-  }
+        setPlayers([...players, newPlayer]);
+      }
+    });
+  };
 
   const addClue = (clue) => {
     const newClue = { id: "clue-" + nanoid(), text: clue };
@@ -83,7 +85,6 @@ export default function Game() {
     setMap(map);
   }, []);
 
-
   return (
     <div style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
       <Head>
@@ -100,7 +101,7 @@ export default function Game() {
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
       <ClueList clues={clues} />
-      <Chat />
+      <Chat socket={socket} />
     </div>
   );
 }
