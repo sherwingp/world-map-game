@@ -29,7 +29,6 @@ export default function Game() {
 
   useEffect(() => {
     socket.emit("new player", player)
-    socket.emit("refresh players");
   }, []);
 
   useEffect(() => socketInitializer(), []);
@@ -39,6 +38,7 @@ export default function Game() {
 
     socket.on("refresh players", (refreshedPlayers) => {
       setPlayers(refreshedPlayers);
+      console.log(refreshedPlayers);
     });
 
     socket.on("player left", () => {
