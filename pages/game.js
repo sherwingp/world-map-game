@@ -27,11 +27,13 @@ export default function Game() {
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
 
+  
+  useEffect(() => socketInitializer(), []);
+  
   useEffect(() => {
     socket.emit("new player", player)
+    socket.emit("refresh players");
   }, []);
-
-  useEffect(() => socketInitializer(), []);
 
   const socketInitializer = async () => {
     await fetch("/api/socket");
