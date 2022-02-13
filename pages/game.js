@@ -28,7 +28,8 @@ export default function Game() {
   const { player } = useContext(PlayerContext);
 
   useEffect(() => {
-    socket.emit("new player", player);
+    socket.emit("new player", player)
+    socket.emit("refresh players");
   }, []);
 
   useEffect(() => socketInitializer(), []);
