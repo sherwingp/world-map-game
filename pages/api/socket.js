@@ -1,7 +1,7 @@
 import { Server } from "Socket.IO";
 
 const SocketHandler = (req, res) => {
-  const players = [];
+  let players = [];
 
   if (res.socket.server.io) {
     console.log("Socket is already running");
@@ -11,10 +11,14 @@ const SocketHandler = (req, res) => {
     res.socket.server.io = io;
 
     io.on("connection", (socket) => {
+      const id = socket.id
+      
       console.log("a user connected");
 
       socket.on("disconnect", () => {
-        console.log("a user disconnected");
+        console.log(`a user disconnected (id: ${socket.id})`)
+        players = players.filter(player => player.socketId !== socket.id)
+        console.log(players);
       });
 
       socket.on("leave server", () => {
@@ -26,7 +30,7 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("new player", (player) => {
-        players.push(player);
+        players.push({...player, socketId: id});
         console.log(players);
         socket.broadcast.emit("new player", player);
       });
