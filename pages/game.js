@@ -13,6 +13,7 @@ import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
 import LocationContext from "../contexts/location.js";
+import Location from "../components/game/location.js";
 
 import { nanoid } from "nanoid";
 
@@ -70,6 +71,7 @@ export default function Game() {
       <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
+      <Location/>
       <ClueList clues={clues} />
     </div>
   );
