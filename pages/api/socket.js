@@ -27,22 +27,15 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("new player", (newPlayer) => {
-        const addPlayer = () => {
-          if (
-            players.find((player) => player.id === newPlayer.id) === undefined
-          ) {
-            players.push({ ...newPlayer, socketId: id });
-          }
+        if (
+          players.find((player) => player.id === newPlayer.id) === undefined
+        ) {
+          players.push({ ...newPlayer, socketId: id });
         }
 
-        const sendPlayer = async () => {
-          const result = await addPlayer()
-
-          io.emit("refresh players", players);
-          io.emit("player joined", newPlayer.name);
-        }
-
-        sendPlayer()
+        console.log(players);
+        io.emit("refresh players", players);
+        io.emit("player joined", newPlayer.name);
       });
 
       socket.on("refresh players", () => {
