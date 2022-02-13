@@ -12,6 +12,7 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
+import 'bootstrap/dist/css/bootstrap.css';
 
 import { nanoid } from "nanoid";
 
@@ -57,22 +58,33 @@ export default function Game() {
   }, [pageIsMounted, setMap, Map]);
 
   return (
-    <div style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
+    <div className="container" style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
       <Head>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
           rel="stylesheet"
         />
       </Head>
-      <Navbar />
-      <PlayersHeader />
-      <PlayersList />
-      <GameHeader />
-      <MessageBox message={message} />
-      <ClueForm clues={clues} addClue={addClue} />
-      <GameMap />
-      <ClueList clues={clues} />
-    </div>
+        <div>
+          <Navbar />
+        </div>
+        <div className="row">
+          <div className="col players-list-col">
+            <PlayersHeader />
+            <PlayersList />
+          </div>
+            <div className="col game-header">
+              <GameHeader />
+            </div>
+          <div className="col clue-col">
+            <MessageBox message={message} />
+            <ClueForm clues={clues} addClue={addClue} />            <ClueList clues={clues} />
+          </div>
+        </div>
+        <div>
+          <GameMap />
+        </div>
+      </div>
   );
 }
 
