@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Router from 'next/router'
 import { useEffect, useContext } from "react";
 import NameContext from "../contexts/name";
 import PlayersContext from "../contexts/players";
@@ -23,6 +23,7 @@ const Form = () => {
     const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
     setPlayers([newPlayer]);
     socket.emit('new player', newPlayer)
+    Router.push('/game')
   };
 
   return (

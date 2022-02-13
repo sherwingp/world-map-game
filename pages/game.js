@@ -47,11 +47,15 @@ export default function Game() {
       socket.emit('send players', players[0])
     })
 
+    socket.on('disconnect', () => {
+      socket.emit('get players')
+    })
+
     socket.on('send players', (newPlayer) => {
-    
       if (players.find((player) => player.id === newPlayer.id) === undefined) {
+
         setPlayers([...players, newPlayer])
-      }
+      } 
     })
   }
 

@@ -19,8 +19,6 @@ const Chat = () => {
     socket = io()
 
     socket.on('connect', () => {
-      console.log('connected')
-
       const newConnection = { id: "message-" + nanoid(), author: 'System', text: `${name} joined the game.` }
 
       setMessages((state) => {
