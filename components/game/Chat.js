@@ -21,7 +21,9 @@ const Chat = ({ socket }) => {
         text: `${player.name} joined the game.`,
       };
 
-      setMessages([...messages, newConnection]);
+      setMessages((state) => {
+        return [...state, newConnection];
+      });
 
       socket.emit("chat message", newConnection);
     });
