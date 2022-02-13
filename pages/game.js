@@ -17,7 +17,6 @@ import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
 
-mapboxgl.accessToken = process.env.MAP_BOX;
 let socket = io();
 
 export default function Game() {
@@ -59,10 +58,9 @@ export default function Game() {
 
     setClues([...clues, newClue]);
   };
-
-  mapboxgl.accessToken =
-    "pk.eyJ1Ijoid2FubmFkYyIsImEiOiJjazBja2M1ZzYwM2lnM2dvM3o1bmF1dmV6In0.50nuNnApjrJYkMfR2AUpXA";
-
+  
+  mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
+  
   useEffect(() => {
     setPageIsMounted(true);
 
