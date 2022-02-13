@@ -38,16 +38,16 @@ export default function Game() {
     await fetch("/api/socket");
 
     socket.on("new player", (refreshedPlayers) => {
-      setPlayers(refreshedPlayers)
+      setPlayers(refreshedPlayers);
     });
 
     socket.on("refresh players", (refreshedPlayers) => {
-      setPlayers(refreshedPlayers)
-    })
+      setPlayers(refreshedPlayers);
+    });
 
     socket.on("player left", () => {
-      socket.emit("refresh players")
-    })
+      socket.emit("refresh players");
+    });
 
     socket.on("disconnect", () => {
       socket.emit("leave server");

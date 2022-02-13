@@ -11,18 +11,15 @@ const SocketHandler = (req, res) => {
     res.socket.server.io = io;
 
     io.on("connection", (socket) => {
-      const id = socket.id
-      
+      const id = socket.id;
+
       console.log("a user connected");
 
       socket.on("disconnect", () => {
-        console.log(`a user disconnected (id: ${socket.id})`)
-        players = players.filter(player => player.socketId !== socket.id)
-        io.emit("player left")
-      });
-
-      socket.on("leave server", () => {
-        console.log("testing");
+        console.log(`a user disconnected (id: ${socket.id})`);
+        const player = players.find((player) => player.socketId === socket.id);
+        players = players.filter((player) => player.socketId !== socket.id);
+        io.emit("player left", player.name);
       });
 
       socket.on("chat message", (msg) => {
@@ -30,16 +27,18 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("new player", (newPlayer) => {
-        if (players.find((player) => player.id === newPlayer.id) === undefined) {
-          players.push({...newPlayer, socketId: id});
+        if (
+          players.find((player) => player.id === newPlayer.id) === undefined
+        ) {
+          players.push({ ...newPlayer, socketId: id });
         }
         console.log(players);
         io.emit("new player", players);
       });
 
       socket.on("refresh players", () => {
-        io.emit("refresh players", players)
-      })
+        io.emit("refresh players", players);
+      });
     });
   }
   res.end();

@@ -33,6 +33,16 @@ const Chat = ({ socket }) => {
         return [...state, msg];
       });
     });
+
+    socket.on("player left", (disconnectedPlayer) => {
+      const newMessage = {
+        id: "message-" + nanoid(),
+        author: "System",
+        text: `${disconnectedPlayer} left the game.`,
+      };
+
+      setMessages((state) => [...state, newMessage]);
+    });
   };
 
   const handleSubmit = (e) => {
