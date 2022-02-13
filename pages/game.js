@@ -14,7 +14,7 @@ import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
 import Chat from "../components/game/Chat.js";
-import io from "Socket.IO-client";
+import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
 
 mapboxgl.accessToken = process.env.MAP_BOX;
