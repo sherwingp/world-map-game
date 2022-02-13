@@ -42,7 +42,7 @@ const SocketHandler = (req, res) => {
 
           console.log(newPlayers);
 
-          io.emit("refresh players", newPlayers);
+          io.emit("new player return", newPlayers);
           io.emit("player joined", newPlayer.name);
         }
 

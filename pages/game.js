@@ -40,7 +40,10 @@ export default function Game() {
 
     socket.on("refresh players", (refreshedPlayers) => {
       setPlayers(refreshedPlayers);
-      console.log(refreshedPlayers);
+    });
+
+    socket.on("new player return", () => {
+      socket.emit("refresh players");
     });
 
     socket.on("player left", () => {
