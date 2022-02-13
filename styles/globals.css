@@ -89,7 +89,8 @@ h1 {
 }  */
 
 
-input {
+.input-index {
+  text-align: center;
   display: block;
   width: 100%;
   border-radius: 56px;
@@ -100,17 +101,17 @@ input {
   box-shadow: none;
   color: #111;
 }
-input:invalid {
+.input-index:invalid {
   outline: 0;
   color: #337aa8;
    border-color: #337aa8;
 }
-input:focus,
-input:valid {
+.input-index:focus,
+.input-index:valid {
   border-color: #337aa8;
 }
-input:focus~label,
-input:valid~label {
+.input-index:focus~label,
+.input-index:valid~label {
   font-size: 14px;
   top: -24px;
   color: #337aa8;
