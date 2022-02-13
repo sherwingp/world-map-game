@@ -34,6 +34,7 @@ const SocketHandler = (req, res) => {
         }
 
         io.emit("new player", players, newPlayer);
+        io.emit("player joined", newPlayer.name);
       });
 
       socket.on("refresh players", () => {
