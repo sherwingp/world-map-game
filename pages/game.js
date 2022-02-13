@@ -12,7 +12,7 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
-
+import Timer from "../components/game/Timer.js";
 import { nanoid } from "nanoid";
 
 export default function Game() {
@@ -27,9 +27,9 @@ export default function Game() {
 
     setClues([...clues, newClue]);
   };
-  
+
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
-  
+
   useEffect(() => {
     setPageIsMounted(true);
 
@@ -65,6 +65,7 @@ export default function Game() {
       <PlayersHeader />
       <PlayersList />
       <GameHeader />
+      <Timer />
       <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
