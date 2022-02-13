@@ -4,12 +4,10 @@ import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
 
-let socket;
-
 const Form = () => {
   const [name, setName] = useState("");
-  const { player, setPlayer } = useContext(PlayerContext);
-  const { players, setPlayers } = useContext(PlayersContext);
+  const { setPlayer } = useContext(PlayerContext);
+  const { setPlayers } = useContext(PlayersContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();

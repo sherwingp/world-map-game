@@ -32,8 +32,8 @@ const SocketHandler = (req, res) => {
         ) {
           players.push({ ...newPlayer, socketId: id });
         }
-        console.log(players);
-        io.emit("new player", players);
+
+        io.emit("new player", players, newPlayer);
       });
 
       socket.on("refresh players", () => {

@@ -14,16 +14,14 @@ const Chat = ({ socket }) => {
   const socketInitializer = async () => {
     await fetch("/api/socket");
 
-    socket.on("connect", () => {
+    socket.on("new player", (refreshedPlayers) => {
       const newConnection = {
         id: "message-" + nanoid(),
         author: "System",
         text: `${player.name} joined the game.`,
       };
 
-      setMessages((state) => {
-        return [...state, newConnection];
-      });
+      setMessages([...messages, newConnection]);
 
       socket.emit("chat message", newConnection);
     });
