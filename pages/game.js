@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
 import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-import NameContext from "../contexts/name.js";
+import PlayerContext from "../contexts/player.js";
 import PlayersContext from "../contexts/players";
 import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
@@ -23,10 +23,8 @@ let socket = io();
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
-  const { name } = useContext(NameContext);
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
-  const [input, setInput] = useState('');
   const { players, setPlayers } = useContext(PlayersContext);
 
   useEffect(() => socket.emit('get players'), [])

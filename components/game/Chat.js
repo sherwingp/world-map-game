@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import io from 'Socket.IO-client'
 import MessageList from './MessageList.js';
-import NameContext from '../../contexts/name.js';
+import PlayerContext from '../../contexts/player.js';
 import { useContext } from "react";
 import { nanoid } from "nanoid";
 
@@ -10,7 +10,7 @@ let socket;
 const Chat = () => {
   const [input, setInput] = useState('')
   const [messages, setMessages] = useState([])
-  const { name } = useContext(NameContext);
+  const { player } = useContext(PlayerContext);
 
   useEffect(() => socketInitializer(), [])
 
@@ -19,7 +19,7 @@ const Chat = () => {
     socket = io()
 
     socket.on('connect', () => {
-      const newConnection = { id: "message-" + nanoid(), author: 'System', text: `${name} joined the game.` }
+      const newConnection = { id: "message-" + nanoid(), author: 'System', text: `${player.name} joined the game.` }
 
       setMessages((state) => {
         return [...state, newConnection];

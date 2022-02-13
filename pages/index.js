@@ -4,12 +4,9 @@ import Header from "../components/Header";
 import Form from "../components/Form";
 import Footer from "../components/Footer";
 import _app from "./_app";
-import { useContext } from "react";
-import NameContext from "../contexts/name";
 import Link from "next/link";
 
 export default function Home() {
-  const [name, setName] = useContext(NameContext);
 
   return (
     <div className={styles.container}>
@@ -24,7 +21,7 @@ export default function Home() {
         <h1 className={styles.title}>
           <Header />
         </h1>
-        <Form setName={setName} />
+        <Form />
       </main>
       <div className="footer">
         <Footer />
