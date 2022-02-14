@@ -19,7 +19,7 @@ import Location from "../components/game/Location.js";
 import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 let socket = io();
 
@@ -59,6 +59,10 @@ export default function Game() {
     socket.on("disconnect", () => {
       socket.emit("leave server");
     });
+
+    socket.on("marked location", (locationData) => {
+      setLocation(locationData);
+    });
   };
 
   const addClue = (clue) => {
@@ -82,7 +86,7 @@ export default function Game() {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map, setMessage, location, setLocation);
+    initializeMap(mapboxgl, map, setMessage, location, setLocation, socket);
     setMap(map);
   }, []);
 
@@ -102,7 +106,7 @@ export default function Game() {
       <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
-      <Location/>
+      <Location />
       <ClueList clues={clues} />
       <Chat socket={socket} />
     </div>
