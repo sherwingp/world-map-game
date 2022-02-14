@@ -26,6 +26,7 @@ const Form = () => {
           type="text"
           name="name"
           onChange={(e) => setName(e.target.value)}
+          required
         />
       </label>
 

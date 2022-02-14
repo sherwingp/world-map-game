@@ -20,7 +20,9 @@ const SocketHandler = (req, res) => {
         console.log(`a user disconnected (id: ${socket.id})`);
         const player = players.find((player) => player.socketId === socket.id);
         players = players.filter((player) => player.socketId !== socket.id);
-        io.emit("player left", player.name);
+        if (player !== undefined) {
+          io.emit("player left", player.name);
+        }
       });
 
       socket.on("chat message", (msg) => {

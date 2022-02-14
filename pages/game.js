@@ -29,11 +29,14 @@ export default function Game() {
   const { player } = useContext(PlayerContext);
   const router = useRouter();
 
-  useEffect(() => socketInitializer(), []);
-
   useEffect(() => {
-    socket.emit("new player", player);
-    socket.emit("refresh players");
+    if (player.name === undefined) {
+      router.replace("/");
+    } else {
+      socketInitializer();
+      socket.emit("new player", player);
+      socket.emit("refresh players");
+    }
   }, []);
 
   const socketInitializer = async () => {

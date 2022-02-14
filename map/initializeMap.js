@@ -49,7 +49,7 @@ export const initializeMap = (
       }
     };
     setTimeout(confirmLocation, 100);
-  }
+  };
 
   map.on("click", add_marker);
 };
