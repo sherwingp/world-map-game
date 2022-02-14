@@ -7,29 +7,64 @@ import { useState, useEffect } from "react";
 import { initializeMap } from "../map/initializeMap";
 import MessageBox from "../components/MessageBox.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-import NameContext from "../contexts/name.js";
+import PlayerContext from "../contexts/player.js";
+import PlayersContext from "../contexts/players";
 import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
-
+import Chat from "../components/game/Chat.js";
+import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
+import { useRouter } from 'next/router';
+
+let socket = io();
 
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
-  const { name } = useContext(NameContext);
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
+  const { players, setPlayers } = useContext(PlayersContext);
+  const { player } = useContext(PlayerContext);
+  const router = useRouter();
+
+  useEffect(() => socketInitializer(), []);
+
+  useEffect(() => {
+    socket.emit("new player", player);
+    socket.emit("refresh players");
+  }, []);
+
+  const socketInitializer = async () => {
+    await fetch("/api/socket");
+
+    socket.on("refresh players", (refreshedPlayers) => {
+      setPlayers(refreshedPlayers);
+    });
+
+    socket.on("new player return", () => {
+      router.replace(router.asPath);
+      socket.emit("refresh players");
+    });
+
+    socket.on("player left", () => {
+      socket.emit("refresh players");
+    });
+
+    socket.on("disconnect", () => {
+      socket.emit("leave server");
+    });
+  };
 
   const addClue = (clue) => {
     const newClue = { id: "clue-" + nanoid(), text: clue };
 
     setClues([...clues, newClue]);
   };
-  
+
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
-  
+
   useEffect(() => {
     setPageIsMounted(true);
 
@@ -47,12 +82,6 @@ export default function Game() {
     setMap(map);
   }, []);
 
-  useEffect(() => {
-    if (pageIsMounted) {
-      Map.on("load", function () {});
-    }
-  }, [pageIsMounted, setMap, Map]);
-
   return (
     <div style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
       <Head>
@@ -69,6 +98,7 @@ export default function Game() {
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
       <ClueList clues={clues} />
+      <Chat socket={socket} />
     </div>
   );
 }
