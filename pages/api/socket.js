@@ -28,9 +28,9 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("marked location", (locationdata) => {
-        location = locationdata
-        socket.broadcast.emit("marked location", location)
-      })
+        location = locationdata;
+        socket.broadcast.emit("marked location", location);
+      });
 
       socket.on("new player", (newPlayer) => {
         const addPlayer = async () => {
