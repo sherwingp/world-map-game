@@ -16,6 +16,7 @@ import PlayersHeader from "../components/game/PlayersHeader.js";
 import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
+import { useRouter } from 'next/router';
 
 let socket = io();
 
@@ -42,6 +43,7 @@ export default function Game() {
     });
 
     socket.on("new player return", () => {
+      const router = useRouter();
       router.replace(router.asPath);
       socket.emit("refresh players");
     });
