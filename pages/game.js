@@ -19,6 +19,7 @@ import { nanoid } from "nanoid";
 import { useRouter } from 'next/router';
 
 let socket = io();
+const router = useRouter();
 
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -43,7 +44,6 @@ export default function Game() {
     });
 
     socket.on("new player return", () => {
-      const router = useRouter();
       router.replace(router.asPath);
       socket.emit("refresh players");
     });
