@@ -19,7 +19,6 @@ import { nanoid } from "nanoid";
 import { useRouter } from 'next/router';
 
 let socket = io();
-const router = useRouter();
 
 export default function Game() {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -28,6 +27,7 @@ export default function Game() {
   const [clues, setClues] = useState([]);
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
+  const router = useRouter();
 
   useEffect(() => socketInitializer(), []);
 
