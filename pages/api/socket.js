@@ -2,6 +2,7 @@ import { Server } from "socket.io";
 
 const SocketHandler = (req, res) => {
   let players = [];
+  let location = "";
 
   if (res.socket.server.io) {
     console.log("Socket is already running");
@@ -25,6 +26,11 @@ const SocketHandler = (req, res) => {
       socket.on("chat message", (msg) => {
         socket.broadcast.emit("chat message", msg);
       });
+
+      socket.on("marked location", (locationdata) => {
+        location = locationdata
+        socket.broadcast.emit("marked location", location)
+      })
 
       socket.on("new player", (newPlayer) => {
         const addPlayer = async () => {

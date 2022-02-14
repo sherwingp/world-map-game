@@ -1,9 +1,12 @@
-export function initializeMap(mapboxgl, map, setMessage, location, setLocation) {
+
+
+export function initializeMap(mapboxgl, map, setMessage, location, setLocation, socket) {
   const marker = new mapboxgl.Marker();
 
   function add_marker(event) {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation)
+    socket.emit("marked location", clickedLocation)
     console.log(clickedLocation)
     console.log("Lng:", clickedLocation.lng, "Lat:", clickedLocation.lat);
     marker.setLngLat({lng: clickedLocation.lng, lat: clickedLocation.lat}).addTo(map);
