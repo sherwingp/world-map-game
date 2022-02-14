@@ -4,8 +4,9 @@ export function initializeMap(mapboxgl, map, setMessage, location, setLocation) 
   function add_marker(event) {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation)
-    console.log("Lng:", location.lng, "Lat:", location.lat);
-    marker.setLngLat(location).addTo(map);
+    console.log(clickedLocation)
+    console.log("Lng:", clickedLocation.lng, "Lat:", clickedLocation.lat);
+    marker.setLngLat({lng: clickedLocation.lng, lat: clickedLocation.lat}).addTo(map);
     setMessage("");
   }
 
