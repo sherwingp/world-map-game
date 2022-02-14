@@ -10,6 +10,7 @@
     "cypress": "cypress open"
   },
   "dependencies": {
+    "@turf/length": "^6.5.0",
     "crypto-browserify": "^3.12.0",
     "mapbox-gl": "^2.7.0",
     "nanoid": "^3.2.0",

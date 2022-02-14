@@ -100,7 +100,7 @@ export default function Game() {
       </Head>
       <Navbar />
       <PlayersHeader />
-      <PlayersList />
+      <PlayersList socket={socket} />
       <GameHeader />
       <Timer />
       <MessageBox message={message} />
