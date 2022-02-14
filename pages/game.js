@@ -15,7 +15,7 @@ import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
 import Timer from "../components/game/Timer.js";
 import LocationContext from "../contexts/location.js";
-import Location from "../components/game/location.js";
+import Location from "../components/game/Location.js";
 import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
