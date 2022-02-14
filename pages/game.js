@@ -13,6 +13,9 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
+import LocationContext from "../contexts/location.js";
+import Location from "../components/game/location.js";
+
 import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
@@ -25,6 +28,7 @@ export default function Game() {
   const [Map, setMap] = useState();
   const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
+  const { location, setLocation } = useContext(LocationContext);
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
   const router = useRouter();
@@ -78,7 +82,7 @@ export default function Game() {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map, setMessage);
+    initializeMap(mapboxgl, map, setMessage, location, setLocation);
     setMap(map);
   }, []);
 
@@ -97,6 +101,7 @@ export default function Game() {
       <MessageBox message={message} />
       <ClueForm clues={clues} addClue={addClue} />
       <GameMap />
+      <Location/>
       <ClueList clues={clues} />
       <Chat socket={socket} />
     </div>
