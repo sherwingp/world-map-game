@@ -52,4 +52,4 @@ export const initializeMap = (
   }
 
   map.on("click", add_marker);
-}
+};
