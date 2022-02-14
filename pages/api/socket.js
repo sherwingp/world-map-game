@@ -54,9 +54,9 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("send score", (updatedPlayers) => {
-        players = updatedPlayers
-        socket.broadcast.emit("refresh players", players)
-      })
+        players = updatedPlayers;
+        socket.broadcast.emit("refresh players", players);
+      });
     });
   }
   res.end();
