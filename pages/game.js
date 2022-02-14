@@ -27,11 +27,10 @@ export default function Game() {
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
 
-  
   useEffect(() => socketInitializer(), []);
-  
+
   useEffect(() => {
-    socket.emit("new player", player)
+    socket.emit("new player", player);
     socket.emit("refresh players");
   }, []);
 
@@ -43,6 +42,7 @@ export default function Game() {
     });
 
     socket.on("new player return", () => {
+      router.replace(router.asPath);
       socket.emit("refresh players");
     });
 
@@ -60,9 +60,9 @@ export default function Game() {
 
     setClues([...clues, newClue]);
   };
-  
+
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
-  
+
   useEffect(() => {
     setPageIsMounted(true);
 

@@ -34,19 +34,19 @@ const SocketHandler = (req, res) => {
             players.push({ ...newPlayer, socketId: id });
           }
 
-          return players
-        }
+          return players;
+        };
 
         const sendPlayer = async () => {
-          const newPlayers = await addPlayer()
+          const newPlayers = await addPlayer();
 
           console.log(newPlayers);
 
           io.emit("new player return", newPlayers);
           io.emit("player joined", newPlayer.name);
-        }
+        };
 
-        sendPlayer()
+        sendPlayer();
       });
 
       socket.on("refresh players", () => {
