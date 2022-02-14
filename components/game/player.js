@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PlayersContext from "../../contexts/players";
 
-const Player = ({ id, name, score }) => {
+const Player = ({ id, name, score, }) => {
   const { players, setPlayers } = useContext(PlayersContext);
 
   const onClick = () => {
@@ -12,6 +12,8 @@ const Player = ({ id, name, score }) => {
 
       return player;
     });
+    
+    socket.emit("send score", updatedPlayers)
 
     setPlayers(
       updatedPlayers.sort((a, b) => {
