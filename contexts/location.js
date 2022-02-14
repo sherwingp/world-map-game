@@ -8,7 +8,11 @@ const LocationContext = createContext({
 export const LocationProvider = ({ children }) => {
   const [location, setLocation] = useState("");
   const value = useMemo(() => ({ location, setLocation }), [location]);
-  return <LocationContext.Provider value={value}>{children}</LocationContext.Provider>;
+  return (
+    <LocationContext.Provider value={value}>
+      {children}
+    </LocationContext.Provider>
+  );
 };
 
 export default LocationContext;

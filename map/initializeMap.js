@@ -1,4 +1,4 @@
-import length from '@turf/length'
+import length from "@turf/length";
 
 export function initializeMap(
   mapboxgl,
@@ -8,26 +8,29 @@ export function initializeMap(
   setLocation
 ) {
   const marker = new mapboxgl.Marker();
-  
+
   const startGame = (secretLocation) => {
     const getDistance = (event) => {
-      const guessLocation = event.lngLat
+      const guessLocation = event.lngLat;
       const linestring = {
-        'type': 'Feature',
-        'geometry': {
-        'type': 'LineString',
-        'coordinates': [[secretLocation.lng, secretLocation.lat], [guessLocation.lng, guessLocation.lat]]
-        }
-        };
-        
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [secretLocation.lng, secretLocation.lat],
+            [guessLocation.lng, guessLocation.lat],
+          ],
+        },
+      };
+
       const guessResult = length(linestring);
-      console.log(guessResult)
-      
-      return guessResult
-  
-    }
-    map.on("click", getDistance)
-  }
+      setMessage(
+        `You are ${Math.round(guessResult)}km away from the secret location`
+      );
+      return guessResult;
+    };
+    map.on("click", getDistance);
+  };
 
   function add_marker(event) {
     const clickedLocation = event.lngLat;
@@ -40,12 +43,11 @@ export function initializeMap(
       if (confirm("Are you sure you want to set this location?")) {
         marker.remove();
         setMessage("");
-        map.off("click", add_marker)
-        startGame(clickedLocation)
+        map.off("click", add_marker);
+        startGame(clickedLocation);
       }
     };
     setTimeout(confirmLocation, 100);
-    
   }
 
   map.on("click", add_marker);
