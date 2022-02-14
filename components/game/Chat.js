@@ -62,6 +62,7 @@ const Chat = ({ socket }) => {
     <div>
       <form id="chat-form" onSubmit={handleSubmit}>
         <input
+          data-testid="input-chat"
           id="chat-input"
           value={input}
           type="text"

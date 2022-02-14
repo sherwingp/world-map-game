@@ -30,7 +30,7 @@ const Form = () => {
       </label>
 
       <button
-        data-testid="link-to-game"
+        data-testid="btn-to-game"
         className="btn"
         type="submit"
         value="Submit"
