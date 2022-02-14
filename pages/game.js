@@ -59,6 +59,10 @@ export default function Game() {
     socket.on("disconnect", () => {
       socket.emit("leave server");
     });
+
+    socket.on("marked location", (locationData) => {
+      setLocation(locationData);
+    });
   };
 
   const addClue = (clue) => {
@@ -82,7 +86,7 @@ export default function Game() {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map, setMessage, location, setLocation);
+    initializeMap(mapboxgl, map, setMessage, location, setLocation, socket);
     setMap(map);
   }, []);
 

@@ -1,12 +1,13 @@
 import length from "@turf/length";
 
-export function initializeMap(
+export const initializeMap = (
   mapboxgl,
   map,
   setMessage,
   location,
-  setLocation
-) {
+  setLocation,
+  socket
+) => {
   const marker = new mapboxgl.Marker();
 
   const startGame = (secretLocation) => {
@@ -32,10 +33,9 @@ export function initializeMap(
     map.on("click", getDistance);
   };
 
-  function add_marker(event) {
+  const add_marker = (event) = {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
-    console.log(location);
     marker
       .setLngLat({ lng: clickedLocation.lng, lat: clickedLocation.lat })
       .addTo(map);
@@ -45,6 +45,7 @@ export function initializeMap(
         setMessage("");
         map.off("click", add_marker);
         startGame(clickedLocation);
+        socket.emit("marked location", clickedLocation);
       }
     };
     setTimeout(confirmLocation, 100);
@@ -52,8 +53,3 @@ export function initializeMap(
 
   map.on("click", add_marker);
 }
-// Error: `LngLatLike` argument must be specified as a LngLat instance, an object {lng: <lng>, lat: <lat>}, an object {lon: <lng>, lat: <lat>},
-// or an array of [<lng>, <lat>]
-
-// [location.lng], [location.lat]
-//{lng: location.lng, lat: location.lat}
