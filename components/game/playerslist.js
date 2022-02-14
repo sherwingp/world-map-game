@@ -10,6 +10,7 @@ const PlayersList = () => {
       id={player.id}
       key={player.id}
       name={player.name}
+      host={player.host}
       score={player.score}
       socketId={player.socketId}
     />
