@@ -33,7 +33,7 @@ export const initializeMap = (
     map.on("click", getDistance);
   };
 
-  const add_marker = (event) = {
+  const add_marker = (event) => {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
     marker
