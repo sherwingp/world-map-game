@@ -58,7 +58,8 @@ export default function Game() {
   }, [pageIsMounted, setMap, Map]);
 
   return (
-    <div className="container" style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
+    // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
+    <div className="container" style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}>
       <Head>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
