@@ -5,7 +5,8 @@ export const initializeMap = (
   map,
   setMessage,
   location,
-  setLocation
+  setLocation,
+  socket
 ) => {
   const marker = new mapboxgl.Marker();
 
@@ -32,10 +33,9 @@ export const initializeMap = (
     map.on("click", getDistance);
   };
 
-  function add_marker(event) {
+  const add_marker = (event) = {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
-    console.log(location);
     marker
       .setLngLat({ lng: clickedLocation.lng, lat: clickedLocation.lat })
       .addTo(map);
@@ -45,6 +45,7 @@ export const initializeMap = (
         setMessage("");
         map.off("click", add_marker);
         startGame(clickedLocation);
+        socket.emit("marked location", clickedLocation);
       }
     };
     setTimeout(confirmLocation, 100);

@@ -55,6 +55,10 @@ export default function Game() {
     socket.on("disconnect", () => {
       socket.emit("leave server");
     });
+
+    socket.on("marked location", (locationData) => {
+      setLocation(locationData);
+    });
   };
 
   const addClue = (clue) => {
