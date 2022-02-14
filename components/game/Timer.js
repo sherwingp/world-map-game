@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 const Timer = () => {
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(10);
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
     const countdownTimer = setInterval(() => {
