@@ -1,4 +1,5 @@
 import length from "@turf/length";
+import circle from "@turf/circle";
 
 export const initializeMap = (
   mapboxgl,
@@ -23,8 +24,24 @@ export const initializeMap = (
           ],
         },
       };
-
       const guessResult = length(linestring);
+      let center = [secretLocation.lng, secretLocation.lat];
+      let radius = guessResult
+      let options = {
+          units: 'kilometers',
+          }
+      const newCircle = circle(center, radius, options)
+     console.log(newCircle)
+
+     map.addLayer({
+       "id": "circle",
+       "type": "circle",
+       "source": {
+         "type": "geojson",
+         "data": newCircle
+        },
+     })
+      // map.addSource("circle", newCircle);
       setNotification(
         `You are ${Math.round(guessResult)}km away from the secret location`
       );
@@ -32,7 +49,7 @@ export const initializeMap = (
     };
     map.on("click", getDistance);
   };
-
+   
   const add_marker = (event) => {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
