@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
+import HostButton from "./HostButton";
 
 const Form = () => {
   const [name, setName] = useState("");
@@ -11,7 +12,7 @@ const Form = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
+    const newPlayer = { id: "player-" + nanoid(), name: name, score: 0, host: true };
     setPlayer(newPlayer);
     setPlayers([newPlayer]);
     Router.push("/game");
@@ -30,6 +31,9 @@ const Form = () => {
           required
         />
       </label>
+
+      <label>Set Host</label>
+        <input type='checkbox' />
 
       <button
         className="submit-btn"

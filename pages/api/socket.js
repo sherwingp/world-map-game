@@ -42,6 +42,7 @@ const SocketHandler = (req, res) => {
             players.push({ ...newPlayer, socketId: id });
           }
 
+        socket.on 
           return players;
         };
 
