@@ -1,7 +1,7 @@
 const MessageBox = ({ message }) => {
   return (
     <div className="messageBox">
-      <h2 className="message">{message}</h2>
+      <h4 className="message">{message}</h4>
     </div>
   );
 };

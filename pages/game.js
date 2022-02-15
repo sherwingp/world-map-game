@@ -11,6 +11,7 @@ import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
+import "bootstrap/dist/css/bootstrap.css";
 import Timer from "../components/game/Timer.js";
 import LocationContext from "../contexts/location.js";
 import Location from "../components/game/Location.js";
@@ -71,24 +72,41 @@ export default function Game() {
   };
 
   return (
-    <div style={{ width: "1400px", height: "1000px", borderStyle: "double" }}>
+    // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
+    <div
+      className="container"
+      style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}
+    >
       <Head>
         <link
           href="https://api.mapbox.com/mapbox-gl-js/v2.3.1/mapbox-gl.css"
           rel="stylesheet"
         />
       </Head>
-      <Navbar />
-      <PlayersHeader />
-      <PlayersList socket={socket} />
-      <GameHeader />
-      <Timer />
-      <MessageBox message={message} />
-      <ClueForm clues={clues} addClue={addClue} />
-      <GameMap setMessage={setMessage} />
-      <Location />
-      <ClueList clues={clues} />
-      <Chat socket={socket} />
+      <div>
+        <Navbar />
+      </div>
+      <div className="row">
+        <div className="col players-list-col">
+          <PlayersHeader />
+          <PlayersList socket={socket} />
+            <Timer />
+        </div>
+        <div className="col game-header">
+          <GameHeader />
+        </div>
+        <div className="col clue-col">
+          <Location />
+          <MessageBox message={message} />
+          <GameMap setMessage={setMessage} />
+          <Chat socket={socket} />
+          <ClueForm clues={clues} addClue={addClue} />
+          <ClueList clues={clues} />
+        </div>
+      </div>
+      <div>
+        <GameMap />
+      </div>
     </div>
   );
 }
