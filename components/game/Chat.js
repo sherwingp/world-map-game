@@ -64,7 +64,7 @@ const Chat = ({ socket }) => {
         <span>Chat Box</span>
       </div>
       <MessageList messages={messages} />
-      <form className="chatbox-input" id="chat-form" onSubmit={handleSubmit}>
+      <form className="chatbox-input form-control input-sm" id="chat-form" onSubmit={handleSubmit}>
         <input
           id="chat-input"
           value={input}
