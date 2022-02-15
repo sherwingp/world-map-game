@@ -31,17 +31,33 @@ export const initializeMap = (
           units: 'kilometers',
           }
       const newCircle = circle(center, radius, options)
-     console.log(newCircle)
 
      map.addLayer({
        "id": "circle",
-       "type": "circle",
+       "type": "fill",
        "source": {
          "type": "geojson",
          "data": newCircle
         },
+        'paint': {
+          'fill-opacity': 0.2,
+          'fill-color': "#FF66FF",
+        }
      })
-      // map.addSource("circle", newCircle);
+
+     map.addLayer({
+      'id': 'circle-outline',
+      'type': 'line',
+      'source': {
+        'type': 'geojson',
+        'data': newCircle
+      },
+      'paint': {
+        'line-color': '#000000',
+        'line-width': 2
+      }
+    });  
+
       setNotification(
         `You are ${Math.round(guessResult)}km away from the secret location`
       );

@@ -19,7 +19,7 @@ const GameMap = ({ socket }) => {
       style: "mapbox://styles/mapbox/streets-v11",
       center: [0, 0],
       zoom: 0.6,
-      projection: "naturalEarth",
+      projection: "mercator",
     });
 
     map.addControl(new mapboxgl.NavigationControl());
