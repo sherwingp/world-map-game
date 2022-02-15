@@ -91,7 +91,12 @@ export default function Game() {
         <div className="col players-list-col">
           <PlayersHeader />
           <PlayersList socket={socket} />
-          <Timer setMinutes={setMinutes} setSeconds={setSeconds} minutes={minutes} seconds={seconds} />
+          <Timer
+            setMinutes={setMinutes}
+            setSeconds={setSeconds}
+            minutes={minutes}
+            seconds={seconds}
+          />
         </div>
         <div className="col game-header">
           <GameHeader />
@@ -99,7 +104,13 @@ export default function Game() {
         <div className="col clue-col">
           <Location />
           <Notification />
-          <GameMap minutes={minutes} seconds={seconds} setMinutes={setMinutes} setSeconds={setSeconds} socket={socket} />
+          <GameMap
+            minutes={minutes}
+            seconds={seconds}
+            setMinutes={setMinutes}
+            setSeconds={setSeconds}
+            socket={socket}
+          />
           <Chat socket={socket} />
           <ClueForm clues={clues} addClue={addClue} />
           <ClueList clues={clues} />

@@ -30,37 +30,37 @@ export const initializeMap = (
       };
       const guessResult = length(linestring);
       let center = [secretLocation.lng, secretLocation.lat];
-      let radius = guessResult
+      let radius = guessResult;
       let options = {
-          units: 'kilometers',
-          }
-      const newCircle = circle(center, radius, options)
+        units: "kilometers",
+      };
+      const newCircle = circle(center, radius, options);
 
-     map.addLayer({
-       "id": "circle",
-       "type": "fill",
-       "source": {
-         "type": "geojson",
-         "data": newCircle
+      map.addLayer({
+        id: "circle",
+        type: "fill",
+        source: {
+          type: "geojson",
+          data: newCircle,
         },
-        'paint': {
-          'fill-opacity': 0.2,
-          'fill-color': "#FF66FF",
-        }
-     })
+        paint: {
+          "fill-opacity": 0.2,
+          "fill-color": "#FF66FF",
+        },
+      });
 
-     map.addLayer({
-      'id': 'circle-outline',
-      'type': 'line',
-      'source': {
-        'type': 'geojson',
-        'data': newCircle
-      },
-      'paint': {
-        'line-color': '#000000',
-        'line-width': 2
-      }
-    });  
+      map.addLayer({
+        id: "circle-outline",
+        type: "line",
+        source: {
+          type: "geojson",
+          data: newCircle,
+        },
+        paint: {
+          "line-color": "#000000",
+          "line-width": 2,
+        },
+      });
 
       setNotification(
         `You are ${Math.round(guessResult)}km away from the secret location`
@@ -69,7 +69,7 @@ export const initializeMap = (
     };
     map.on("click", getDistance);
   };
-   
+
   const startGame = (event) => {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);

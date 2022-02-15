@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
-const Timer = ( {setMinutes, setSeconds, minutes, seconds} ) => {
-
+const Timer = ({ setMinutes, setSeconds, minutes, seconds }) => {
   useEffect(() => {
     const countdownTimer = setInterval(() => {
       if (seconds > 0) {
