@@ -13,6 +13,7 @@ const PlayersList = ({ socket }) => {
       score={player.score}
       socketId={player.socketId}
       socket={socket}
+      avatar={player.avatar}
     />
   ));
 
