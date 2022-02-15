@@ -28,7 +28,7 @@ const Form = () => {
       </label>
 
       <button
-      className="submit-btn"
+        className="submit-btn"
         data-testid="link-to-game"
         type="submit"
         value="Submit"

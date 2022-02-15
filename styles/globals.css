@@ -1,11 +1,15 @@
 html,
 body {
-  background-image: linear-gradient(to right, rgb(18, 8, 48) , rgb(29, 232, 212));
+  background-image: linear-gradient(
+    to right,
+    rgb(18, 8, 48),
+    rgb(29, 232, 212)
+  );
   color: white;
   padding: 0;
   margin: 0;
-  font-family: -apple-system,Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
+    Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 li {
@@ -24,28 +28,26 @@ a {
 h1 {
   color: white;
   margin-top: 0;
-  padding-bottom: 40px; 
-  font-family:Ubuntu; 
-  
+  padding-bottom: 40px;
+  font-family: Ubuntu;
 }
 
-h4  {
+h4 {
   color: white;
   margin-top: 0;
-  padding-bottom: 40px; 
-  font-family:Ubuntu; 
-  
+  padding-bottom: 40px;
+  font-family: Ubuntu;
 }
 
 .players-list-col {
-  height:200px;
+  height: 200px;
   border: 5px solid rgb(223, 223, 223);
   border-radius: 20px;
   margin-top: 40px;
 }
 
 .clue-col {
-  height:200px;
+  height: 200px;
   border-radius: 20px;
   border: 5px solid rgb(223, 223, 223);
   margin-top: 20px;
@@ -69,7 +71,6 @@ h4  {
   padding-bottom: 25px;
 }
 
-
 .submit-btn {
   background-color: #32a2e2;
   border: 0;
@@ -77,7 +78,8 @@ h4  {
   color: #fff;
   cursor: pointer;
   display: inline-block;
-  font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
+    "Helvetica Neue", sans-serif;
   font-size: 18px;
   font-weight: 600;
   outline: 0;
@@ -85,7 +87,7 @@ h4  {
   position: relative;
   text-align: center;
   text-decoration: none;
-  transition: all .3s;
+  transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -98,24 +100,24 @@ h4  {
   content: "";
   height: 50%;
   left: 4%;
-  opacity: .5;
+  opacity: 0.5;
   position: absolute;
   top: 0;
-  transition: all .3s;
+  transition: all 0.3s;
   width: 92%;
 }
 
 .submit-btn:hover {
-  box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
+    rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
 }
 
- /* @media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .btn-index {
     padding: 10px 30px;
   }
 }  */
-
 
 .input-index {
   text-align: center;
@@ -132,16 +134,15 @@ h4  {
 .input-index:invalid {
   outline: 0;
   color: #337aa8;
-   border-color: #337aa8;
+  border-color: #337aa8;
 }
 .input-index:focus,
 .input-index:valid {
   border-color: #337aa8;
 }
-.input-index:focus~label,
-.input-index:valid~label {
+.input-index:focus ~ label,
+.input-index:valid ~ label {
   font-size: 14px;
   top: -24px;
   color: #337aa8;
 }
- 
