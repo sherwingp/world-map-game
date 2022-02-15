@@ -94,8 +94,10 @@ export default function Game() {
       <div className="row row-cols-3">
 
         <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
+        <div className="card">
           <PlayersHeader />
           <PlayersList socket={socket} />
+          </div>
         </div>
 
         <div className="col-lg-6 col-md-12 col-sm-12">

@@ -7,8 +7,7 @@ body {
   color: white;
   padding: 0;
   margin: 0;
-  font-family:  Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: Ubuntu
 }
 ul{
   list-style: none;
@@ -48,15 +47,11 @@ h4 {
 }
 
 #chat-form {
-  
 align-self: flex-end;
 }
 
 .players-list-col {
-  height: 200px;
-  border: 5px solid rgb(223, 223, 223);
-  border-radius: 20px;
-  margin-top: 40px;
+  padding-bottom: 20px;
 }
 
 .clue-col {
@@ -69,6 +64,12 @@ align-self: flex-end;
 .game-header {
   text-align: center;
 
+}
+
+.message-list {
+  width: auto;
+  height: 380px;
+  overflow: scroll
 }
 
 #map {
@@ -127,11 +128,6 @@ align-self: flex-end;
   transform: scale(1.05);
 }
 
-/* @media (min-width: 768px) {
-  .btn-index {
-    padding: 10px 30px;
-  }
-}  */
 
 .input-index {
   text-align: center;
