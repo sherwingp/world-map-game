@@ -25,6 +25,11 @@ const SocketHandler = (req, res) => {
         }
       });
 
+      socket.on("host request", (newPlayer) => {
+        if (players.find((player) => player.host)=== true){}
+        else (socket.broadcast.emit())
+      })
+
       socket.on("chat message", (msg) => {
         socket.broadcast.emit("chat message", msg);
       });
@@ -34,6 +39,7 @@ const SocketHandler = (req, res) => {
         socket.broadcast.emit("marked location", location);
       });
 
+
       socket.on("new player", (newPlayer) => {
         const addPlayer = async () => {
           if (
@@ -41,6 +47,7 @@ const SocketHandler = (req, res) => {
           ) {
             players.push({ ...newPlayer, socketId: id });
           }
+
 
         socket.on 
           return players;

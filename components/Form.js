@@ -4,18 +4,23 @@ import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
 import HostButton from "./HostButton";
+import { Socket } from "socket.io";
 
 const Form = () => {
   const [name, setName] = useState("");
   const { setPlayer } = useContext(PlayerContext);
   const { setPlayers } = useContext(PlayersContext);
+  const [host, setHost] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPlayer = { id: "player-" + nanoid(), name: name, score: 0, host: true };
+    const newPlayer = { id: "player-" + nanoid(), name: name, score: 0, host: false };
+    Socket.emit("host request", newPlayer)
+    {host && setHost(newPlayer.host=true)}
     setPlayer(newPlayer);
     setPlayers([newPlayer]);
     Router.push("/game");
+  
   };
 
   return (
@@ -33,7 +38,7 @@ const Form = () => {
       </label>
 
       <label>Set Host</label>
-        <input type='checkbox' />
+        <input type='checkbox' checked={host} value={host} onChange={(e)=> setHost(e.currentTarget.checked)} />
 
       <button
         className="submit-btn"
