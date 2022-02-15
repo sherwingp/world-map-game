@@ -69,7 +69,7 @@ align-self: flex-end;
 
 .game-header {
   text-align: center;
-  padding-top: 60px;
+
 }
 
 #map {
@@ -79,6 +79,7 @@ align-self: flex-end;
   width: 100%;
 }
 
+ 
 .footer {
   color: white;
   text-align: center;

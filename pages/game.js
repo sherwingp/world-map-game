@@ -75,7 +75,7 @@ export default function Game() {
     // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
     <div
       className="container"
-      style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}
+      style={{ width: "100vmax", height: "100%"}}
     >
       <Head>
         <link
@@ -88,42 +88,39 @@ export default function Game() {
         <Navbar />
       </div>
 
-      <div className="row">
+        <div className="col game-header align-self-center">
+          <GameHeader />
+        </div>
+      <div className="row row-cols-3">
 
-        <div className="col players-list-col align-self-start">
+        <div className="col-lg-3 col-md-3 players-list-col align-self-start">
           <PlayersHeader />
           <PlayersList socket={socket} />
         </div>
 
-        <div className="col game-header align-self-center">
-          <GameHeader />
-        </div>
-
-        <div className="col clue-col align-self-start">
-          <ClueForm clues={clues} addClue={addClue} />
-          <ClueList clues={clues} />
-          </div>
-      </div>
-
-
-    
-        <div className="row">
+        <div className="col-lg-6 col-md-3">
           <GameMap setMessage={setMessage} />
         </div>
-      
+
+        <div className="col-lg-3 col-md-3 ">
+            <Chat socket={socket} />
+        </div>
+      </div>
 
        <div className="row">
-        <div className="col">
+         <div className="col">
           <Location />
-            <Timer />
-      </div>
-        <div className="col ">
           <MessageBox message={message} />
-          <div className="col">
-            <Chat socket={socket} />
+         </div>
+         <div className="col">
+          <Timer />
+         </div>
+        <div className="col-3 clue-col align-self-start">
+          <ClueList clues={clues} />
+          <ClueForm clues={clues} addClue={addClue} />
           </div>
         </div>
-    </div>
+        
     </div>
   );
 }
