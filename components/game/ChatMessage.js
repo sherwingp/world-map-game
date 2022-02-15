@@ -1,4 +1,4 @@
-const Message = ({ author, text }) => {
+const ChatMessage = ({ author, text }) => {
   return (
     <li className="message">
       {author}: {text}
@@ -6,4 +6,4 @@ const Message = ({ author, text }) => {
   );
 };
 
-export default Message;
+export default ChatMessage;

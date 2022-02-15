@@ -4,7 +4,7 @@ import GameMap from "../components/game/Map.js";
 import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import MessageBox from "../components/MessageBox.js";
+import Notification from "../components/Notification";
 import PlayerContext from "../contexts/player.js";
 import PlayersContext from "../contexts/players";
 import Navbar from "../components/Navbar.js";
@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 let socket = io();
 
 export default function Game() {
-  const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
   const { location, setLocation } = useContext(LocationContext);
   const { players, setPlayers } = useContext(PlayersContext);
@@ -90,15 +89,15 @@ export default function Game() {
         <div className="col players-list-col">
           <PlayersHeader />
           <PlayersList socket={socket} />
-            <Timer />
+          <Timer />
         </div>
         <div className="col game-header">
           <GameHeader />
         </div>
         <div className="col clue-col">
           <Location />
-          <MessageBox message={message} />
-          <GameMap setMessage={setMessage} />
+          <Notification />
+          <GameMap />
           <Chat socket={socket} />
           <ClueForm clues={clues} addClue={addClue} />
           <ClueList clues={clues} />
@@ -110,5 +109,3 @@ export default function Game() {
     </div>
   );
 }
-
-// export default Game

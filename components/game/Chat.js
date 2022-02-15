@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MessageList from "./MessageList.js";
+import ChatMessageList from "./ChatMessageList.js";
 import PlayerContext from "../../contexts/player.js";
 import { useContext } from "react";
 import { nanoid } from "nanoid";
@@ -70,7 +70,7 @@ const Chat = ({ socket }) => {
         />
         <input type="submit" name="submit-clue" value="Chat" />
       </form>
-      <MessageList messages={messages} />
+      <ChatMessageList messages={messages} />
     </div>
   );
 };
