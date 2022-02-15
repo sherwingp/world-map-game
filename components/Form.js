@@ -1,17 +1,20 @@
-import Link from "next/link";
-import { useContext } from "react";
-import NameContext from "../contexts/name";
+import Router from "next/router";
+import { useState, useContext } from "react";
+import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
 
 const Form = () => {
-  const { name, setName } = useContext(NameContext);
-  const { players, setPlayers } = useContext(PlayersContext);
+  const [name, setName] = useState("");
+  const { setPlayer } = useContext(PlayerContext);
+  const { setPlayers } = useContext(PlayersContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newPlayer = { id: "player-" + nanoid(), name: name, score: 0 };
-    setPlayers([...players, newPlayer]);
+    setPlayer(newPlayer);
+    setPlayers([newPlayer]);
+    Router.push("/game");
   };
 
   return (
@@ -24,6 +27,7 @@ const Form = () => {
           type="text"
           name="name"
           onChange={(e) => setName(e.target.value)}
+          required
         />
       </label>
 

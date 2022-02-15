@@ -1,13 +1,16 @@
 import "../styles/globals.css";
-import { NameProvider } from "../contexts/name";
+import { PlayerProvider } from "../contexts/player";
 import { PlayersProvider } from "../contexts/players";
+import { LocationProvider } from "../contexts/location";
 
 function MyApp({ Component, pageProps }) {
   return (
     <PlayersProvider>
-      <NameProvider>
-        <Component {...pageProps} />
-      </NameProvider>
+      <PlayerProvider>
+        <LocationProvider>
+          <Component {...pageProps} />
+        </LocationProvider>
+      </PlayerProvider>
     </PlayersProvider>
   );
 }
