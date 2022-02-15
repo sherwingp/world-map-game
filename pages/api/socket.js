@@ -26,7 +26,7 @@ const SocketHandler = (req, res) => {
       });
 
       // socket.on("host request", (newPlayer) => {
-      //   // if (players.find((player) => player.host)=== true) { 
+      //   // if (players.find((player) => player.host)=== true) {
       //   //   newPlayer.host = false;
       //   //   players.push({ ...newPlayer, socketId: id });
       //   // }
@@ -34,7 +34,7 @@ const SocketHandler = (req, res) => {
 
       //   // return players
       // })
-      
+
       socket.on("chat message", (msg) => {
         socket.broadcast.emit("chat message", msg);
       });
@@ -49,13 +49,15 @@ const SocketHandler = (req, res) => {
           if (
             players.find((player) => player.id === newPlayer.id) === undefined
           ) {
-          if (players.find((player) => player.host)=== true) { 
+            if (players.find((player) => player.host) === true) {
               newPlayer.host = false;
               players.push({ ...newPlayer, socketId: id });
-              } else {(players.push({ ...newPlayer, socketId: id }))
-              }
-              return players;
-        }};
+            } else {
+              players.push({ ...newPlayer, socketId: id });
+            }
+            return players;
+          }
+        };
 
         const sendPlayer = async () => {
           const newPlayers = await addPlayer();
