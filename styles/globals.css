@@ -1,14 +1,13 @@
 html,
 body {
   background-image: linear-gradient(
-    to right,
     rgb(18, 8, 48),
     rgb(29, 232, 212)
   );
   color: white;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
+  font-family:  Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 ul{

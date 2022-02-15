@@ -93,16 +93,16 @@ export default function Game() {
         </div>
       <div className="row row-cols-3">
 
-        <div className="col-lg-3 col-md-3 players-list-col align-self-start">
+        <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
           <PlayersHeader />
           <PlayersList socket={socket} />
         </div>
 
-        <div className="col-lg-6 col-md-3">
+        <div className="col-lg-6 col-md-12 col-sm-12">
           <GameMap setMessage={setMessage} />
         </div>
 
-        <div className="col-lg-3 col-md-3 ">
+        <div className="col-lg-3 col-md-12 col-sm-12">
             <Chat socket={socket} />
         </div>
       </div>
@@ -115,7 +115,7 @@ export default function Game() {
          <div className="col">
           <Timer />
          </div>
-        <div className="col-3 clue-col align-self-start">
+        <div className="col-3 clue-col">
           <ClueList clues={clues} />
           <ClueForm clues={clues} addClue={addClue} />
           </div>
