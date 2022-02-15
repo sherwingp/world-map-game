@@ -4,7 +4,7 @@ import LocationContext from "../../contexts/location.js";
 import NotificationContext from "../../contexts/notification";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
-const GameMap = () => {
+const GameMap = ({ socket }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const [Map, setMap] = useState();
   const { location, setLocation } = useContext(LocationContext);
@@ -24,7 +24,14 @@ const GameMap = () => {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap(mapboxgl, map, setNotification, location, setLocation);
+    initializeMap(
+      mapboxgl,
+      map,
+      setNotification,
+      location,
+      setLocation,
+      socket
+    );
     setMap(map);
   }, []);
 

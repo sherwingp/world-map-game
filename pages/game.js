@@ -97,14 +97,11 @@ export default function Game() {
         <div className="col clue-col">
           <Location />
           <Notification />
-          <GameMap />
+          <GameMap socket={socket} />
           <Chat socket={socket} />
           <ClueForm clues={clues} addClue={addClue} />
           <ClueList clues={clues} />
         </div>
-      </div>
-      <div>
-        <GameMap />
       </div>
     </div>
   );
