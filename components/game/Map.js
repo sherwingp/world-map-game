@@ -8,6 +8,7 @@ const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 let map;
 let inRound;
 let setGuess;
+let getGuessResult = () => {};
 
 const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -34,6 +35,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   useEffect(() => {
     if (minutes === 0 && seconds === 0) {
       inRound = false;
+      getGuessResult();
+      map.off("click", setGuess);
     }
   }, [minutes, seconds]);
 
@@ -45,7 +48,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
       setGuess = (event) => {
         const guessLocation = event.lngLat;
-        if (inRound === false) {
+
+        getGuessResult = () => {
           guessMarker.remove();
 
           const linestring = {
@@ -91,12 +95,18 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
               "line-width": 2,
             },
           });
-
+          
           setNotification(
-            `You were ${Math.round(guessResult)}km away from the secret location`
+            `You were ${Math.round(
+              guessResult
+            )}km away from the secret location`
           );
           map.off("click", setGuess);
           return guessResult;
+        };
+        
+        if (inRound === false) {
+          getGuessResult();
         } else {
           guessMarker
             .setLngLat({ lng: guessLocation.lng, lat: guessLocation.lat })
