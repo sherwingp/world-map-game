@@ -16,6 +16,11 @@ li {
   color: white;
 }
 
+label {
+  color: white;
+  text-align: center;
+}
+
 a {
   color: inherit;
   text-decoration: none;
