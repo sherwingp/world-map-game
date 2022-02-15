@@ -4,7 +4,7 @@ A multiplayer interactive world map game where the host pins a secret location s
 
 ## Contributors
 
-[![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban\ [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim\ [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen\ [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka\ [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
+[![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
 
 ## Full Stack Technologies
 
@@ -23,7 +23,7 @@ A multiplayer interactive world map game where the host pins a secret location s
 
 ## How to Use
 
-This app is fully deployed on Heroku [here](https://mappin-game.herokuapp.com/)\
+This app is fully deployed on Heroku [here](https://mappin-game.herokuapp.com/)
 
 Alternatively, you can install the code and run the app locally:
 
