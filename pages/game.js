@@ -27,6 +27,8 @@ export default function Game() {
   const { location, setLocation } = useContext(LocationContext);
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -89,7 +91,12 @@ export default function Game() {
         <div className="col players-list-col">
           <PlayersHeader />
           <PlayersList socket={socket} />
-          <Timer />
+          <Timer
+            setMinutes={setMinutes}
+            setSeconds={setSeconds}
+            minutes={minutes}
+            seconds={seconds}
+          />
         </div>
         <div className="col game-header">
           <GameHeader />
@@ -97,7 +104,13 @@ export default function Game() {
         <div className="col clue-col">
           <Location />
           <Notification />
-          <GameMap socket={socket} />
+          <GameMap
+            minutes={minutes}
+            seconds={seconds}
+            setMinutes={setMinutes}
+            setSeconds={setSeconds}
+            socket={socket}
+          />
           <Chat socket={socket} />
           <ClueForm clues={clues} addClue={addClue} />
           <ClueList clues={clues} />
