@@ -7,11 +7,15 @@ export const initializeMap = (
   setNotification,
   location,
   setLocation,
-  socket
+  socket,
+  setMinutes,
+  setSeconds,
+  minutes,
+  seconds
 ) => {
   const marker = new mapboxgl.Marker();
 
-  const startGame = (secretLocation) => {
+  const startGuess = (secretLocation) => {
     const getDistance = (event) => {
       const guessLocation = event.lngLat;
       const linestring = {
@@ -66,7 +70,7 @@ export const initializeMap = (
     map.on("click", getDistance);
   };
    
-  const add_marker = (event) => {
+  const startGame = (event) => {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
     marker
@@ -76,14 +80,16 @@ export const initializeMap = (
       if (confirm("Are you sure you want to set this location?")) {
         marker.remove();
         setNotification("");
-        map.off("click", add_marker);
-        startGame(clickedLocation);
+        map.off("click", startGame);
+        startGuess(clickedLocation);
         socket.emit("marked location", clickedLocation);
+        setMinutes(1);
+        setSeconds(0);
       }
     };
     setTimeout(confirmLocation, 100);
   };
 
   setNotification("Select your secret location");
-  map.on("click", add_marker);
+  map.on("click", startGame);
 };
