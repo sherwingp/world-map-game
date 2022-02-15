@@ -3,7 +3,7 @@ import length from "@turf/length";
 export const initializeMap = (
   mapboxgl,
   map,
-  setMessage,
+  setNotification,
   location,
   setLocation,
   socket
@@ -25,7 +25,7 @@ export const initializeMap = (
       };
 
       const guessResult = length(linestring);
-      setMessage(
+      setNotification(
         `You are ${Math.round(guessResult)}km away from the secret location`
       );
       return guessResult;
@@ -42,7 +42,7 @@ export const initializeMap = (
     let confirmLocation = () => {
       if (confirm("Are you sure you want to set this location?")) {
         marker.remove();
-        setMessage("");
+        setNotification("");
         map.off("click", add_marker);
         startGame(clickedLocation);
         socket.emit("marked location", clickedLocation);
@@ -51,5 +51,6 @@ export const initializeMap = (
     setTimeout(confirmLocation, 100);
   };
 
+  setNotification("Select your secret location");
   map.on("click", add_marker);
 };
