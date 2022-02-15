@@ -83,30 +83,47 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
+
       <div>
         <Navbar />
       </div>
+
       <div className="row">
-        <div className="col players-list-col">
+
+        <div className="col players-list-col align-self-start">
           <PlayersHeader />
           <PlayersList socket={socket} />
-            <Timer />
         </div>
-        <div className="col game-header">
+
+        <div className="col game-header align-self-center">
           <GameHeader />
         </div>
-        <div className="col clue-col">
-          <Location />
-          <MessageBox message={message} />
-          <GameMap setMessage={setMessage} />
-          <Chat socket={socket} />
+
+        <div className="col clue-col align-self-start">
           <ClueForm clues={clues} addClue={addClue} />
           <ClueList clues={clues} />
+          </div>
+      </div>
+
+
+    
+        <div className="row">
+          <GameMap setMessage={setMessage} />
         </div>
+      
+
+       <div className="row">
+        <div className="col">
+          <Location />
+            <Timer />
       </div>
-      <div>
-        <GameMap />
-      </div>
+        <div className="col ">
+          <MessageBox message={message} />
+          <div className="col">
+            <Chat socket={socket} />
+          </div>
+        </div>
+    </div>
     </div>
   );
 }

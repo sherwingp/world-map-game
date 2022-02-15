@@ -11,11 +11,15 @@ body {
   font-family: -apple-system, Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
-li {
-  color: white;
+ul{
+  list-style: none;
 }
-
+li {
+  color: black;
+}
+p{
+  color: #111;
+}
 label {
   color: white;
   text-align: center;
@@ -42,6 +46,11 @@ h4 {
   margin-top: 0;
   padding-bottom: 40px;
   font-family: Ubuntu;
+}
+
+#chat-form {
+  
+align-self: flex-end;
 }
 
 .players-list-col {

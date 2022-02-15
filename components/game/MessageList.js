@@ -12,5 +12,5 @@ export default function MessageList({ messages }) {
     ))
     .reverse();
 
-  return <ul>{MessageList}</ul>;
+  return <ul className="card-box message-list">{MessageList}</ul>;
 }
