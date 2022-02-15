@@ -5,6 +5,7 @@ import Form from "../components/Form";
 import Footer from "../components/Footer";
 import _app from "./_app";
 import Link from "next/link";
+import AvatarSelector from "../components/AvatarSelector";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
         <h1>
           <Header />
         </h1>
+        <AvatarSelector />
         <Form />
       </main>
       <div className="footer">

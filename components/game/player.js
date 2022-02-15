@@ -23,7 +23,9 @@ const Player = ({ id, name, score, host, socket }) => {
 
   return (
     <li className="player">
-      {name}{ host && '(Host)' }: {score} points <button onClick={onClick}>Increment</button>
+      {name}
+      {host && "(Host)"}: {score} points{" "}
+      <button onClick={onClick}>Increment</button>
     </li>
   );
 };

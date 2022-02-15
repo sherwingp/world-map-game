@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PlayersContext from "../../contexts/players";
 
-const Player = ({ id, name, score, socket }) => {
+const Player = ({ id, name, score, host, socket }) => {
   const { players, setPlayers } = useContext(PlayersContext);
 
   const onClick = () => {
@@ -23,7 +23,9 @@ const Player = ({ id, name, score, socket }) => {
 
   return (
     <li className="player">
-      {name}: {score} points <button onClick={onClick}>Increment</button>
+      {name}
+      {host && "(Host)"}: {score} points{" "}
+      <button onClick={onClick}>Increment</button>
     </li>
   );
 };
