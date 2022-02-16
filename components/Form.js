@@ -67,8 +67,7 @@ const Form = () => {
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <label data-testid="label">
-          Enter Player Name:
-        </label>
+          <strong>Enter Player Name:</strong>
           <input
             className="input-index"
             data-testid="input-name"
@@ -77,6 +76,7 @@ const Form = () => {
             onChange={(e) => setName(e.target.value)}
             required
           />
+        </label>
 
         <label>Set Host</label>
         <input
