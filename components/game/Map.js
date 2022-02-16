@@ -4,6 +4,7 @@ import NotificationContext from "../../contexts/notification";
 import length from "@turf/length";
 import PlayersContext from "../../contexts/players";
 import PlayerContext from "../../contexts/player";
+import { nanoid } from "nanoid";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
@@ -148,6 +149,14 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                 `You correctly guessed ${secretLocation.asciiName}!`
               );
               map.off("click", setGuess);
+              
+              const newMessage = {
+                id: "message-" + nanoid(),
+                author: 'Game',
+                text: `${player.name} guessed the correct answer!`,
+              };
+
+              socket.emit("chat message", newMessage);
 
               const updatedPlayers = players.map((listPlayer) => {
                 if (listPlayer.id === player.id) {
@@ -163,6 +172,14 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                   return b.score - a.score;
                 })
               );
+            } else {
+              const newMessage = {
+                id: "message-" + nanoid(),
+                author: 'Game',
+                text: `${player.name} guessed ${guessedCountry}!`,
+              };
+
+              socket.emit("chat message", newMessage);
             }
           }
         }
