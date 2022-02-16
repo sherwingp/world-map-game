@@ -215,14 +215,11 @@ button:active {
 #gen {
   background-color: #4361ee;
   color: white;
+  margin: 0;
+  padding: 0;
+  width:5em;
 }
 #down {
   background-color: #eb3349;
   color: white;
-}
-
-.avatar-btn {
-  margin: 0;
-  padding: 0;
-  width:5em;
 }
