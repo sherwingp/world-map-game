@@ -53,6 +53,12 @@ h4 {
   align-self: flex-end;
   }
 
+  .player {
+    padding: 10px 40px 10px 40px;
+    margin: 10px 0;
+    position: relative;
+  }
+
 /* .players-list-col {
   height: 200px;
   border: 5px solid rgb(223, 223, 223);
