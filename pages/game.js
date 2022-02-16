@@ -87,23 +87,21 @@ export default function Game() {
       <div>
         <Navbar />
       </div>
-      <div className="row">
-        <div className="col players-list-col">
-          <PlayersHeader />
-          <PlayersList socket={socket} />
-          <Timer
-            setMinutes={setMinutes}
-            setSeconds={setSeconds}
-            minutes={minutes}
-            seconds={seconds}
-          />
+
+      <div className="col game-header">
+        <GameHeader />
+      </div>
+
+      <div className="row row-cols-3">
+
+        <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
+          <div className="card">
+            <PlayersHeader />
+            <PlayersList socket={socket} />
+          </div>
         </div>
-        <div className="col game-header">
-          <GameHeader />
-        </div>
-        <div className="col clue-col">
-          <Location />
-          <Notification />
+
+        <div className="col-lg-6 col-md-12 col-sm-12">
           <GameMap
             minutes={minutes}
             seconds={seconds}
@@ -111,11 +109,33 @@ export default function Game() {
             setSeconds={setSeconds}
             socket={socket}
           />
-          <Chat socket={socket} />
-          <ClueForm clues={clues} addClue={addClue} />
-          <ClueList clues={clues} />
         </div>
+
+        <div className="col-lg-3 col-md-12 col-sm-12">
+          <Chat socket={socket} />
+        </div>
+
       </div>
+
+        <div className="row row-cols-3">
+          <div className="col">
+            <Location />
+            <Notification />
+          </div>
+          <div className="col">
+            <Timer
+              setMinutes={setMinutes}
+              setSeconds={setSeconds}
+              minutes={minutes}
+              seconds={seconds}
+            />
+          </div>
+          <div className="col-3 clue-col">
+            <ClueForm clues={clues} addClue={addClue} />
+            <ClueList clues={clues} />
+          </div>
+        </div>
+
     </div>
   );
 }
