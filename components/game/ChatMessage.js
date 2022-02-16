@@ -1,7 +1,10 @@
 const ChatMessage = ({ author, text }) => {
   return (
     <li className="message">
-      {author}: {text}
+      <div className="chat-body">
+        <strong className="primary-font">{author}: </strong>
+        <p>{text}</p>
+      </div>
     </li>
   );
 };

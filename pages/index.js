@@ -7,6 +7,7 @@ import _app from "./_app";
 import Link from "next/link";
 import About from "../components/About";
 import HowToPlay from "../components/HowToPlay";
+import "bootstrap/dist/css/bootstrap.css";
 
 export default function Home() {
   return (
@@ -18,12 +19,17 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1>
-          <Header />
-        </h1>
+        <Header />
         <Form />
+      <div className="row row-cols-3">
+      <div className="col-6">
         <About />
-        <HowToPlay />
+      </div>
+      <div className="col-6">
+      <HowToPlay />
+      </div>
+        </div>
+
       </main>
       <div className="footer">
         <Footer />

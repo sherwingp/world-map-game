@@ -53,22 +53,17 @@ const Form = () => {
         <div className="avatar-selector">
           <div className="avatar">
             <img src={avatar} alt="Sprite" />
-          </div>
-          <div className="generate">
-            <button
-              id="gen"
-              onClick={() => {
+            <div >
+              <img id='buttonAvatarCustomizerRandomize' src='https://skribbl.io/res/randomize.gif' onClick={() => {
                 handleGenerate();
-              }}
-            >
-              Change Avatar
-            </button>
+              }}/>
+            </div>
           </div>
         </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
         <label data-testid="label">
-          Enter Player Name:
+          <strong>Enter Player Name:</strong>
           <input
             className="input-index"
             data-testid="input-name"
@@ -79,7 +74,7 @@ const Form = () => {
           />
         </label>
         <div className="set-host">
-          <label>Set Host</label>
+          <label className="set-host-label">Set Host</label>
           <input
             type="checkbox"
             checked={host}
@@ -87,14 +82,16 @@ const Form = () => {
             onChange={(e) => setHost(e.currentTarget.checked)}
           />
         </div>
+        <div className="play-btn-div">
         <button
           className="submit-btn"
           data-testid="link-to-game"
           type="submit"
-          value="Submit"
+          value="Play"
         >
-          Submit
+          Play
         </button>
+        </div>
       </form>
     </div>
   );

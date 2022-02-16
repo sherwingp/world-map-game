@@ -12,7 +12,7 @@ const Player = ({ id, name, score, host, socket, avatar }) => {
       </div>
       <div style={{ float: "right", width: 100 + "px" }}>
         {" "}
-        {name}
+          <strong className="primary-font">{name}</strong>
         {host && "(Host)"}: {score} points{" "}
       </div>
     </li>

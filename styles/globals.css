@@ -1,10 +1,6 @@
 html,
 body {
-  background-image: linear-gradient(
-    to right,
-    rgb(18, 8, 48),
-    rgb(29, 232, 212)
-  );
+  background-image: url('../public/images/bg-img.jpg');
   color: white;
   padding: 0;
   margin: 0;
@@ -12,13 +8,19 @@ body {
     Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+ul {
+  list-style: none;
+}
+
 li {
-  color: white;
+  list-style-type: none;
+  color: black;
 }
 
 label {
   color: white;
   text-align: center;
+ 
 }
 
 a {
@@ -33,7 +35,7 @@ a {
 h1 {
   color: white;
   margin-top: 0;
-  padding-bottom: 20px;
+  
   font-family: Ubuntu;
 }
 
@@ -44,12 +46,31 @@ h4 {
   font-family: Ubuntu;
 }
 
-.players-list-col {
+.play-btn-div {
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
+.set-host-label {
+  padding-right:10px;
+}
+
+#chat-form {
+  align-self: flex-end;
+  }
+
+  .player {
+    padding: 10px 40px 10px 40px;
+    margin: 10px 0;
+    position: relative;
+  }
+
+/* .players-list-col {
   height: 200px;
   border: 5px solid rgb(223, 223, 223);
   border-radius: 20px;
   margin-top: 40px;
-}
+} */
 
 .clue-col {
   height: 200px;
@@ -60,7 +81,12 @@ h4 {
 
 .game-header {
   text-align: center;
-  padding-top: 60px;
+}
+
+.message-list {
+  width: auto;
+  height: 380px;
+  overflow: scroll
 }
 
 #map {
@@ -73,19 +99,22 @@ h4 {
 .footer {
   color: white;
   text-align: center;
-  padding-bottom: 25px;
+  
 }
+
 .set-host {
   text-align: center;
 }
-.submit-btn,
-.about-btn,
-.how-to-play-btn {
+
+.submit-btn, .about-btn, .how-to-play-btn, .avatar-btn {
   background-color: #32a2e2;
   border: 0;
-  border-radius: 56px;
-  color: #fff;
+  border-radius: 8px;
+  color: white;
+  width: 100px;
+  height: 40px;
   cursor: pointer;
+  background-color: #337AA8;
   display: inline-block;
   font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
     "Helvetica Neue", sans-serif;
@@ -94,17 +123,17 @@ h4 {
   outline: 0;
   padding: 6px 6px;
   position: relative;
+  touch-action: manipulation;
   text-align: center;
   text-decoration: none;
   transition: all 0.3s;
   user-select: none;
   -webkit-user-select: none;
-  touch-action: manipulation;
 }
 
-.submit-btn:before,
-.about-btn:before,
-.how-to-play-btn:before {
+.submit-btn:before, .about-btn:before, .how-to-play-btn:before, .avatar-btn:before {
+
+  
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -118,9 +147,8 @@ h4 {
   width: 92%;
 }
 
-.submit-btn:hover,
-.about-btn:hover,
-.how-to-play-btn:hover {
+.submit-btn:hover, .about-btn:hover, .how-to-play-btn:hover, .avatar-btn:hover {
+
   box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
     rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
@@ -174,20 +202,22 @@ h4 {
   justify-content: center;
   align-items: center;
 }
+
 .avatar {
   height: 50%;
   width: 50%;
   max-width: 400px;
   max-height: 400px;
-  margin-top: 40px;
-  margin-bottom: 15px;
+  
 }
+
 .btns {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
+
 button {
   width: 6em;
   height: 2.5em;
@@ -201,30 +231,40 @@ button {
   border: none;
   transition: 0.2s;
 }
+
 button:active {
   box-shadow: none;
 }
+
 .btns > button:hover {
   background-color: #ffffff;
 }
+
 #gen {
-  background-color: #4361ee;
+  background-color: #32a2e2;
   color: white;
+  margin: 0;
+  padding: 0;
+  width:4em;
+  height: 55px;
+  
 }
+
 #down {
   background-color: #eb3349;
   color: white;
 }
 
 .about-btn {
-  padding: 10px 20px;
+  height: 60px;
+  padding: 20px 20px;
   display: block;
   margin: 25px auto 0;
   font-size: 18px;
 }
 
 .how-to-play-btn {
-  padding: 10px 20px;
+  height: 60px;
   display: block;
   margin: 25px auto 0;
   font-size: 18px;
@@ -241,6 +281,7 @@ button:active {
   bottom: 0;
   position: fixed;
 }
+
 .overlay {
   background: rgba(49, 49, 49, 0.8);
 }
@@ -274,4 +315,20 @@ button:active {
   width: 1em;
   height: 1em;
   margin: 5px;
+}
+
+/* Randomizer button */
+
+#buttonAvatarCustomizerRandomize  {
+  cursor: pointer;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  right: 4px;
+  top: 4px;
+  opacity: .6;
+}
+
+#buttonAvatarCustomizerRandomize:hover {
+  opacity: 1;
 }
