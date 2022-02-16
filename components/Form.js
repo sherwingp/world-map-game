@@ -53,9 +53,8 @@ const Form = () => {
         <div className="avatar-selector">
           <div className="avatar">
             <img src={avatar} alt="Sprite" />
-          </div>
-          <div className="generate">
             <button
+            className="avatar-btn"
               id="gen"
               onClick={() => {
                 handleGenerate();

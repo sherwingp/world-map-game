@@ -96,6 +96,14 @@ export default function Game() {
             <Notification />
             <Location />
         </div>
+          <div className="col-4">
+            <Timer
+              setMinutes={setMinutes}
+              setSeconds={setSeconds}
+              minutes={minutes}
+              seconds={seconds}
+            />
+          </div>
       </div>
       <div className="row row-cols-3">
 
@@ -119,24 +127,7 @@ export default function Game() {
         <div className="col-lg-3 col-md-12 col-sm-12">
           <Chat socket={socket} />
         </div>
-
       </div>
-
-        <div className="row row-cols-3 justify-content-end">
-          <div className="col-4">
-            <Timer
-              setMinutes={setMinutes}
-              setSeconds={setSeconds}
-              minutes={minutes}
-              seconds={seconds}
-            />
-          </div>
-          {/* <div className="col-4 clue-col">
-            <ClueForm clues={clues} addClue={addClue} />
-            <ClueList clues={clues} />
-          </div> */}
-        </div>
-
     </div>
   );
 }
