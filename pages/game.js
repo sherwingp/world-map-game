@@ -76,7 +76,7 @@ export default function Game() {
     // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
     <div
       className="container"
-      style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}
+      style={{ width: "100vmax", height: "700px", paddingTop: "40px" }}
     >
       <Head>
         <link

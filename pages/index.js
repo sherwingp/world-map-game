@@ -36,7 +36,7 @@ export default function Home() {
       <HowToPlay />
       </div>
         </div>
-        
+
       </main>
       <div className="footer">
         <Footer />
