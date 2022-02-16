@@ -34,7 +34,7 @@ a {
 h1 {
   color: white;
   margin-top: 0;
-  padding-bottom: 20px;
+  
   font-family: Ubuntu;
 }
 
@@ -90,7 +90,7 @@ h4 {
 .footer {
   color: white;
   text-align: center;
-  padding-bottom: 25px;
+  
 }
 
 .set-host {
