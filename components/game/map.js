@@ -38,18 +38,24 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   }, []);
 
   useEffect(() => {
+    // Timer checks for round end
     if (minutes === 0 && seconds === 0) {
       inRound = false;
       getGuessResult();
       map.off("click", setGuess);
-      map = new mapboxgl.Map({
-        container: "my-map",
-        style: "mapbox://styles/mapbox/streets-v11",
-        center: [0, 0],
-        zoom: 0.6,
-        projection: "mercator",
-      });
-      play()
+
+      // Countdown to next round
+      setTimeout(() => {
+        // Initializing next round
+        map = new mapboxgl.Map({
+          container: "my-map",
+          style: "mapbox://styles/mapbox/streets-v11",
+          center: [0, 0],
+          zoom: 0.6,
+          projection: "mercator",
+        });
+        play();
+      }, 6000);
     }
   }, [minutes, seconds]);
 
