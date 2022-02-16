@@ -112,7 +112,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           const getGuessedCountry = async (geodata, callback) => {
             const result = await fetch(
-              `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`
+              `https://secure.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`
             );
             return await result.json();
           };
@@ -162,7 +162,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
         if (confirm("Start game?")) {
           const selectRandomCountry = async () => {
             const result = await fetch(
-              `http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`
+              `https://secure.geonames.org/countryInfoJSON?username=${geonamesKey}`
             );
             return await result.json();
           };
@@ -173,7 +173,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           const getCountryGeoData = async () => {
             const result = await fetch(
-              `http://api.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`
+              `https://secure.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`
             );
             return await result.json();
           };

@@ -78,7 +78,9 @@ h4 {
 .set-host {
   text-align: center;
 }
-.submit-btn, .about-btn, .how-to-play-btn {
+.submit-btn,
+.about-btn,
+.how-to-play-btn {
   background-color: #32a2e2;
   border: 0;
   border-radius: 56px;
@@ -100,7 +102,9 @@ h4 {
   touch-action: manipulation;
 }
 
-.submit-btn:before, .about-btn:before, .how-to-play-btn:before {
+.submit-btn:before,
+.about-btn:before,
+.how-to-play-btn:before {
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -114,7 +118,9 @@ h4 {
   width: 92%;
 }
 
-.submit-btn:hover, .about-btn:hover, .how-to-play-btn:hover {
+.submit-btn:hover,
+.about-btn:hover,
+.how-to-play-btn:hover {
   box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
     rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
@@ -224,7 +230,9 @@ button:active {
   font-size: 18px;
 }
 
-.how-to-play, .about, .overlay {
+.how-to-play,
+.about,
+.overlay {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -234,10 +242,11 @@ button:active {
   position: fixed;
 }
 .overlay {
-  background: rgba(49,49,49,0.8);
+  background: rgba(49, 49, 49, 0.8);
 }
 
-.how-to-play-content, .about-content {
+.how-to-play-content,
+.about-content {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -250,14 +259,15 @@ button:active {
   min-width: 300px;
 }
 
-.close-how-to-play, .close-about {
+.close-how-to-play,
+.close-about {
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   border: none;
   outline: none;
-  background: none; 
+  background: none;
   box-shadow: none;
   font-size: 2rem;
   font-weight: bold;
