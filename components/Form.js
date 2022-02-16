@@ -16,7 +16,7 @@ const Form = () => {
   const [background, setBackground] = useState(
     Math.floor(Math.random() * 16777215).toString(16)
   );
-  const defaultAvatar = `https://avatars.dicebear.com/api/micah/${avatarSeed}.svg?backgroundColor=%23${background}&radius=50`;
+  const defaultAvatar = `https://avatars.dicebear.com/api/adventurer-neutral/${avatarSeed}.svg?backgroundColor=%23${background}&radius=50`;
   const [avatar, setAvatar] = useState(defaultAvatar);
 
   function handleGenerate() {
@@ -24,7 +24,7 @@ const Form = () => {
     setBackground(Math.floor(Math.random() * 16777215).toString(16));
     setAvatarSeed(x);
     setAvatar(
-      `https://avatars.dicebear.com/api/bottts/${avatarSeed}.svg?backgroundColor=%23${background}&radius=50`
+      `https://avatars.dicebear.com/api/adventurer-neutral/${avatarSeed}.svg?backgroundColor=%23${background}&radius=50`
     );
   }
 
@@ -78,13 +78,13 @@ const Form = () => {
           />
         </label>
         <div className="set-host">
-        <label>Set Host</label>
-        <input
-          type="checkbox"
-          checked={host}
-          value={host}
-          onChange={(e) => setHost(e.currentTarget.checked)}
-        />
+          <label>Set Host</label>
+          <input
+            type="checkbox"
+            checked={host}
+            value={host}
+            onChange={(e) => setHost(e.currentTarget.checked)}
+          />
         </div>
         <button
           className="submit-btn"

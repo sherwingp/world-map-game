@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import LocationContext from "../../contexts/location.js";
 import NotificationContext from "../../contexts/notification";
 import length from "@turf/length";
-import circle from "@turf/circle";
 import PlayersContext from "../../contexts/players";
 import PlayerContext from "../../contexts/player";
+import { nanoid } from "nanoid";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
@@ -35,23 +35,36 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap();
+    play();
   }, []);
 
   useEffect(() => {
+    // Timer checks for round end
     if (minutes === 0 && seconds === 0) {
       inRound = false;
       getGuessResult();
       map.off("click", setGuess);
+
+      // Countdown to next round
+      setTimeout(() => {
+        // Initializing next round
+        map = new mapboxgl.Map({
+          container: "my-map",
+          style: "mapbox://styles/mapbox/streets-v11",
+          center: [0, 0],
+          zoom: 0.6,
+          projection: "mercator",
+        });
+        play();
+      }, 6000);
     }
   }, [minutes, seconds]);
 
-  const initializeMap = () => {
+  const play = () => {
     const resultMarker = new mapboxgl.Marker();
 
     const startGuess = async (secretLocation) => {
       const guessMarker = new mapboxgl.Marker();
-      console.log(secretLocation);
       setGuess = async (event) => {
         const guessLocation = event.lngLat;
 
@@ -112,7 +125,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           const getGuessedCountry = async (geodata, callback) => {
             const result = await fetch(
-              `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`
+              `https://secure.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`
             );
             return await result.json();
           };
@@ -127,14 +140,19 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           // On correct answer
           if (guessedCountry !== "invalid country") {
-            console.log(guessedCountry === secretCountry.countryName);
-            console.log(`guessed: ${guessedCountry}`);
-            console.log(`secret: ${secretCountry.countryName}`);
             if (guessedCountry === secretCountry.countryName) {
               setNotification(
                 `You correctly guessed ${secretLocation.asciiName}!`
               );
               map.off("click", setGuess);
+
+              const newMessage = {
+                id: "message-" + nanoid(),
+                author: "Game",
+                text: `${player.name} guessed the correct answer!`,
+              };
+
+              socket.emit("chat message", newMessage);
 
               const updatedPlayers = players.map((listPlayer) => {
                 if (listPlayer.id === player.id) {
@@ -150,6 +168,14 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                   return b.score - a.score;
                 })
               );
+            } else {
+              const newMessage = {
+                id: "message-" + nanoid(),
+                author: "Game",
+                text: `${player.name} guessed ${guessedCountry}!`,
+              };
+
+              socket.emit("chat message", newMessage);
             }
           }
         }
@@ -162,7 +188,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
         if (confirm("Start game?")) {
           const selectRandomCountry = async () => {
             const result = await fetch(
-              `http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`
+              `https://secure.geonames.org/countryInfoJSON?username=${geonamesKey}`
             );
             return await result.json();
           };
@@ -173,19 +199,20 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           const getCountryGeoData = async () => {
             const result = await fetch(
-              `http://api.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`
+              `https://secure.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`
             );
             return await result.json();
           };
 
           const secretCountryGeoData = await getCountryGeoData();
+          console.log(startGuess);
+          socket.emit("marked location", secretCountryGeoData);
           setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
           setNotification(`${secretCountry.countryName}`);
           map.off("click", startGame);
           inRound = true;
           startGuess(secretCountryGeoData);
-          socket.emit("marked location", secretCountry);
           setMinutes(0);
           setSeconds(20);
         }
@@ -195,6 +222,16 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     setNotification("Click on the map to start the game!");
     map.on("click", startGame);
+
+    socket.on("marked location", (location) => {
+      setNotification(location.asciiName);
+      setLocation(location);
+      setNotification(`${location.asciiName}`);
+      inRound = true;
+      startGuess(location);
+      setMinutes(0);
+      setSeconds(20);
+    });
   };
 
   return <div id="my-map" style={{ height: 500, width: "100%" }} />;
