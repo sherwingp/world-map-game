@@ -22,9 +22,13 @@ const Player = ({ id, name, score, socket }) => {
   };
 
   return (
+    <ul className="players-list">
     <li className="player">
-      {name}: {score} points <button onClick={onClick}>Increment</button>
+    <div className="chat-body">
+    <strong className="primary-font">{name}:</strong> {score} points <button onClick={onClick}>Increment</button>
+    </div>
     </li>
+    </ul>
   );
 };
 export default Player;

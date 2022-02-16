@@ -1,6 +1,7 @@
 html,
 body {
   background-image: linear-gradient(
+    to right,
     rgb(18, 8, 48),
     rgb(29, 232, 212)
   );
@@ -71,6 +72,11 @@ align-self: flex-end;
   height: 380px;
   overflow: scroll
 }
+/* 
+.players-list {
+  max-height: 380px;
+  overflow: scroll;
+} */
 
 #map {
   position: relative;
