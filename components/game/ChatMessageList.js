@@ -12,5 +12,5 @@ export default function ChatMessageList({ messages }) {
     ))
     .reverse();
 
-  return <ul>{ChatMessageList}</ul>;
+  return <ul className="card-box message-list">{ChatMessageList}</ul>;
 }
