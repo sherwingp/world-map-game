@@ -113,7 +113,6 @@ export default function Game() {
             <PlayersList socket={socket} />
           </div>
         </div>
-
         <div className="col-lg-6 col-md-12 col-sm-12">
           <GameMap
             minutes={minutes}

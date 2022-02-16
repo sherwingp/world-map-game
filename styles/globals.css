@@ -38,7 +38,7 @@ a {
 h1 {
   color: white;
   margin-top: 0;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
   font-family: Ubuntu;
 }
 
@@ -97,7 +97,12 @@ h4 {
   padding-bottom: 25px;
 }
 
-.submit-btn {
+.set-host {
+  text-align: center;
+}
+
+.submit-btn, .about-btn, .how-to-play-btn {
+  background-color: #32a2e2;
   border: 0;
   border-radius: 8px;
   color: white;
@@ -105,13 +110,23 @@ h4 {
   height: 40px;
   cursor: pointer;
   background-color: #337AA8;
-  position: relative;
+  display: inline-block;
   font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
-"Helvetica Neue", sans-serif;
+    "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  outline: 0;
+  padding: 6px 6px;
+  position: relative;
   touch-action: manipulation;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.submit-btn:before {
+.submit-btn:before, .about-btn:before, .how-to-play-btn:before {
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -125,7 +140,7 @@ h4 {
   width: 92%;
 }
 
-.submit-btn:hover {
+.submit-btn:hover, .about-btn:hover, .how-to-play-btn:hover {
   box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
     rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
@@ -173,12 +188,13 @@ h4 {
   box-sizing: border-box;
   height: 300px;
   width: 100%;
-  gap: 15px;
+  gap: 0px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 .avatar {
   height: 50%;
   width: 50%;
@@ -188,12 +204,14 @@ h4 {
   margin-bottom: 45px;
   align: center;
 }
+
 .btns {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
+
 button {
   width: 6em;
   height: 2.5em;
@@ -207,12 +225,15 @@ button {
   border: none;
   transition: 0.2s;
 }
+
 button:active {
   box-shadow: none;
 }
+
 .btns > button:hover {
   background-color: #ffffff;
 }
+
 #gen {
   background-color: #4361ee;
   color: white;
@@ -220,7 +241,65 @@ button:active {
   padding: 0;
   width:5em;
 }
+
 #down {
   background-color: #eb3349;
   color: white;
+}
+
+.about-btn {
+  padding: 10px 20px;
+  display: block;
+  margin: 25px auto 0;
+  font-size: 18px;
+}
+
+.how-to-play-btn {
+  padding: 10px 20px;
+  display: block;
+  margin: 25px auto 0;
+  font-size: 18px;
+}
+
+.how-to-play, .about, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+
+.how-to-play-content, .about-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #a1bcdf;
+  padding: 14px 14px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+.close-how-to-play, .close-about {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none; 
+  box-shadow: none;
+  font-size: 2rem;
+  font-weight: bold;
+  width: 1em;
+  height: 1em;
+  margin: 5px;
 }

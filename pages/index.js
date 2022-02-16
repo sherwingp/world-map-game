@@ -5,6 +5,8 @@ import Form from "../components/Form";
 import Footer from "../components/Footer";
 import _app from "./_app";
 import Link from "next/link";
+import About from "../components/About";
+import HowToPlay from "../components/HowToPlay";
 
 export default function Home() {
   return (
@@ -20,6 +22,8 @@ export default function Home() {
           <Header />
         </h1>
         <Form />
+        <About />
+        <HowToPlay />
       </main>
       <div className="footer">
         <Footer />
