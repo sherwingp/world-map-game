@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from "react";
 import LocationContext from "../../contexts/location.js";
 import NotificationContext from "../../contexts/notification";
 import length from "@turf/length";
-import circle from "@turf/circle";
 import PlayersContext from "../../contexts/players";
 import PlayerContext from "../../contexts/player";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
@@ -35,7 +34,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     map.addControl(new mapboxgl.NavigationControl());
 
-    initializeMap();
+    play();
   }, []);
 
   useEffect(() => {
@@ -43,10 +42,18 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
       inRound = false;
       getGuessResult();
       map.off("click", setGuess);
+      map = new mapboxgl.Map({
+        container: "my-map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: [0, 0],
+        zoom: 0.6,
+        projection: "mercator",
+      });
+      play()
     }
   }, [minutes, seconds]);
 
-  const initializeMap = () => {
+  const play = () => {
     const resultMarker = new mapboxgl.Marker();
 
     const startGuess = async (secretLocation) => {
