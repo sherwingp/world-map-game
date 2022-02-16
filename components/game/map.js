@@ -3,6 +3,8 @@ import LocationContext from "../../contexts/location.js";
 import NotificationContext from "../../contexts/notification";
 import length from "@turf/length";
 import circle from "@turf/circle";
+import PlayersContext from "../../contexts/players";
+import PlayerContext from "../../contexts/player";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
@@ -16,6 +18,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const { location, setLocation } = useContext(LocationContext);
   const { notification, setNotification } = useContext(NotificationContext);
+  const { players, setPlayers } = useContext(PlayersContext);
+  const { player, setPlayer } = useContext(PlayerContext);
 
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
 
@@ -65,8 +69,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           const guessResult = length(linestring);
 
           resultMarker
-          .setLngLat({ lng: secretLocation.lng, lat: secretLocation.lat })
-          .addTo(map);
+            .setLngLat({ lng: secretLocation.lng, lat: secretLocation.lat })
+            .addTo(map);
 
           map.addSource("guessline", {
             type: "geojson",
@@ -121,10 +125,31 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
               ? "invalid country"
               : countryData.countryName;
 
+          // On correct answer
           if (guessedCountry !== "invalid country") {
-            if (guessedCountry === secretCountry) {
-              setNotification(`You correctly guessed ${secretLocation.asciiName}!`)
+            console.log(guessedCountry === secretCountry.countryName);
+            console.log(`guessed: ${guessedCountry}`);
+            console.log(`secret: ${secretCountry.countryName}`);
+            if (guessedCountry === secretCountry.countryName) {
+              setNotification(
+                `You correctly guessed ${secretLocation.asciiName}!`
+              );
               map.off("click", setGuess);
+
+              const updatedPlayers = players.map((listPlayer) => {
+                if (listPlayer.id === player.id) {
+                  return { ...player, score: ++player.score };
+                }
+                return player;
+              });
+
+              socket.emit("send score", updatedPlayers);
+
+              setPlayers(
+                updatedPlayers.sort((a, b) => {
+                  return b.score - a.score;
+                })
+              );
             }
           }
         }
@@ -162,7 +187,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           startGuess(secretCountryGeoData);
           socket.emit("marked location", secretCountry);
           setMinutes(0);
-          setSeconds(15);
+          setSeconds(20);
         }
       };
       setTimeout(confirmStart, 100);
