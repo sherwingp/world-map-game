@@ -1,10 +1,6 @@
 html,
 body {
-  background-image: linear-gradient(
-    to right,
-    rgb(18, 8, 48),
-    rgb(29, 232, 212)
-  );
+  background-image: url('../public/images/bg-img.jpg');
   color: white;
   padding: 0;
   margin: 0;
@@ -310,4 +306,20 @@ button:active {
   width: 1em;
   height: 1em;
   margin: 5px;
+}
+
+/* Randomizer button */
+
+#buttonAvatarCustomizerRandomize  {
+  cursor: pointer;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  right: 4px;
+  top: 4px;
+  opacity: .6;
+}
+
+#buttonAvatarCustomizerRandomize:hover {
+  opacity: 1;
 }

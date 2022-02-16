@@ -53,15 +53,11 @@ const Form = () => {
         <div className="avatar-selector">
           <div className="avatar">
             <img src={avatar} alt="Sprite" />
-            <button
-            className="avatar-btn"
-              id="gen"
-              onClick={() => {
+            <div >
+              <img id='buttonAvatarCustomizerRandomize' src='https://skribbl.io/res/randomize.gif' onClick={() => {
                 handleGenerate();
-              }}
-            >
-              Change Avatar
-            </button>
+              }}/>
+            </div>
           </div>
         </div>
       </div>
@@ -90,9 +86,9 @@ const Form = () => {
           className="submit-btn"
           data-testid="link-to-game"
           type="submit"
-          value="Submit"
+          value="Play"
         >
-          Submit
+          Play
         </button>
       </form>
     </div>
