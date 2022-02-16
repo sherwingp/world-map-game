@@ -78,7 +78,7 @@ const Form = () => {
             required
           />
         </label>
-
+        <div className="set-host">
         <label>Set Host</label>
         <input
           type="checkbox"
@@ -86,6 +86,7 @@ const Form = () => {
           value={host}
           onChange={(e) => setHost(e.currentTarget.checked)}
         />
+        </div>
         <button
           className="submit-btn"
           data-testid="link-to-game"
