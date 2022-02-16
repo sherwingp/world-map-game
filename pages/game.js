@@ -94,7 +94,6 @@ export default function Game() {
       <div className="row justify-content-center">
         <div  className="col-4">
             <Notification />
-            <Location />
         </div>
           <div className="col-4">
             <Timer
