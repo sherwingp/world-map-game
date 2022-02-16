@@ -9,7 +9,7 @@ const About = () => {
   };
   return (
     <>
-      <button className="About-btn" onClick={toggleAbout}>
+      <button className="about-btn" onClick={toggleAbout}>
         About
       </button>
 
