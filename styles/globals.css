@@ -244,7 +244,7 @@ button:active {
   transform: translate(-50%, -50%);
   line-height: 1.4;
   background: #a1bcdf;
-  padding: 14px 28px;
+  padding: 14px 14px;
   border-radius: 3px;
   max-width: 600px;
   min-width: 300px;
