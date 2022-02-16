@@ -3,17 +3,23 @@ import LocationContext from "../../contexts/location.js";
 import NotificationContext from "../../contexts/notification";
 import length from "@turf/length";
 import circle from "@turf/circle";
+import PlayersContext from "../../contexts/players";
+import PlayerContext from "../../contexts/player";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
 let inRound;
 let setGuess;
 let getGuessResult = () => {};
+let secretCountry;
+const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
 const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const { location, setLocation } = useContext(LocationContext);
   const { notification, setNotification } = useContext(NotificationContext);
+  const { players, setPlayers } = useContext(PlayersContext);
+  const { player, setPlayer } = useContext(PlayerContext);
 
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAP_BOX;
 
@@ -41,17 +47,15 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   }, [minutes, seconds]);
 
   const initializeMap = () => {
-    const marker = new mapboxgl.Marker();
+    const resultMarker = new mapboxgl.Marker();
 
-    const startGuess = (secretLocation) => {
+    const startGuess = async (secretLocation) => {
       const guessMarker = new mapboxgl.Marker();
-
-      setGuess = (event) => {
+      console.log(secretLocation);
+      setGuess = async (event) => {
         const guessLocation = event.lngLat;
 
-        getGuessResult = () => {
-          guessMarker.remove();
-
+        getGuessResult = async () => {
           const linestring = {
             type: "Feature",
             geometry: {
@@ -63,81 +67,133 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
             },
           };
           const guessResult = length(linestring);
-          let center = [secretLocation.lng, secretLocation.lat];
-          let radius = guessResult;
-          let options = {
-            units: "kilometers",
-          };
-          const newCircle = circle(center, radius, options);
 
-          map.addLayer({
-            id: "circle",
-            type: "fill",
-            source: {
-              type: "geojson",
-              data: newCircle,
-            },
-            paint: {
-              "fill-opacity": 0.2,
-              "fill-color": "#FF66FF",
-            },
+          resultMarker
+            .setLngLat({ lng: secretLocation.lng, lat: secretLocation.lat })
+            .addTo(map);
+
+          map.addSource("guessline", {
+            type: "geojson",
+            data: linestring,
           });
 
           map.addLayer({
-            id: "circle-outline",
+            id: "guessline",
             type: "line",
-            source: {
-              type: "geojson",
-              data: newCircle,
+            source: "guessline",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
             },
             paint: {
-              "line-color": "#000000",
-              "line-width": 2,
+              "line-color": "#000",
+              "line-width": 2.5,
             },
           });
-          
+
           setNotification(
-            `You were ${Math.round(
+            `The answer was ${secretLocation.asciiName}. You were ${Math.round(
               guessResult
-            )}km away from the secret location`
+            )}km away!`
           );
           map.off("click", setGuess);
           return guessResult;
         };
-        
+
         if (inRound === false) {
           getGuessResult();
         } else {
           guessMarker
             .setLngLat({ lng: guessLocation.lng, lat: guessLocation.lat })
             .addTo(map);
+
+          const lat = Math.round(guessLocation.lat);
+          const lng = Math.round(guessLocation.lng);
+
+          const getGuessedCountry = async (geodata, callback) => {
+            const result = await fetch(
+              `http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`
+            );
+            return await result.json();
+          };
+
+          const countryDataResponse = await getGuessedCountry();
+          const countryData = countryDataResponse.geonames[0];
+
+          const guessedCountry =
+            typeof countryData == "undefined"
+              ? "invalid country"
+              : countryData.countryName;
+
+          // On correct answer
+          if (guessedCountry !== "invalid country") {
+            console.log(guessedCountry === secretCountry.countryName);
+            console.log(`guessed: ${guessedCountry}`);
+            console.log(`secret: ${secretCountry.countryName}`);
+            if (guessedCountry === secretCountry.countryName) {
+              setNotification(
+                `You correctly guessed ${secretLocation.asciiName}!`
+              );
+              map.off("click", setGuess);
+
+              const updatedPlayers = players.map((listPlayer) => {
+                if (listPlayer.id === player.id) {
+                  return { ...player, score: ++player.score };
+                }
+                return player;
+              });
+
+              socket.emit("send score", updatedPlayers);
+
+              setPlayers(
+                updatedPlayers.sort((a, b) => {
+                  return b.score - a.score;
+                })
+              );
+            }
+          }
         }
       };
       map.on("click", setGuess);
     };
 
-    const startGame = (event) => {
-      const clickedLocation = event.lngLat;
-      setLocation(clickedLocation);
-      marker
-        .setLngLat({ lng: clickedLocation.lng, lat: clickedLocation.lat })
-        .addTo(map);
-      let confirmLocation = () => {
-        if (confirm("Are you sure you want to set this location?")) {
-          marker.remove();
-          setNotification("");
+    const startGame = async (event) => {
+      let confirmStart = async () => {
+        if (confirm("Start game?")) {
+          const selectRandomCountry = async () => {
+            const result = await fetch(
+              `http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`
+            );
+            return await result.json();
+          };
+          const allCountriesResponse = await selectRandomCountry();
+          const allCountries = await allCountriesResponse.geonames;
+          secretCountry =
+            allCountries[Math.floor(Math.random() * allCountries.length)];
+
+          const getCountryGeoData = async () => {
+            const result = await fetch(
+              `http://api.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`
+            );
+            return await result.json();
+          };
+
+          const secretCountryGeoData = await getCountryGeoData();
+          setNotification(secretCountry.countryName);
+          setLocation(secretCountryGeoData);
+          setNotification(`${secretCountry.countryName}`);
           map.off("click", startGame);
           inRound = true;
-          startGuess(clickedLocation);
-          socket.emit("marked location", clickedLocation);
+          startGuess(secretCountryGeoData);
+          socket.emit("marked location", secretCountry);
           setMinutes(0);
-          setSeconds(5);
+          setSeconds(20);
         }
       };
-      setTimeout(confirmLocation, 100);
+      setTimeout(confirmStart, 100);
     };
 
-    setNotification("Select your secret location");
+    setNotification("Click on the map to start the game!");
     map.on("click", startGame);
   };
 
