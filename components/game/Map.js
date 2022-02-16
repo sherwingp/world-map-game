@@ -145,10 +145,10 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                 `You correctly guessed ${secretLocation.asciiName}!`
               );
               map.off("click", setGuess);
-              
+
               const newMessage = {
                 id: "message-" + nanoid(),
-                author: 'Game',
+                author: "Game",
                 text: `${player.name} guessed the correct answer!`,
               };
 
@@ -171,7 +171,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
             } else {
               const newMessage = {
                 id: "message-" + nanoid(),
-                author: 'Game',
+                author: "Game",
                 text: `${player.name} guessed ${guessedCountry}!`,
               };
 
@@ -231,7 +231,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
       startGuess(location);
       setMinutes(0);
       setSeconds(20);
-    })
+    });
   };
 
   return <div id="my-map" style={{ height: 500, width: "100%" }} />;
