@@ -120,9 +120,12 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
             typeof countryData == "undefined"
               ? "invalid country"
               : countryData.countryName;
-          console.log(guessedCountry);
+
           if (guessedCountry !== "invalid country") {
-            console.log(guessedCountry === secretCountry);
+            if (guessedCountry === secretCountry) {
+              setNotification(`You correctly guessed ${secretLocation.asciiName}!`)
+              map.off("click", setGuess);
+            }
           }
         }
       };
@@ -159,7 +162,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           startGuess(secretCountryGeoData);
           socket.emit("marked location", secretCountry);
           setMinutes(0);
-          setSeconds(5);
+          setSeconds(15);
         }
       };
       setTimeout(confirmStart, 100);
