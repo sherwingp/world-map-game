@@ -9,6 +9,8 @@ let map;
 let inRound;
 let setGuess;
 let getGuessResult = () => {};
+let secretCountry;
+const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES
 
 const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
@@ -116,8 +118,26 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
       map.on("click", setGuess);
     };
 
-    const startGame = (event) => {
+    const startGame = async (event) => {
+      const selectRandomCountry = async () => {
+        const result = await fetch(`http://api.geonames.org/countryInfoJSON?username=sherwin`)
+        return await result.json()
+      }
+      const allCountriesResponse = await selectRandomCountry()
+      const allCountries = await allCountriesResponse.geonames
+      secretCountry = allCountries[Math.floor(Math.random()*allCountries.length)]
+      setNotification(secretCountry.countryName)
       const clickedLocation = event.lngLat;
+      
+      const getGuessedCountry = async (geodata, callback) => {
+        const result = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=47.3&lng=9&username=sherwin`)
+        return await result.json()
+        }
+
+      const countryDataResponse = await getGuessedCountry()
+      const countryData = countryDataResponse.geonames[0]
+      console.log(countryData);
+
       setLocation(clickedLocation);
       marker
         .setLngLat({ lng: clickedLocation.lng, lat: clickedLocation.lat })
@@ -137,7 +157,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
       setTimeout(confirmLocation, 100);
     };
 
-    setNotification("Select your secret location");
+    setNotification("Click on the map to start the game!");
     map.on("click", startGame);
   };
 
