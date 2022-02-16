@@ -9,7 +9,7 @@ const About = () => {
     return ( 
         <>
     
-        <button className="About-btn" onClick={toggleAbout} >About</button>
+        <button className="about-btn" onClick={toggleAbout} >About</button>
         
        {about && (
         <div className="about">

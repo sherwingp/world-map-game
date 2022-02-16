@@ -255,7 +255,7 @@ button:active {
 }
 
 .how-to-play-btn {
-  padding: 10px 20px;
+  height: 60px;
   display: block;
   margin: 25px auto 0;
   font-size: 18px;
