@@ -45,13 +45,15 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
   const initializeMap = () => {
     const marker = new mapboxgl.Marker();
 
-    const startGuess = (secretLocation) => {
+    const startGuess = async (secretLocation) => {
       const guessMarker = new mapboxgl.Marker();
-
-      setGuess = (event) => {
+      console.log(secretLocation);
+      setGuess = async (event) => {
         const guessLocation = event.lngLat;
 
-        getGuessResult = () => {
+        
+
+        getGuessResult = async () => {
           guessMarker.remove();
 
           const linestring = {
@@ -66,6 +68,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           };
           const guessResult = length(linestring);
           let center = [secretLocation.lng, secretLocation.lat];
+          console.log(center);
           let radius = guessResult;
           let options = {
             units: "kilometers",
@@ -113,57 +116,59 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           guessMarker
             .setLngLat({ lng: guessLocation.lng, lat: guessLocation.lat })
             .addTo(map);
+
+            const lat = Math.round(guessLocation.lat)
+            const lng = Math.round(guessLocation.lng)
+            
+      
+            const getGuessedCountry = async (geodata, callback) => {
+              const result = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`)
+              return await result.json()
+              }
+      
+            const countryDataResponse = await getGuessedCountry()
+            const countryData = countryDataResponse.geonames[0]
+      
+            const guessedCountry = (typeof(countryData) == 'undefined') ? 'invalid country' : countryData.countryName
+            console.log(guessedCountry);
+            if (guessedCountry !== 'invalid country') {
+              console.log(guessedCountry === secretCountry);
+            }
+      
         }
       };
       map.on("click", setGuess);
     };
 
     const startGame = async (event) => {
-      const selectRandomCountry = async () => {
-        const result = await fetch(`http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`)
-        return await result.json()
-      }
-      const allCountriesResponse = await selectRandomCountry()
-      const allCountries = await allCountriesResponse.geonames
-      secretCountry = allCountries[Math.floor(Math.random()*allCountries.length)]
-      setNotification(secretCountry.countryName)
+      let confirmStart = async () => {
+        if (confirm("Start game?")) {
+          const selectRandomCountry = async () => {
+            const result = await fetch(`http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`)
+            return await result.json()
+          }
+          const allCountriesResponse = await selectRandomCountry()
+          const allCountries = await allCountriesResponse.geonames
+          secretCountry = allCountries[Math.floor(Math.random()*allCountries.length)]
 
-      const clickedLocation = event.lngLat;
-      const lat = Math.round(clickedLocation.lat)
-      const lng = Math.round(clickedLocation.lng)
-      
+          const getCountryGeoData = async () => {
+            const result = await fetch(`http://api.geonames.org/getJSON?geonameId=${secretCountry.geonameId}&username=${geonamesKey}`)
+            return await result.json()
+          }
 
-      const getGuessedCountry = async (geodata, callback) => {
-        const result = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`)
-        return await result.json()
-        }
-
-      const countryDataResponse = await getGuessedCountry()
-      const countryData = countryDataResponse.geonames[0]
-
-      const guessedCountry = (typeof(countryData) == 'undefined') ? 'invalid country' : countryData.countryName
-      console.log(guessedCountry);
-      if (guessedCountry !== 'invalid country') {
-        console.log(guessedCountry === secretCountry);
-      }
-
-      setLocation(clickedLocation);
-      marker
-        .setLngLat({ lng: clickedLocation.lng, lat: clickedLocation.lat })
-        .addTo(map);
-      let confirmLocation = () => {
-        if (confirm("Are you sure you want to set this location?")) {
-          marker.remove();
-          setNotification("");
+          const secretCountryGeoData = await getCountryGeoData()
+          setNotification(secretCountry.countryName)
+          setLocation(secretCountryGeoData);
+          setNotification(`${secretCountry.countryName}`);
           map.off("click", startGame);
           inRound = true;
-          startGuess(clickedLocation);
-          socket.emit("marked location", clickedLocation);
+          startGuess(secretCountryGeoData);
+          socket.emit("marked location", secretCountry);
           setMinutes(0);
           setSeconds(5);
         }
       };
-      setTimeout(confirmLocation, 100);
+      setTimeout(confirmStart, 100);
     };
 
     setNotification("Click on the map to start the game!");
