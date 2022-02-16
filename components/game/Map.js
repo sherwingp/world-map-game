@@ -65,7 +65,6 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     const startGuess = async (secretLocation) => {
       const guessMarker = new mapboxgl.Marker();
-      console.log(secretLocation);
       setGuess = async (event) => {
         const guessLocation = event.lngLat;
 
@@ -141,9 +140,6 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
           // On correct answer
           if (guessedCountry !== "invalid country") {
-            console.log(guessedCountry === secretCountry.countryName);
-            console.log(`guessed: ${guessedCountry}`);
-            console.log(`secret: ${secretCountry.countryName}`);
             if (guessedCountry === secretCountry.countryName) {
               setNotification(
                 `You correctly guessed ${secretLocation.asciiName}!`
@@ -209,13 +205,14 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           };
 
           const secretCountryGeoData = await getCountryGeoData();
+          console.log(startGuess);
+          socket.emit("marked location", secretCountryGeoData);
           setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
           setNotification(`${secretCountry.countryName}`);
           map.off("click", startGame);
           inRound = true;
           startGuess(secretCountryGeoData);
-          socket.emit("marked location", secretCountry);
           setMinutes(0);
           setSeconds(20);
         }
@@ -225,6 +222,16 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     setNotification("Click on the map to start the game!");
     map.on("click", startGame);
+
+    socket.on("marked location", (location) => {
+      setNotification(location.asciiName);
+      setLocation(location);
+      setNotification(`${location.asciiName}`);
+      inRound = true;
+      startGuess(location);
+      setMinutes(0);
+      setSeconds(20);
+    })
   };
 
   return <div id="my-map" style={{ height: 500, width: "100%" }} />;

@@ -25,22 +25,11 @@ const SocketHandler = (req, res) => {
         }
       });
 
-      // socket.on("host request", (newPlayer) => {
-      //   // if (players.find((player) => player.host)=== true) {
-      //   //   newPlayer.host = false;
-      //   //   players.push({ ...newPlayer, socketId: id });
-      //   // }
-      //   // else (players.push({ ...newPlayer, socketId: id }))
-
-      //   // return players
-      // })
-
       socket.on("chat message", (msg) => {
         socket.broadcast.emit("chat message", msg);
       });
 
-      socket.on("marked location", (locationdata) => {
-        location = locationdata;
+      socket.on("marked location", ( location ) => {
         socket.broadcast.emit("marked location", location);
       });
 
