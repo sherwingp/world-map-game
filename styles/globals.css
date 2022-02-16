@@ -97,24 +97,16 @@ h4 {
 }
 
 .submit-btn {
-  background-color: #32a2e2;
   border: 0;
-  border-radius: 56px;
-  color: #fff;
+  border-radius: 8px;
+  color: white;
+  width: 100px;
+  height: 40px;
   cursor: pointer;
-  display: inline-block;
-  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
-    "Helvetica Neue", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  outline: 0;
-  padding: 6px 43px;
+  background-color: #337AA8;
   position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s;
-  user-select: none;
-  -webkit-user-select: none;
+  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
+"Helvetica Neue", sans-serif;
   touch-action: manipulation;
 }
 
