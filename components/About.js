@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 const About = () => {
-
   const [about, setAbout] = useState(false);
 
   const toggleAbout = () => {
@@ -9,7 +8,7 @@ const About = () => {
   };
   return (
     <>
-      <button className="About-btn" onClick={toggleAbout}>
+      <button type="button" class="btn-about btn-lg btn-block" id="buttonLoginCreatePrivate" onClick={toggleAbout}>
         About
       </button>
 

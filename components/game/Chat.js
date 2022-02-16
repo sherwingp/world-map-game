@@ -63,17 +63,21 @@ const Chat = ({ socket }) => {
       <div className="card-header text-center">
         <span>Chat Box</span>
       </div>
-        <ChatMessageList messages={messages} />
-        <form className="chatbox-input form-control input-sm" id="chat-form" onSubmit={handleSubmit}>
-          <input
-            id="chat-input"
-            value={input}
-            type="text"
-            placeholder="Type something"
-            onChange={(e) => setInput(e.target.value)}
-          />
-          <input type="submit" name="submit-clue" value="Chat" />
-        </form>
+      <ChatMessageList messages={messages} />
+      <form
+        className="chatbox-input form-control input-sm"
+        id="chat-form"
+        onSubmit={handleSubmit}
+      >
+        <input
+          id="chat-input"
+          value={input}
+          type="text"
+          placeholder="Type something"
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <input type="submit" name="submit-clue" value="Chat" />
+      </form>
     </div>
   );
 };

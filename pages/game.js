@@ -92,21 +92,20 @@ export default function Game() {
         <GameHeader />
       </div>
       <div className="row justify-content-center">
-        <div  className="col-4">
-            <Notification />
-            <Location />
+        <div className="col-4">
+          <Notification />
+          <Location />
         </div>
-          <div className="col-4">
-            <Timer
-              setMinutes={setMinutes}
-              setSeconds={setSeconds}
-              minutes={minutes}
-              seconds={seconds}
-            />
-          </div>
+        <div className="col-4">
+          <Timer
+            setMinutes={setMinutes}
+            setSeconds={setSeconds}
+            minutes={minutes}
+            seconds={seconds}
+          />
+        </div>
       </div>
       <div className="row row-cols-3">
-
         <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
           <div className="card">
             <PlayersHeader />

@@ -8,7 +8,7 @@ const HowToPlay = () => {
   };
   return (
     <>
-      <button className="how-to-play-btn" onClick={toggleHowToPlay}>
+      <button className="how-to-play-btn btn-lg btn-block" type="button" onClick={toggleHowToPlay}>
         How to Play
       </button>
 
