@@ -82,6 +82,7 @@ const Form = () => {
             onChange={(e) => setHost(e.currentTarget.checked)}
           />
         </div>
+        <div className="play-btn-div">
         <button
           className="submit-btn"
           data-testid="link-to-game"
@@ -90,6 +91,7 @@ const Form = () => {
         >
           Play
         </button>
+        </div>
       </form>
     </div>
   );

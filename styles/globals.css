@@ -46,6 +46,11 @@ h4 {
   font-family: Ubuntu;
 }
 
+.play-btn-div {
+  padding-top: 20px;
+  padding-left: 40px;
+}
+
 .set-host-label {
   padding-right:10px;
 }
