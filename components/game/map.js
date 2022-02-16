@@ -120,23 +120,32 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
     const startGame = async (event) => {
       const selectRandomCountry = async () => {
-        const result = await fetch(`http://api.geonames.org/countryInfoJSON?username=sherwin`)
+        const result = await fetch(`http://api.geonames.org/countryInfoJSON?username=${geonamesKey}`)
         return await result.json()
       }
       const allCountriesResponse = await selectRandomCountry()
       const allCountries = await allCountriesResponse.geonames
       secretCountry = allCountries[Math.floor(Math.random()*allCountries.length)]
       setNotification(secretCountry.countryName)
+
       const clickedLocation = event.lngLat;
+      const lat = Math.round(clickedLocation.lat)
+      const lng = Math.round(clickedLocation.lng)
       
+
       const getGuessedCountry = async (geodata, callback) => {
-        const result = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=47.3&lng=9&username=sherwin`)
+        const result = await fetch(`http://api.geonames.org/findNearbyPlaceNameJSON?lat=${lat}.3&lng=${lng}&username=${geonamesKey}`)
         return await result.json()
         }
 
       const countryDataResponse = await getGuessedCountry()
       const countryData = countryDataResponse.geonames[0]
-      console.log(countryData);
+
+      const guessedCountry = (typeof(countryData) == 'undefined') ? 'invalid country' : countryData.countryName
+      console.log(guessedCountry);
+      if (guessedCountry !== 'invalid country') {
+        console.log(guessedCountry === secretCountry);
+      }
 
       setLocation(clickedLocation);
       marker
