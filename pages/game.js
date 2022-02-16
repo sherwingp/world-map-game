@@ -102,7 +102,7 @@ export default function Game() {
           <GameHeader />
         </div>
         <div className="col clue-col">
-          <Location />
+          {/* <Location /> */}
           <Notification />
           <GameMap
             minutes={minutes}
