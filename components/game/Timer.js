@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
-const Timer = ({ setMinutes, setSeconds, minutes, seconds }) => {
+const Timer = () => {
+  const [minutes, setMinutes] = useState(1);
+  const [seconds, setSeconds] = useState(0);
+
   useEffect(() => {
     const countdownTimer = setInterval(() => {
       if (seconds > 0) {
@@ -24,7 +27,7 @@ const Timer = ({ setMinutes, setSeconds, minutes, seconds }) => {
   return (
     <div className="timer">
       {minutes === 0 && seconds === 0 ? (
-        <h1></h1>
+        <h1>Time&apos;s up!</h1>
       ) : (
         <h1>
           Time Remaining: {minutes}:{seconds < 10 ? `0${seconds}` : seconds}

@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import PlayersContext from "../../contexts/players";
 
-const Player = ({ id, name, score, host, socket, avatar }) => {
+const Player = ({ id, name, score, socket }) => {
   const { players, setPlayers } = useContext(PlayersContext);
 
   const onClick = () => {
@@ -23,16 +23,7 @@ const Player = ({ id, name, score, host, socket, avatar }) => {
 
   return (
     <li className="player">
-      <div style={{ float: "left", width: 70 + "px" }}>
-        {" "}
-        <img src={avatar} alt="avatar" />
-      </div>
-      <div style={{ float: "right", width: 100 + "px" }}>
-        {" "}
-        {name}
-        {host && "(Host)"}: {score} points{" "}
-        <button onClick={onClick}>Increment</button>
-      </div>
+      {name}: {score} points <button onClick={onClick}>Increment</button>
     </li>
   );
 };

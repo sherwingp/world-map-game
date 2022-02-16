@@ -1,21 +1,16 @@
 import length from "@turf/length";
-import circle from "@turf/circle";
 
 export const initializeMap = (
   mapboxgl,
   map,
-  setNotification,
+  setMessage,
   location,
   setLocation,
-  socket,
-  setMinutes,
-  setSeconds,
-  minutes,
-  seconds
+  socket
 ) => {
   const marker = new mapboxgl.Marker();
 
-  const startGuess = (secretLocation) => {
+  const startGame = (secretLocation) => {
     const getDistance = (event) => {
       const guessLocation = event.lngLat;
       const linestring = {
@@ -28,41 +23,9 @@ export const initializeMap = (
           ],
         },
       };
+
       const guessResult = length(linestring);
-      let center = [secretLocation.lng, secretLocation.lat];
-      let radius = guessResult;
-      let options = {
-        units: "kilometers",
-      };
-      const newCircle = circle(center, radius, options);
-
-      map.addLayer({
-        id: "circle",
-        type: "fill",
-        source: {
-          type: "geojson",
-          data: newCircle,
-        },
-        paint: {
-          "fill-opacity": 0.2,
-          "fill-color": "#FF66FF",
-        },
-      });
-
-      map.addLayer({
-        id: "circle-outline",
-        type: "line",
-        source: {
-          type: "geojson",
-          data: newCircle,
-        },
-        paint: {
-          "line-color": "#000000",
-          "line-width": 2,
-        },
-      });
-
-      setNotification(
+      setMessage(
         `You are ${Math.round(guessResult)}km away from the secret location`
       );
       return guessResult;
@@ -70,7 +33,7 @@ export const initializeMap = (
     map.on("click", getDistance);
   };
 
-  const startGame = (event) => {
+  const add_marker = (event) => {
     const clickedLocation = event.lngLat;
     setLocation(clickedLocation);
     marker
@@ -79,17 +42,14 @@ export const initializeMap = (
     let confirmLocation = () => {
       if (confirm("Are you sure you want to set this location?")) {
         marker.remove();
-        setNotification("");
-        map.off("click", startGame);
-        startGuess(clickedLocation);
+        setMessage("");
+        map.off("click", add_marker);
+        startGame(clickedLocation);
         socket.emit("marked location", clickedLocation);
-        setMinutes(1);
-        setSeconds(0);
       }
     };
     setTimeout(confirmLocation, 100);
   };
 
-  setNotification("Select your secret location");
-  map.on("click", startGame);
+  map.on("click", add_marker);
 };

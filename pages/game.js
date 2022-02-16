@@ -4,7 +4,7 @@ import GameMap from "../components/game/Map.js";
 import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import Notification from "../components/Notification";
+import MessageBox from "../components/MessageBox.js";
 import PlayerContext from "../contexts/player.js";
 import PlayersContext from "../contexts/players";
 import Navbar from "../components/Navbar.js";
@@ -23,12 +23,11 @@ import { useRouter } from "next/router";
 let socket = io();
 
 export default function Game() {
+  const [message, setMessage] = useState("Select your secret location");
   const [clues, setClues] = useState([]);
   const { location, setLocation } = useContext(LocationContext);
   const { players, setPlayers } = useContext(PlayersContext);
   const { player } = useContext(PlayerContext);
-  const [minutes, setMinutes] = useState(0);
-  const [seconds, setSeconds] = useState(0);
   const router = useRouter();
 
   useEffect(() => {
@@ -76,7 +75,7 @@ export default function Game() {
     // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
     <div
       className="container"
-      style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}
+      style={{ width: "100vmax", height: "100%"}}
     >
       <Head>
         <link
@@ -84,38 +83,48 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
+
       <div>
         <Navbar />
       </div>
-      <div className="row">
-        <div className="col players-list-col">
-          <PlayersHeader />
-          <PlayersList socket={socket} />
-          <Timer
-            setMinutes={setMinutes}
-            setSeconds={setSeconds}
-            minutes={minutes}
-            seconds={seconds}
-          />
-        </div>
-        <div className="col game-header">
+
+        <div className="col game-header align-self-center">
           <GameHeader />
         </div>
-        <div className="col clue-col">
-          <Location />
-          <Notification />
-          <GameMap
-            minutes={minutes}
-            seconds={seconds}
-            setMinutes={setMinutes}
-            setSeconds={setSeconds}
-            socket={socket}
-          />
-          <Chat socket={socket} />
-          <ClueForm clues={clues} addClue={addClue} />
-          <ClueList clues={clues} />
+      <div className="row row-cols-3">
+
+        <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
+        <div className="card">
+          <PlayersHeader />
+          <PlayersList socket={socket} />
+          </div>
+        </div>
+
+        <div className="col-lg-6 col-md-12 col-sm-12">
+          <GameMap setMessage={setMessage} />
+        </div>
+
+        <div className="col-lg-3 col-md-12 col-sm-12">
+            <Chat socket={socket} />
         </div>
       </div>
+
+       <div className="row">
+         <div className="col">
+          <Location />
+          <MessageBox message={message} />
+         </div>
+         <div className="col">
+          <Timer />
+         </div>
+        <div className="col-3 clue-col">
+          <ClueList clues={clues} />
+          <ClueForm clues={clues} addClue={addClue} />
+          </div>
+        </div>
+        
     </div>
   );
 }
+
+// export default Game

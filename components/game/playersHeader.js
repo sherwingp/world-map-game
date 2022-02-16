@@ -1,7 +1,7 @@
 export default function PlayersHeader() {
   return (
     <div className="playersHeader">
-      <h4>Players List</h4>
+      <h1>Players List</h1>
     </div>
   );
 }
