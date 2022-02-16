@@ -74,7 +74,7 @@ const Form = () => {
           />
         </label>
         <div className="set-host">
-          <label>Set Host</label>
+          <label className="set-host-label">Set Host</label>
           <input
             type="checkbox"
             checked={host}

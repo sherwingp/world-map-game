@@ -19,15 +19,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-      <div>
-        <h1>
-          <Header />
-        </h1>
-      </div>
-      <div>
+        <Header />
         <Form />
-      </div>
-
       <div className="row row-cols-3">
       <div className="col-6">
         <About />

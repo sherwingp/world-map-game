@@ -20,6 +20,7 @@ li {
 label {
   color: white;
   text-align: center;
+ 
 }
 
 a {
@@ -45,6 +46,9 @@ h4 {
   font-family: Ubuntu;
 }
 
+.set-host-label {
+  padding-right:10px;
+}
 
 #chat-form {
   align-self: flex-end;
