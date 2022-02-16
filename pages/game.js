@@ -91,7 +91,12 @@ export default function Game() {
       <div className="col game-header">
         <GameHeader />
       </div>
-
+      <div className="row justify-content-center">
+        <div  className="col-4">
+            <Notification />
+            <Location />
+        </div>
+      </div>
       <div className="row row-cols-3">
 
         <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
@@ -118,11 +123,7 @@ export default function Game() {
       </div>
 
         <div className="row row-cols-3 justify-content-end">
-          {/* <div className="col">
-          </div> */}
           <div className="col-4">
-            <Location />
-            <Notification />
             <Timer
               setMinutes={setMinutes}
               setSeconds={setSeconds}
@@ -130,10 +131,10 @@ export default function Game() {
               seconds={seconds}
             />
           </div>
-          <div className="col-4 clue-col">
+          {/* <div className="col-4 clue-col">
             <ClueForm clues={clues} addClue={addClue} />
             <ClueList clues={clues} />
-          </div>
+          </div> */}
         </div>
 
     </div>
