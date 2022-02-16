@@ -97,7 +97,7 @@ h4 {
   text-align: center;
 }
 
-.submit-btn, .about-btn, .how-to-play-btn {
+.submit-btn, .about-btn, .how-to-play-btn, .avatar-btn {
   background-color: #32a2e2;
   border: 0;
   border-radius: 8px;
@@ -122,9 +122,9 @@ h4 {
   -webkit-user-select: none;
 }
 
-.submit-btn:before,
-.about-btn:before,
-.how-to-play-btn:before {
+.submit-btn:before, .about-btn:before, .how-to-play-btn:before, .avatar-btn:before {
+
+  
   background-color: initial;
   background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
   border-radius: 125px;
@@ -138,9 +138,8 @@ h4 {
   width: 92%;
 }
 
-.submit-btn:hover,
-.about-btn:hover,
-.how-to-play-btn:hover {
+.submit-btn:hover, .about-btn:hover, .how-to-play-btn:hover, .avatar-btn:hover {
+
   box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
     rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
@@ -200,9 +199,7 @@ h4 {
   width: 50%;
   max-width: 400px;
   max-height: 400px;
-  margin-top: 40px;
-  margin-bottom: 45px;
-  align: center;
+  
 }
 
 .btns {
@@ -235,11 +232,13 @@ button:active {
 }
 
 #gen {
-  background-color: #4361ee;
+  background-color: #32a2e2;
   color: white;
   margin: 0;
   padding: 0;
-  width:5em;
+  width:4em;
+  height: 55px;
+  
 }
 
 #down {
