@@ -30,14 +30,10 @@ const About = () => {
               guessing.
               <br />
               <br />
-              Classic:
-              Find the given country before time runs out!
-
-              Guess the Country:
-              Each round the host must
-              describe their given country and others must guess it in order to
-              gain points! The person with the most points at the end of the
-              game is declared the winner!
+              Classic: Find the given country before time runs out! Guess the
+              Country: Each round the host must describe their given country and
+              others must guess it in order to gain points! The person with the
+              most points at the end of the game is declared the winner!
             </p>
           </div>
         </div>

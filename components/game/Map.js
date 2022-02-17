@@ -226,7 +226,7 @@ const GameMap = ({
           inRound = true;
           startGuess(secretCountryGeoData);
           setMinutes(0);
-          setSeconds(20);
+          setSeconds(30);
         }
       };
       setTimeout(confirmStart, 100);

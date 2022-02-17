@@ -26,15 +26,16 @@ const HowToPlay = () => {
             </button>
             <ul>
               <li>
-              Classic:
-                Pin the correct location on the map before time runs out!
+                Classic: Pin the correct location on the map before time runs
+                out!
               </li>
               <li>
-              Guess the country:
-                As a host, give clues in the chat for your given country.
+                Guess the country: As a host, give clues in the chat for your
+                given country.
               </li>
               <li>
-              As a guesser, pin your country guess from the clues before time runs out!
+                As a guesser, pin your country guess from the clues before time
+                runs out!
               </li>
               <li>Good luck!</li>
             </ul>
