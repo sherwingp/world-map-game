@@ -10,7 +10,7 @@ const About = () => {
     <>
       <button
         type="button"
-        class="btn-about btn-lg btn-block"
+        className="btn-about btn-lg btn-block"
         id="buttonLoginCreatePrivate"
         onClick={toggleAbout}
       >

@@ -77,6 +77,8 @@ h4 {
 
 .game-header {
   text-align: center;
+  color: inherit;
+  text-decoration: none;
 }
 
 .message-list {

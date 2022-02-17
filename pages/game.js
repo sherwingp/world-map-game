@@ -1,13 +1,10 @@
 import GameHeader from "../components/game/GameHeader.js";
-import ClueList from "../components/game/ClueList.js";
 import GameMap from "../components/game/Map.js";
-import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Notification from "../components/Notification";
 import PlayerContext from "../contexts/player.js";
 import PlayersContext from "../contexts/players";
-import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
@@ -84,9 +81,6 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-      <div>
-        <Navbar />
-      </div>
 
       <div className="col game-header">
         <GameHeader />
@@ -94,7 +88,7 @@ export default function Game() {
       <div className="row justify-content-center">
         <div className="col-4">
           <Notification />
-          <Location />
+          {/* <Location /> */}
         </div>
         <div className="col-4">
           <Timer
