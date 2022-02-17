@@ -27,7 +27,7 @@ const About = () => {
             </button>
             <p>
               <strong>MAP-PIN</strong> is a multiplayer interactive world map
-              guessing.
+              guessing game.
               <br />
               <br />
               Classic: Find the given country before time runs out! Guess the

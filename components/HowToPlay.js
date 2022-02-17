@@ -20,7 +20,7 @@ const HowToPlay = () => {
         <div className="how-to-play">
           <div onClick={toggleHowToPlay} className="overlay"></div>
           <div className="how-to-play-content">
-            <h2>Rules Summary</h2>
+            <h2>How to Play</h2>
             <button className="close-how-to-play" onClick={toggleHowToPlay}>
               &times;
             </button>

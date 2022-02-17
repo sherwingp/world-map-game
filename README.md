@@ -1,6 +1,14 @@
 # MAPPIN
 
-A single or multiplayer interactive world map game where the host pins a secret location somewhere in the world and players will be given clues to guess where that location is to earn points. The closer you are to the location the more points you earn to win the game!
+MAPPIN is a single or multiplayer interactive world map guessing game.
+
+There are two modes to the game:
+
+Classic (single player): player is given a country at random and they must find that country on the map before time runs out to earn points!
+
+Guess the Country (multiplayer): Each round the host must describe their given country as clues and the other players must guess it in order to gain points! The person with the most points at the end of the game is declared the winner!
+
+## Contributors
 
 [![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
 
@@ -102,4 +110,10 @@ I would like my score to go up
 As a player,
 So that I can compete against other players,
 I want other players to join in my game
+```
+
+
+As a Player,
+So that I know I'm close to the correct answer,
+I would like the map to zoom in to a radius that includes the right answer
 ```
