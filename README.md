@@ -20,18 +20,9 @@ Guess the Country (multiplayer): Each round the host must describe their given c
 
 ## Full Stack Technologies
 
-- Javascript
-- React
-- Next.js
-- Node.js
-- Socket.io
-- Mapbox
-- HTML
-- CSS
-- Bootstrap
-- ESLint
-- Jest & Cypress (for unit, integration testing)
-- Heroku (for deployment)
+| Javascript | React| Node.js | Next.js | Mapbox | Socket.io |
+| --- | --- | --- | --- | --- | --- | 
+| <div align="center"><img src='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png' height='40px' /></div> | --- | --- | --- | --- | --- | 
 
 ## How to Use
 
@@ -112,7 +103,7 @@ So that I can compete against other players,
 I want other players to join in my game
 ```
 
-
+```
 As a Player,
 So that I know I'm close to the correct answer,
 I would like the map to zoom in to a radius that includes the right answer
