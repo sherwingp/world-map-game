@@ -103,9 +103,9 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
               "line-width": 2.5,
             },
           });
-
+          
           setNotification(
-            `The answer was ${secretLocation.asciiName}. You were ${Math.round(
+            `${secretLocation.asciiName} You were ${Math.round(
               guessResult
             )}km away!`
           );
