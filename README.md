@@ -47,3 +47,59 @@ npm install #(requires node to be installed)
 ```
 npm run dev
 ```
+
+## User Stories
+
+```
+As a player,
+So that I can play the game,
+I would like to enter my player name
+```
+
+```
+As a player,
+So that I can understand the game better
+I would like to read what the game is about
+```
+
+```
+As a player,
+So that I can know how to play the game,
+I would like to read the rules of the game
+```
+
+```
+As a player,
+So that I can guess the secret location,
+I would like to see a world map
+```
+
+```
+As a host,
+So that the other players can start the game
+I want to be able to set the secret location
+```
+
+```
+As a player, 
+So that I can select my guesses,
+I want to be able to click on the country that I guess on the map
+```
+
+```
+As a player, 
+So that I can know how well I’m doing,
+I want to see my score
+```
+
+```
+As a player, 
+So that I know I guessed the right answer, 
+I would like my score to go up
+```
+
+```
+As a player,
+So that I can compete against other players,
+I want other players to join in my game
+```
