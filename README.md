@@ -6,8 +6,9 @@ A single or multiplayer interactive world map game where the host pins a secret 
 
 ## Screenshots
 
-![Screenshot](mappin-page.png)
-![Screenshot](mappin-game-page.png)
+<img src = "public/images/mappin-page.png">
+
+<img src = "public/images/mappin-game-page.png">
 
 ## Full Stack Technologies
 
@@ -31,14 +32,17 @@ This app is fully deployed on Heroku [here](https://mappin-game.herokuapp.com/)
 Alternatively, you can install the code and run the app locally:
 
 1. From the command line, clone this repository to your machine:
+
 ```
 git clone https://github.com/sherwingp/world-map-game.git
 cd world-map-game
 ```
+
 2. Install dependencies:
 ```
 npm install #(requires node to be installed)
 ```
+
 3. Then run the development server:
 ```
 npm run dev
