@@ -13,10 +13,18 @@ let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
 let started = false;
- 
+let currentMode;
+
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
-const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
+const GameMap = ({
+  minutes,
+  seconds,
+  setMinutes,
+  setSeconds,
+  socket,
+  mode,
+}) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const { location, setLocation } = useContext(LocationContext);
   const { notification, setNotification } = useContext(NotificationContext);
@@ -176,8 +184,6 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                 author: "Game",
                 text: `${player.name} guessed ${guessedCountry}!`,
               };
-
-              socket.emit("chat message", newMessage);
             }
           }
         }
@@ -209,7 +215,10 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           };
 
           const secretCountryGeoData = await getCountryGeoData();
-          socket.emit("marked location", secretCountryGeoData);
+          socket.emit("marked location", {
+            location: secretCountryGeoData,
+            mode: mode,
+          });
           setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
           setNotification(`${secretCountry.countryName}`);
@@ -228,10 +237,14 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
       map.on("click", startGame);
     }
 
-    socket.on("marked location", (location) => {
-      setNotification(location.asciiName);
-      setLocation(location);
-      setNotification(`${location.asciiName}`);
+    socket.on("marked location", ({ location, newMode }) => {
+      if (newMode === "classic") {
+        setLocation(location);
+        setNotification(`${location.asciiName}`);
+        currentMode = newMode;
+      } else {
+        setNotification("Guess the location!");
+      }
       inRound = true;
       startGuess(location);
       setMinutes(0);

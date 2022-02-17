@@ -28,7 +28,7 @@ export default function Game() {
   const { player } = useContext(PlayerContext);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
-  const [mode, setMode] = useState('classic')
+  const [mode, setMode] = useState("classic");
   const router = useRouter();
 
   useEffect(() => {
@@ -117,6 +117,7 @@ export default function Game() {
             setMinutes={setMinutes}
             setSeconds={setSeconds}
             socket={socket}
+            mode={mode}
           />
         </div>
 
