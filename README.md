@@ -21,8 +21,8 @@ Guess the Country (multiplayer): Each round the host must describe their given c
 ## Full Stack Technologies
 
 | Javascript | React| Node.js | Next.js | Mapbox | Socket.io |
-| --- | --- | --- | --- | --- | --- | 
-| <div align="center"><img src='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png' height='40px' /></div> | --- | --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | --- |
+| <div align="center"><img src='https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png' height='40px' /></div> | <div align="center"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/512px-React-icon.svg.png?20220125121207' height='40px' /></div> | <div align="center"><img src='https://nodejs.org/static/images/logos/nodejs-new-pantone-black.svg' height='40px' /></div>  | <div align="center"><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/800px-Nextjs-logo.svg.png' height='40px' /></div> | <div align="center"><img src='https://cdn.dribbble.com/users/126602/screenshots/3446916/media/fa9d65d20dda60f127735ae820e8ae8e.jpg?compress=1&resize=400x300&vertical=top' height='40px' /></div> | <div align="center"><img src='https://cdn.worldvectorlogo.com/logos/socket-io-1.svg' height='40px' /></div> |
 
 ## How to Use
 
