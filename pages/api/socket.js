@@ -29,8 +29,8 @@ const SocketHandler = (req, res) => {
         socket.broadcast.emit("chat message", msg);
       });
 
-      socket.on("marked location", (location) => {
-        socket.broadcast.emit("marked location", location);
+      socket.on("marked location", ({ location, mode }) => {
+        socket.broadcast.emit("marked location", { location, mode });
       });
 
       socket.on("new player", (newPlayer) => {

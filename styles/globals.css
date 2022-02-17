@@ -333,3 +333,20 @@ button:active {
   border: 1px solid #d3d3d3;
   border-radius: 50%;
 }
+
+#flag {
+  width: 40%;
+  position: relative;
+  top: 50px;
+  right: 190px;
+}
+
+.mode-selector {
+  position: relative;
+  top: 130px;
+}
+
+#mode-btn {
+  width: 130px;
+  height: 65px;
+}

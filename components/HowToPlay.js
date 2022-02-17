@@ -26,23 +26,16 @@ const HowToPlay = () => {
             </button>
             <ul>
               <li>
-                When you are a host, you will be given a random country to
-                describe and you will have to type in the chatbox to give the
-                other players clues to guess that country correctly.
+                Classic: Pin the correct location on the map before time runs
+                out!
               </li>
               <li>
-                As a guesser, you need to keep an eye on the chatbox for the
-                clues and you will be given 6 chances to pin your guesses on the
-                map
+                Guess the country: As a host, give clues in the chat for your
+                given country.
               </li>
               <li>
-                if you guess the country incorrectly, it will turn red for
-                whoever guessed it, and this will send a chat message for
-                everyone else to see
-              </li>
-              <li>
-                The faster a correct guess is made, the more points both the
-                guesser and host receives
+                As a guesser, pin your country guess from the clues before time
+                runs out!
               </li>
               <li>Good luck!</li>
             </ul>

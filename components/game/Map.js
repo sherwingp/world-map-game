@@ -12,9 +12,19 @@ let inRound;
 let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
+let started = false;
+let currentMode;
+
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
-const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
+const GameMap = ({
+  minutes,
+  seconds,
+  setMinutes,
+  setSeconds,
+  socket,
+  mode,
+}) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const { location, setLocation } = useContext(LocationContext);
   const { notification, setNotification } = useContext(NotificationContext);
@@ -40,7 +50,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
   useEffect(() => {
     // Timer checks for round end
-    if (minutes === 0 && seconds === 0) {
+    if (minutes === 0 && seconds === 0 && started == true) {
       inRound = false;
       getGuessResult();
       map.off("click", setGuess);
@@ -105,7 +115,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           });
 
           setNotification(
-            `The answer was ${secretLocation.asciiName}. You were ${Math.round(
+            `${secretLocation.asciiName} You were ${Math.round(
               guessResult
             )}km away!`
           );
@@ -174,8 +184,6 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
                 author: "Game",
                 text: `${player.name} guessed ${guessedCountry}!`,
               };
-
-              socket.emit("chat message", newMessage);
             }
           }
         }
@@ -184,6 +192,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
     };
 
     const startGame = async (event) => {
+      started = true;
+
       let confirmStart = async () => {
         if (confirm("Start game?")) {
           const selectRandomCountry = async () => {
@@ -205,8 +215,10 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           };
 
           const secretCountryGeoData = await getCountryGeoData();
-          console.log(startGuess);
-          socket.emit("marked location", secretCountryGeoData);
+          socket.emit("marked location", {
+            location: secretCountryGeoData,
+            mode: mode,
+          });
           setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
           setNotification(`${secretCountry.countryName}`);
@@ -214,19 +226,25 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           inRound = true;
           startGuess(secretCountryGeoData);
           setMinutes(0);
-          setSeconds(20);
+          setSeconds(30);
         }
       };
       setTimeout(confirmStart, 100);
     };
 
     setNotification("Click on the map to start the game!");
-    map.on("click", startGame);
+    if (player.host === true) {
+      map.on("click", startGame);
+    }
 
-    socket.on("marked location", (location) => {
-      setNotification(location.asciiName);
-      setLocation(location);
-      setNotification(`${location.asciiName}`);
+    socket.on("marked location", ({ location, newMode }) => {
+      if (newMode === "classic") {
+        setLocation(location);
+        setNotification(`${location.asciiName}`);
+        currentMode = newMode;
+      } else {
+        setNotification("Guess the location!");
+      }
       inRound = true;
       startGuess(location);
       setMinutes(0);
