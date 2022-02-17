@@ -1,34 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# MAPPIN
 
-## Getting Started
+A single or multiplayer interactive world map game where the host pins a secret location somewhere in the world and players will be given clues to guess where that location is to earn points. The closer you are to the location the more points you earn to win the game!
 
-First, run the development server:
+[![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
 
-```bash
-npm run dev
-# or
-yarn dev
+## Screenshots
+
+![Screenshot](mappin-page.png)
+![Screenshot](mappin-game-page.png)
+
+## Full Stack Technologies
+
+- Javascript
+- React
+- Next.js
+- Node.js
+- Socket.io
+- Mapbox
+- HTML
+- CSS
+- Bootstrap
+- ESLint
+- Jest & Cypress (for unit, integration testing)
+- Heroku (for deployment)
+
+## How to Use
+
+This app is fully deployed on Heroku [here](https://mappin-game.herokuapp.com/)
+
+Alternatively, you can install the code and run the app locally:
+
+1. From the command line, clone this repository to your machine:
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+git clone https://github.com/sherwingp/world-map-game.git
+cd world-map-game
+```
+2. Install dependencies:
+```
+npm install #(requires node to be installed)
+```
+3. Then run the development server:
+```
+npm run dev
+```
