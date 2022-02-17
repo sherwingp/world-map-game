@@ -12,6 +12,7 @@ let inRound;
 let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
+let started = false;
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
 const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
@@ -40,7 +41,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
 
   useEffect(() => {
     // Timer checks for round end
-    if (minutes === 0 && seconds === 0) {
+    if (minutes === 0 && seconds === 0 && started == true) {
       inRound = false;
       getGuessResult();
       map.off("click", setGuess);
@@ -184,6 +185,8 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
     };
 
     const startGame = async (event) => {
+      started = true;
+
       let confirmStart = async () => {
         if (confirm("Start game?")) {
           const selectRandomCountry = async () => {
@@ -220,7 +223,9 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
     };
 
     setNotification("Click on the map to start the game!");
-    map.on("click", startGame);
+    if (player.host === true) {
+      map.on("click", startGame);
+    }
 
     socket.on("marked location", (location) => {
       setNotification(location.asciiName);
