@@ -30,7 +30,11 @@ const About = () => {
               guessing.
               <br />
               <br />
-              One game consists of a few rounds in which someone (the host) must
+              Classic:
+              Find the given country before time runs out!
+
+              Guess the Country:
+              Each round the host must
               describe their given country and others must guess it in order to
               gain points! The person with the most points at the end of the
               game is declared the winner!
