@@ -16,6 +16,7 @@ import Chat from "../components/game/Chat.js";
 import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
+import Flag from "../components/game/Flag.js";
 
 let socket = io();
 
@@ -87,8 +88,8 @@ export default function Game() {
       </div>
       <div className="row justify-content-center">
         <div className="col-4">
+          <Flag location={location} />
           <Notification />
-          {/* <Location /> */}
         </div>
         <div className="col-4">
           <Timer

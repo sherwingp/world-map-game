@@ -103,7 +103,7 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
               "line-width": 2.5,
             },
           });
-          
+
           setNotification(
             `${secretLocation.asciiName} You were ${Math.round(
               guessResult
@@ -205,7 +205,6 @@ const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
           };
 
           const secretCountryGeoData = await getCountryGeoData();
-          console.log(startGuess);
           socket.emit("marked location", secretCountryGeoData);
           setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
