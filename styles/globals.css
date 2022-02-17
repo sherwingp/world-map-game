@@ -1,19 +1,29 @@
+@font-face {
+  font-family: "Apasih";
+  src: url("/fonts/Apasih.otf");
+  font-weight: normal;
+}
+
+* {
+  font-family: Apasih;
+}
+
 html,
 body {
-  background-image: linear-gradient(
-    to right,
-    rgb(18, 8, 48),
-    rgb(29, 232, 212)
-  );
+  background-image: url("../public/images/bg-img.jpg");
   color: white;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, Ubuntu, BlinkMacSystemFont, Segoe UI, Roboto,
-    Oxygen, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: "Apasih", sans-serif;
+}
+
+ul {
+  list-style: none;
 }
 
 li {
-  color: white;
+  list-style-type: none;
+  color: black;
 }
 
 label {
@@ -34,21 +44,28 @@ h1 {
   color: white;
   margin-top: 0;
   padding-bottom: 20px;
-  font-family: Ubuntu;
+  font-family: Apasih, sans-serif;
 }
 
 h4 {
   color: white;
   margin-top: 0;
   padding-bottom: 40px;
-  font-family: Ubuntu;
+  font-family: Apasih;
 }
 
-.players-list-col {
-  height: 200px;
-  border: 5px solid rgb(223, 223, 223);
-  border-radius: 20px;
-  margin-top: 40px;
+#chat-form {
+  align-self: flex-end;
+}
+
+.container {
+  height: 100%;
+}
+
+.player {
+  padding: 10px 40px 10px 40px;
+  margin: 10px 0;
+  position: relative;
 }
 
 .clue-col {
@@ -60,7 +77,14 @@ h4 {
 
 .game-header {
   text-align: center;
-  padding-top: 60px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.message-list {
+  width: auto;
+  height: 380px;
+  overflow: scroll;
 }
 
 #map {
@@ -73,77 +97,34 @@ h4 {
 .footer {
   color: white;
   text-align: center;
-  padding-bottom: 25px;
+  position: relative;
+  bottom: 20px;
+  background-color: rgba(0, 127, 198, 255);
+  padding-top: 5px;
 }
+
+#right {
+  float: right;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#githubIcon {
+  height: 20px;
+}
+
 .set-host {
   text-align: center;
 }
-.submit-btn,
-.about-btn,
-.how-to-play-btn {
-  background-color: #32a2e2;
-  border: 0;
-  border-radius: 56px;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  font-family: system-ui, -apple-system, system-ui, "Segoe UI", Roboto, Ubuntu,
-    "Helvetica Neue", sans-serif;
-  font-size: 18px;
-  font-weight: 600;
-  outline: 0;
-  padding: 6px 6px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  transition: all 0.3s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
 
-.submit-btn:before,
-.about-btn:before,
-.how-to-play-btn:before {
-  background-color: initial;
-  background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
-  border-radius: 125px;
-  content: "";
-  height: 50%;
-  left: 4%;
-  opacity: 0.5;
-  position: absolute;
-  top: 0;
-  transition: all 0.3s;
-  width: 92%;
-}
-
-.submit-btn:hover,
-.about-btn:hover,
+.btn-success:hover,
+.btn-about:hover,
 .how-to-play-btn:hover {
   box-shadow: rgba(255, 255, 255, 0.2) 0 3px 15px inset,
     rgba(0, 0, 0, 0.1) 0 3px 5px, rgba(0, 0, 0, 0.1) 0 10px 13px;
   transform: scale(1.05);
 }
 
-/* @media (min-width: 768px) {
-  .btn-index {
-    padding: 10px 30px;
-  }
-}  */
-
-.input-index {
-  text-align: center;
-  display: block;
-  width: 100%;
-  border-radius: 56px;
-  border: 0;
-  outline: 0;
-  padding: 0.9rem 0;
-  border-bottom: 2px solid #d3d3d3;
-  box-shadow: none;
-  color: #111;
-}
 .input-index:invalid {
   outline: 0;
   color: #337aa8;
@@ -164,53 +145,50 @@ h4 {
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap");
 
-.avatar-selector {
-  box-sizing: border-box;
-  height: 300px;
-  width: 100%;
-  gap: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .avatar {
   height: 50%;
   width: 50%;
-  max-width: 400px;
-  max-height: 400px;
   margin-top: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 45px;
+  align: center;
 }
+
 .btns {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
+
 button {
   width: 6em;
   height: 2.5em;
   margin: 10px;
   font-size: 20px;
   font-weight: 600;
-  font-family: "Roboto Mono", monospace;
+  font-family: Apasih, sans-serif;
   background-color: rgb(231, 231, 231);
-  box-shadow: 2px 3px 5px rgb(102, 101, 101);
   border-radius: 15px;
   border: none;
   transition: 0.2s;
 }
+
 button:active {
   box-shadow: none;
 }
+
 .btns > button:hover {
   background-color: #ffffff;
 }
+
 #gen {
   background-color: #4361ee;
   color: white;
+  margin: 0;
+  padding: 0;
+  width: 5em;
 }
+
 #down {
   background-color: #eb3349;
   color: white;
@@ -224,7 +202,6 @@ button:active {
 }
 
 .how-to-play-btn {
-  padding: 10px 20px;
   display: block;
   margin: 25px auto 0;
   font-size: 18px;
@@ -241,6 +218,7 @@ button:active {
   bottom: 0;
   position: fixed;
 }
+
 .overlay {
   background: rgba(49, 49, 49, 0.8);
 }
@@ -274,4 +252,84 @@ button:active {
   width: 1em;
   height: 1em;
   margin: 5px;
+}
+
+/* Login */
+
+.loginPanelContent {
+  background-color: rgb(24, 26, 27);
+  box-shadow: rgb(0 0 0 / 50%) 0px 0px 4px 0px;
+  border-radius: 2px;
+  display: block;
+  box-sizing: border-box;
+  padding: 8px;
+  margin-bottom: 8px;
+}
+
+.btn-success {
+  color: rgb(232, 230, 227);
+  background-color: rgb(77, 133, 58);
+  border-color: rgb(55, 125, 55);
+  margin-top: 8px;
+  width: 100%;
+}
+
+.btn-about {
+  color: rgb(232, 230, 227);
+  background-color: #007fc6;
+  border-color: #007fc6;
+  border-radius: 0.3rem;
+  margin-top: 8px;
+  width: 100%;
+  height: 2.5em;
+}
+
+.how-to-play-btn {
+  color: rgb(232, 230, 227);
+  background-color: rgb(77, 133, 58);
+  border-color: rgb(55, 125, 55);
+  margin-top: 8px;
+  border-radius: 0.3rem;
+  width: 100%;
+  height: 2.5em;
+}
+
+#inputName {
+  width: 173%;
+  margin-top: 10px;
+}
+
+/* Randomizer button */
+
+#buttonAvatarCustomizerRandomize {
+  cursor: pointer;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  right: 4px;
+  top: 4px;
+  opacity: 0.6;
+}
+
+#buttonAvatarCustomizerRandomize:hover {
+  opacity: 1;
+}
+
+.loginAvatarCustomizeContainer {
+  background-color: rgb(30, 32, 34);
+  border-color: rgb(60, 65, 68);
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  border: 1px solid #d3d3d3;
+  border-radius: 2px;
+}
+
+.loginAvatar {
+  margin: 20px;
+  padding: 5px;
+  width: 40%;
+  border: 1px solid #d3d3d3;
+  border-radius: 50%;
 }

@@ -1,7 +1,20 @@
+import Link from "next/link";
+
 export default function GameHeader() {
   return (
     <div className="gameheader">
-      <h1>World map game</h1>
+      <h1 data-testid="game-header-content">
+        <Link href="/">
+          <a
+            style={{
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            mappin!
+          </a>
+        </Link>
+      </h1>
     </div>
   );
 }

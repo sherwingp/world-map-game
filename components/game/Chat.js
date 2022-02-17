@@ -59,8 +59,16 @@ const Chat = ({ socket }) => {
   };
 
   return (
-    <div>
-      <form id="chat-form" onSubmit={handleSubmit}>
+    <div className="card">
+      <div className="card-header text-center">
+        <span>Chat Box</span>
+      </div>
+      <ChatMessageList messages={messages} />
+      <form
+        className="chatbox-input form-control input-sm"
+        id="chat-form"
+        onSubmit={handleSubmit}
+      >
         <input
           id="chat-input"
           value={input}
@@ -70,7 +78,6 @@ const Chat = ({ socket }) => {
         />
         <input type="submit" name="submit-clue" value="Chat" />
       </form>
-      <ChatMessageList messages={messages} />
     </div>
   );
 };

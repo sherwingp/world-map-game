@@ -1,13 +1,10 @@
 import GameHeader from "../components/game/GameHeader.js";
-import ClueList from "../components/game/ClueList.js";
 import GameMap from "../components/game/Map.js";
-import ClueForm from "../components/game/ClueForm.js";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import Notification from "../components/Notification";
 import PlayerContext from "../contexts/player.js";
 import PlayersContext from "../contexts/players";
-import Navbar from "../components/Navbar.js";
 import { useContext } from "react";
 import PlayersList from "../components/game/PlayersList.js";
 import PlayersHeader from "../components/game/PlayersHeader.js";
@@ -76,7 +73,7 @@ export default function Game() {
     // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
     <div
       className="container"
-      style={{ width: "100vmax", height: "900px", paddingTop: "40px" }}
+      style={{ width: "100vmax", height: "700px", paddingTop: "40px" }}
     >
       <Head>
         <link
@@ -84,13 +81,16 @@ export default function Game() {
           rel="stylesheet"
         />
       </Head>
-      <div>
-        <Navbar />
+
+      <div className="col game-header">
+        <GameHeader />
       </div>
-      <div className="row">
-        <div className="col players-list-col">
-          <PlayersHeader />
-          <PlayersList socket={socket} />
+      <div className="row justify-content-center">
+        <div className="col-4">
+          <Notification />
+          {/* <Location /> */}
+        </div>
+        <div className="col-4">
           <Timer
             setMinutes={setMinutes}
             setSeconds={setSeconds}
@@ -98,12 +98,15 @@ export default function Game() {
             seconds={seconds}
           />
         </div>
-        <div className="col game-header">
-          <GameHeader />
+      </div>
+      <div className="row row-cols-3">
+        <div className="col-lg-3 col-md-12  col-sm-12 players-list-col">
+          <div className="card">
+            <PlayersHeader />
+            <PlayersList socket={socket} />
+          </div>
         </div>
-        <div className="col clue-col">
-          {/* <Location /> */}
-          <Notification />
+        <div className="col-lg-6 col-md-12 col-sm-12">
           <GameMap
             minutes={minutes}
             seconds={seconds}
@@ -111,9 +114,10 @@ export default function Game() {
             setSeconds={setSeconds}
             socket={socket}
           />
+        </div>
+
+        <div className="col-lg-3 col-md-12 col-sm-12">
           <Chat socket={socket} />
-          <ClueForm clues={clues} addClue={addClue} />
-          <ClueList clues={clues} />
         </div>
       </div>
     </div>

@@ -1,10 +1,15 @@
 const Footer = () => {
   return (
     <div className="footer">
-      <p data-testid="footer-content">
-        Copyright 2022 Created by Sherwin Panganiban, Michael Kassim, Zoë
-        Idehen, Kehinde Alaka & Tomas Garcia{" "}
-      </p>
+      <span data-testid="footer-content">
+        {"         "}Made by Sherwin Panganiban, Michael Kassim, Zoë Idehen,
+        Kehinde Alaka & Tomas Garcia{" "}
+      </span>
+      <a href="https://github.com/sherwingp/world-map-game">
+        <span id="right">
+          View on Github <img id="githubIcon" src="/images/github.png" />
+        </span>
+      </a>
     </div>
   );
 };

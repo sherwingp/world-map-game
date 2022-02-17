@@ -1,7 +1,7 @@
 const Header = () => {
   return (
     <div className="header">
-      <h1 data-testid="header-content">Welcome to MAP-PIN!</h1>
+      <h1 data-testid="header-content">mappin!</h1>
     </div>
   );
 };

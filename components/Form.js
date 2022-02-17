@@ -4,6 +4,8 @@ import PlayerContext from "../contexts/player";
 import PlayersContext from "../contexts/players";
 import { nanoid } from "nanoid";
 import { io } from "socket.io-client";
+import About from "./About";
+import HowToPlay from "./HowToPlay";
 
 let socket = io();
 
@@ -48,36 +50,34 @@ const Form = () => {
   };
 
   return (
-    <div>
-      <div className="container">
-        <div className="avatar-selector">
-          <div className="avatar">
-            <img src={avatar} alt="Sprite" />
-          </div>
-          <div className="generate">
-            <button
-              id="gen"
-              onClick={() => {
-                handleGenerate();
-              }}
-            >
-              Change Avatar
-            </button>
-          </div>
+    <div className="loginPanelContent">
+      <div className="loginAvatarCustomizeContainer">
+        <img className="loginAvatar" src={avatar} alt="Sprite" />
+        <div>
+          <img
+            id="buttonAvatarCustomizerRandomize"
+            src="https://skribbl.io/res/randomize.gif"
+            onClick={() => {
+              handleGenerate();
+            }}
+          />
         </div>
       </div>
       <form className="form" onSubmit={handleSubmit}>
-        <label data-testid="label">
-          Enter Player Name:
-          <input
-            className="input-index"
-            data-testid="input-name"
-            type="text"
-            name="name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
+        <div>
+          <label data-testid="label">
+            <input
+              className="form-control"
+              id="inputName"
+              type="text"
+              autoComplete="off"
+              placeholder="Enter your name"
+              minLength="3"
+              maxLength="32"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+        </div>
         <div className="set-host">
           <label>Set Host</label>
           <input
@@ -87,14 +87,13 @@ const Form = () => {
             onChange={(e) => setHost(e.currentTarget.checked)}
           />
         </div>
-        <button
-          className="submit-btn"
-          data-testid="link-to-game"
-          type="submit"
-          value="Submit"
-        >
-          Submit
+        <button className="btn btn-success btn-lg btn-block" type="submit">
+          Play
         </button>
+        <div>
+          <About />
+          <HowToPlay />
+        </div>
       </form>
     </div>
   );
