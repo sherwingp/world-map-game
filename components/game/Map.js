@@ -215,6 +215,7 @@ const GameMap = ({
           };
 
           const secretCountryGeoData = await getCountryGeoData();
+          console.log(mode);
           socket.emit("marked location", {
             location: secretCountryGeoData,
             mode: mode,
@@ -237,11 +238,11 @@ const GameMap = ({
       map.on("click", startGame);
     }
 
-    socket.on("marked location", ({ location, newMode }) => {
-      if (newMode === "classic") {
+    socket.on("marked location", ({ location, mode }) => {
+      if (mode === "classic") {
         setLocation(location);
         setNotification(`${location.asciiName}`);
-        currentMode = newMode;
+        currentMode = mode;
       } else {
         setNotification("Guess the location!");
       }
