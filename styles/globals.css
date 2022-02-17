@@ -1,12 +1,12 @@
 @font-face {
-  font-family: 'Apasih';
+  font-family: "Apasih";
   src: url("/fonts/Apasih.otf");
   font-weight: normal;
 }
 
 * {
   font-family: Apasih;
- }
+}
 
 html,
 body {
@@ -14,7 +14,7 @@ body {
   color: white;
   padding: 0;
   margin: 0;
-  font-family: 'Apasih', sans-serif;
+  font-family: "Apasih", sans-serif;
 }
 
 ul {
@@ -58,6 +58,10 @@ h4 {
   align-self: flex-end;
 }
 
+.container {
+  height: 100%;
+}
+
 .player {
   padding: 10px 40px 10px 40px;
   margin: 10px 0;
@@ -91,7 +95,20 @@ h4 {
 .footer {
   color: white;
   text-align: center;
-  padding-bottom: 25px;
+  position: relative;
+  bottom: 20px;
+  background-color: rgba(0, 127, 198, 255);
+  padding-top: 5px;
+}
+
+#right {
+  float: right;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+#githubIcon {
+  height: 20px;
 }
 
 .set-host {
@@ -126,22 +143,9 @@ h4 {
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap");
 
-.avatar-selector {
-  box-sizing: border-box;
-  height: 300px;
-  width: 100%;
-  gap: 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 .avatar {
   height: 50%;
   width: 50%;
-  max-width: 400px;
-  max-height: 400px;
   margin-top: 40px;
   margin-bottom: 45px;
   align: center;

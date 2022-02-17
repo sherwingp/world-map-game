@@ -8,7 +8,12 @@ const About = () => {
   };
   return (
     <>
-      <button type="button" class="btn-about btn-lg btn-block" id="buttonLoginCreatePrivate" onClick={toggleAbout}>
+      <button
+        type="button"
+        class="btn-about btn-lg btn-block"
+        id="buttonLoginCreatePrivate"
+        onClick={toggleAbout}
+      >
         About
       </button>
 
