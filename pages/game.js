@@ -17,6 +17,7 @@ import { io } from "socket.io-client";
 import { nanoid } from "nanoid";
 import { useRouter } from "next/router";
 import Flag from "../components/game/Flag.js";
+import ModeSelector from "../components/game/ModeSelector.js";
 
 let socket = io();
 
@@ -27,6 +28,7 @@ export default function Game() {
   const { player } = useContext(PlayerContext);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
+  const [mode, setMode] = useState('classic')
   const router = useRouter();
 
   useEffect(() => {
@@ -105,6 +107,7 @@ export default function Game() {
           <div className="card">
             <PlayersHeader />
             <PlayersList socket={socket} />
+            <ModeSelector setMode={setMode} />
           </div>
         </div>
         <div className="col-lg-6 col-md-12 col-sm-12">

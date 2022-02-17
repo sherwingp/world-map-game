@@ -13,6 +13,7 @@ let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
 let started = false;
+ 
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
 const GameMap = ({ minutes, seconds, setMinutes, setSeconds, socket }) => {
