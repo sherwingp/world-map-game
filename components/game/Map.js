@@ -5,7 +5,6 @@ import length from "@turf/length";
 import PlayersContext from "../../contexts/players";
 import PlayerContext from "../../contexts/player";
 import { nanoid } from "nanoid";
-import Chat from "./Chat.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
@@ -14,6 +13,7 @@ let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
 let started = false;
+let gamePlayers;
 
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
@@ -77,7 +77,6 @@ const GameMap = ({
       const guessMarker = new mapboxgl.Marker();
       setGuess = async (event) => {
         const guessLocation = event.lngLat;
-
         getGuessResult = async () => {
           const linestring = {
             type: "Feature",
@@ -151,44 +150,46 @@ const GameMap = ({
           // On correct answer
           if (guessedCountry !== "invalid country") {
             if (guessedCountry === secretCountry.countryName) {
-              started = false;
-
               setNotification(
                 `You correctly guessed ${secretLocation.asciiName}!`
               );
               map.off("click", setGuess);
 
-              const newMessage = {
-                id: "message-" + nanoid(),
-                author: "Game",
-                text: `${player.name} guessed the correct answer!`,
-              };
+              if (inRound === true) {
+                const newMessage = {
+                  id: "message-" + nanoid(),
+                  author: "Game",
+                  text: `${player.name} guessed the correct answer!`,
+                };
 
-              socket.emit("chat message", newMessage);
+                socket.emit("chat message", newMessage);
 
-              let updatedPlayers = players.map((listPlayer) => {
-                if (listPlayer.id === player.id) {
-                  return { ...player, score: ++player.score };
+                // Update player score
+                let updatedPlayers = gamePlayers;
+                updatedPlayers[
+                  updatedPlayers.findIndex((el) => el.id === player.id)
+                ] = { ...player, score: ++player.score };
+
+                // Update host score in guess mode
+                if (mode === "guess") {
+                  const host =
+                    updatedPlayers[
+                      updatedPlayers.findIndex((el) => el.host === true)
+                    ];
+                  updatedPlayers[players.findIndex((el) => el.host === true)] =
+                    { ...host, score: ++host.score };
                 }
-                return listPlayer;
-              });
 
-              if (mode === "guess") {
-                updatedPlayers = players.map((listPlayer) => {
-                  if (listPlayer.host === true) {
-                    return { ...listPlayer, score: ++listPlayer.score };
-                  }
-                });
+                socket.emit("send score", updatedPlayers);
+
+                setPlayers(
+                  updatedPlayers.sort((a, b) => {
+                    return b.score - a.score;
+                  })
+                );
               }
-              console.log(updatedPlayers);
-
-              socket.emit("send score", updatedPlayers);
-
-              setPlayers(
-                updatedPlayers.sort((a, b) => {
-                  return b.score - a.score;
-                })
-              );
+              started = false;
+              inRound = false;
             } else {
               const guessMessage = {
                 id: "message-" + nanoid(),
@@ -251,7 +252,8 @@ const GameMap = ({
       setNotification("Waiting for host...");
     }
 
-    socket.on("marked location", ({ location, mode }) => {
+    socket.on("marked location", ({ location, mode, players }) => {
+      gamePlayers = players;
       if (mode === "classic") {
         setLocation(location);
         secretCountry = location;

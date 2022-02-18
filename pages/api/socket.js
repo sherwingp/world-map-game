@@ -29,8 +29,7 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("marked location", ({ location, mode }) => {
-        console.log(mode);
-        socket.broadcast.emit("marked location", { location, mode });
+        socket.broadcast.emit("marked location", { location, mode, players });
       });
 
       socket.on("new player", (newPlayer) => {
