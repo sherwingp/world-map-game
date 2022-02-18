@@ -24,7 +24,6 @@ const GameMap = ({
   setSeconds,
   socket,
   mode,
-  setMode
 }) => {
   const [pageIsMounted, setPageIsMounted] = useState(false);
   const { location, setLocation } = useContext(LocationContext);
@@ -240,9 +239,6 @@ const GameMap = ({
     }
 
     socket.on("marked location", ({ location, mode }) => {
-      setMode(mode);
-      currentMode = mode;
-
       if (mode === "classic") {
         setLocation(location);
         secretCountry = location;
@@ -250,7 +246,9 @@ const GameMap = ({
       } else {
         setNotification("Guess the location!");
       }
+      started = true;
       inRound = true;
+      console.log(location);
       startGuess(location);
       setMinutes(0);
       setSeconds(20);

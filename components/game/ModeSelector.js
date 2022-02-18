@@ -5,12 +5,12 @@ const ModeSelector = ({ setMode, mode, socket }) => {
 
   socket.on("set mode", (mode) => {
     setMode(mode);
-  })
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
     setMode(option);
-    socket.emit("set mode", option)
+    socket.emit("set mode", option);
 
     const newModeMsg = {
       id: "message-" + nanoid(),
@@ -18,7 +18,7 @@ const ModeSelector = ({ setMode, mode, socket }) => {
       text: `Mode set to '${option}'.`,
     };
 
-    socket.emit("chat message", newModeMsg)
+    socket.emit("chat message", newModeMsg);
   };
 
   const onChange = (e) => {
