@@ -241,6 +241,7 @@ const GameMap = ({
     socket.on("marked location", ({ location, mode }) => {
       if (mode === "classic") {
         setLocation(location);
+        secretCountry = location;
         setNotification(`${location.asciiName}`);
         currentMode = mode;
       } else {
