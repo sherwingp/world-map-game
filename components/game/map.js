@@ -5,6 +5,7 @@ import length from "@turf/length";
 import PlayersContext from "../../contexts/players";
 import PlayerContext from "../../contexts/player";
 import { nanoid } from "nanoid";
+import Chat from "./Chat.js";
 const mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
 
 let map;
@@ -150,6 +151,8 @@ const GameMap = ({
           // On correct answer
           if (guessedCountry !== "invalid country") {
             if (guessedCountry === secretCountry.countryName) {
+              started = false;
+
               setNotification(
                 `You correctly guessed ${secretLocation.asciiName}!`
               );
@@ -169,13 +172,13 @@ const GameMap = ({
                 }
                 return listPlayer;
               });
-              
-              if (mode === 'guess') {
+
+              if (mode === "guess") {
                 updatedPlayers = players.map((listPlayer) => {
                   if (listPlayer.host === true) {
                     return { ...listPlayer, score: ++listPlayer.score };
                   }
-              });
+                });
               }
               console.log(updatedPlayers);
 
@@ -187,11 +190,13 @@ const GameMap = ({
                 })
               );
             } else {
-              const newMessage = {
+              const guessMessage = {
                 id: "message-" + nanoid(),
                 author: "Game",
                 text: `${player.name} guessed ${guessedCountry}!`,
               };
+
+              socket.emit("chat message", guessMessage);
             }
           }
         }
@@ -256,7 +261,6 @@ const GameMap = ({
       }
       started = true;
       inRound = true;
-      console.log(location);
       startGuess(location);
       setMinutes(0);
       setSeconds(20);
