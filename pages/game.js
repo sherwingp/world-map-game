@@ -99,7 +99,7 @@ export default function Game() {
           <div className="card">
             <PlayersHeader />
             <PlayersList socket={socket} />
-            <ModeSelector setMode={setMode} />
+            <ModeSelector setMode={setMode} mode={mode} socket={socket} />
           </div>
         </div>
         <div className="col-lg-6 col-md-12 col-sm-12">
