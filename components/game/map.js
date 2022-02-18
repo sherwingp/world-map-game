@@ -13,7 +13,6 @@ let setGuess;
 let getGuessResult = () => {};
 let secretCountry;
 let started = false;
-let currentMode;
 
 const geonamesKey = process.env.NEXT_PUBLIC_GEONAMES;
 
@@ -168,6 +167,7 @@ const GameMap = ({
                 if (listPlayer.id === player.id) {
                   return { ...player, score: ++player.score };
                 }
+                return listPlayer;
               });
               
               if (mode === 'guess') {
@@ -177,7 +177,7 @@ const GameMap = ({
                   }
               });
               }
-
+              console.log(updatedPlayers);
 
               socket.emit("send score", updatedPlayers);
 
@@ -227,9 +227,8 @@ const GameMap = ({
             location: secretCountryGeoData,
             mode: mode,
           });
-          setNotification(secretCountry.countryName);
           setLocation(secretCountryGeoData);
-          setNotification(`${secretCountry.countryName}`);
+          setNotification(`${secretCountryGeoData.asciiName}`);
           map.off("click", startGame);
           inRound = true;
           startGuess(secretCountryGeoData);
