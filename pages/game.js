@@ -36,7 +36,6 @@ export default function Game() {
       router.replace("/");
     } else {
       socketInitializer();
-      socket.emit("new player", player);
       socket.emit("refresh players");
     }
   }, []);
@@ -66,14 +65,7 @@ export default function Game() {
     });
   };
 
-  const addClue = (clue) => {
-    const newClue = { id: "clue-" + nanoid(), text: clue };
-
-    setClues([...clues, newClue]);
-  };
-
   return (
-    // style={{ width: "1400px", height: "1000px", borderStyle: "double" }}
     <div
       className="container"
       style={{ width: "100vmax", height: "700px", paddingTop: "40px" }}
