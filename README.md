@@ -4,9 +4,9 @@ MAPPIN is a single or multiplayer interactive world map guessing game.
 
 There are two modes to the game:
 
-Classic (single player): player is given a country at random and they must find that country on the map before time runs out to earn points!
+Classic (single player): The player is given a country at random and they must find that country on the map before time runs out to earn points!
 
-Guess the Country (multiplayer): Each round the host must describe their given country as clues and the other players must guess it in order to gain points! The person with the most points at the end of the game is declared the winner!
+Guess the Country (multiplayer): In each round, the host must describe their given country as clues and the other players must guess it in order to gain points! The person with the most points at the end of the game is declared the winner!
 
 ## Contributors
 
@@ -51,8 +51,8 @@ npm run dev
 
 ```
 As a player,
-So that I can play the game,
-I would like to enter my player name
+So that I can enter the game,
+I would like to input my player name
 ```
 
 ```
@@ -74,15 +74,15 @@ I would like to see a world map
 ```
 
 ```
-As a host,
-So that the other players can start the game
-I want to be able to set the secret location
+As a player,
+So that I can start the game,
+I want to be given a country at random to find on the map
 ```
 
 ```
 As a player, 
 So that I can select my guesses,
-I want to be able to click on the country that I guess on the map
+I want to be able to click on the country that I guess
 ```
 
 ```
@@ -99,12 +99,24 @@ I would like my score to go up
 
 ```
 As a player,
+So that I can see how long I have left of the round
+I want to see a countdown timer
+```
+
+```
+As a player,
 So that I can compete against other players,
 I want other players to join in my game
 ```
 
 ```
+As a host,
+So that I can help the other players guess the secret country
+I want to be able to give them clues.
+```
+
+```
 As a Player,
-So that I know I'm close to the correct answer,
-I would like the map to zoom in to a radius that includes the right answer
+So that I know if I've selected the correct country,
+I would like the map to reveal the secret country at the end of the round
 ```
