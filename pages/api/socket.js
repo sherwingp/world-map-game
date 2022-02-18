@@ -66,6 +66,7 @@ const SocketHandler = (req, res) => {
 
       socket.on("send score", (updatedPlayers) => {
         players = updatedPlayers;
+        console.log(players);
         socket.broadcast.emit("refresh players", players);
       });
 

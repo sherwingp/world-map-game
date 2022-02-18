@@ -164,12 +164,20 @@ const GameMap = ({
 
               socket.emit("chat message", newMessage);
 
-              const updatedPlayers = players.map((listPlayer) => {
+              let updatedPlayers = players.map((listPlayer) => {
                 if (listPlayer.id === player.id) {
                   return { ...player, score: ++player.score };
                 }
-                return player;
               });
+              
+              if (mode === 'guess') {
+                updatedPlayers = players.map((listPlayer) => {
+                  if (listPlayer.host === true) {
+                    return { ...listPlayer, score: ++listPlayer.score };
+                  }
+              });
+              }
+
 
               socket.emit("send score", updatedPlayers);
 
@@ -215,7 +223,6 @@ const GameMap = ({
           };
 
           const secretCountryGeoData = await getCountryGeoData();
-          console.log(mode);
           socket.emit("marked location", {
             location: secretCountryGeoData,
             mode: mode,
@@ -233,9 +240,11 @@ const GameMap = ({
       setTimeout(confirmStart, 100);
     };
 
-    setNotification("Click on the map to start the game!");
     if (player.host === true) {
       map.on("click", startGame);
+      setNotification("Click on the map to start the game!");
+    } else {
+      setNotification("Waiting for host...");
     }
 
     socket.on("marked location", ({ location, mode }) => {
