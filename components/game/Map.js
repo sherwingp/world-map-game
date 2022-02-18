@@ -260,12 +260,13 @@ const GameMap = ({
         setNotification(`${location.asciiName}`);
       } else {
         setNotification("Guess the location!");
+        secretCountry = location;
       }
       started = true;
       inRound = true;
       startGuess(location);
       setMinutes(0);
-      setSeconds(20);
+      setSeconds(30);
     });
   };
 
