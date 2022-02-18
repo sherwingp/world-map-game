@@ -2,7 +2,6 @@ import { Server } from "socket.io";
 
 const SocketHandler = (req, res) => {
   let players = [];
-  let location = "";
 
   if (res.socket.server.io) {
     console.log("Socket is already running");
@@ -30,8 +29,7 @@ const SocketHandler = (req, res) => {
       });
 
       socket.on("marked location", ({ location, mode }) => {
-        console.log(mode);
-        socket.broadcast.emit("marked location", { location, mode });
+        socket.broadcast.emit("marked location", { location, mode, players });
       });
 
       socket.on("new player", (newPlayer) => {
@@ -67,7 +65,13 @@ const SocketHandler = (req, res) => {
 
       socket.on("send score", (updatedPlayers) => {
         players = updatedPlayers;
+        console.log(players);
         socket.broadcast.emit("refresh players", players);
+      });
+
+      socket.on("set mode", (mode) => {
+        console.log(`mode sent ${mode}`);
+        socket.emit("set mode", mode);
       });
     });
   }

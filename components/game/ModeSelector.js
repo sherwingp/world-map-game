@@ -1,9 +1,24 @@
-const ModeSelector = ({ setMode }) => {
+import { nanoid } from "nanoid";
+
+const ModeSelector = ({ setMode, mode, socket }) => {
   let option;
+
+  socket.on("set mode", (mode) => {
+    setMode(mode);
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
     setMode(option);
+    socket.emit("set mode", option);
+
+    const newModeMsg = {
+      id: "message-" + nanoid(),
+      author: "Game",
+      text: `Mode set to '${option}'.`,
+    };
+
+    socket.emit("chat message", newModeMsg);
   };
 
   const onChange = (e) => {
@@ -13,7 +28,7 @@ const ModeSelector = ({ setMode }) => {
   return (
     <div className="mode-selector">
       <div className="col-sm-12">
-        <h3>Mode</h3>
+        <h3>Mode: {mode}</h3>
         <form onSubmit={onSubmit}>
           <div className="form-check">
             <label>

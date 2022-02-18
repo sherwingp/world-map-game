@@ -74,6 +74,7 @@ const Chat = ({ socket }) => {
           value={input}
           type="text"
           placeholder="Type something"
+          autoComplete="off"
           onChange={(e) => setInput(e.target.value)}
         />
         <input type="submit" name="submit-clue" value="Chat" />
