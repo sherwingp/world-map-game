@@ -12,7 +12,7 @@ Guess the Country (single/multiplayer): In each round, the host must describe th
 
 [![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
 
-## Demo
+## Demo (Audio on for full enjoyment!)
 
 Single Player Classic:
 
