@@ -6,17 +6,19 @@ There are two modes to the game:
 
 Classic (single player): The player is given a country at random and they must find that country on the map before time runs out to earn points!
 
-Guess the Country (multiplayer): In each round, the host must describe their given country as clues and the other players must guess it in order to gain points! The person with the most points at the end of the game is declared the winner!
+Guess the Country (single/multiplayer): In each round, the host must describe their given country as clues and the other players must guess it in order to gain points! The person with the most points at the end of the game is declared the winner!
 
 ## Contributors
 
 [![Sherwin Panganiban](https://img.icons8.com/nolan/25/github.png)](https://github.com/sherwingp) Sherwin Panganiban [![Michael Kassim](https://img.icons8.com/nolan/25/github.png)](https://github.com/Fadaka) Michael Kassim [![Zoë Idehen](https://img.icons8.com/nolan/25/github.png)](https://github.com/zidehen) Zoë Idehen [![Kehinde Alaka](https://img.icons8.com/nolan/25/github.png)](https://github.com/Alaka-K) Kehinde Alaka [![Tomas Garcia](https://img.icons8.com/nolan/25/github.png)](https://github.com/TomasGarciaDev) Tomas Garcia  
 
-## Screenshots
+## Demo
 
-<img src = "public/images/mappin-page.png">
+Single Player Classic:
+https://user-images.githubusercontent.com/67482908/154820818-e0bfb5aa-83d2-4ef5-ad3b-4a3746a12dda.mp4
 
-<img src = "public/images/mappin-game-page.png">
+Online Multiplayer Classic / Guess the Country
+https://user-images.githubusercontent.com/67482908/154820845-541963c0-b394-4adb-87f3-c69543bbbbec.mp4
 
 ## Full Stack Technologies
 
